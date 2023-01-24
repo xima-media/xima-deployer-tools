@@ -5,6 +5,8 @@ $projectImage = 'logo.png';
 $projectName = '{{DEPLOYER_CONFIG_FEATURE_INDEX_TITLE}}';
 $jiraPath = 'https://jira.xima.de/browse/';
 $defaultApplicationPath = '{{DEPLOYER_CONFIG_FEATURE_INDEX_APP_PATH}}';
+$additionalLinks = '{{DEPLOYER_CONFIG_FEATURE_INDEX_ADDITIONAL_LINKS}}'';
+
 
 $path = '.';
 $verz = opendir($path);
@@ -75,6 +77,7 @@ $fullSpacePercent = round(100 - $freeSpacePercent, 2);
                 </li>
             </ul>
             <ul>
+                <?php listAdditionalLinks($additionalLinks) ?>
                 <li><?php renderLogo($projectName, $projectImage) ?></li>
             </ul>
         </nav>
@@ -198,6 +201,18 @@ function searchArrayLike($haystack, $array) {
         }
     }
     return 999;
+}
+
+function listAdditionalLinks($links) {
+    if ($links == '') return '';
+
+    echo '<li><details role="list" dir="rtl"><summary aria-haspopup="listbox" role="link"></summary><ul role="listbox">';
+    $items = explode(",",$links);
+    foreach ($items as $item) {
+        $link = explode("|",$item);
+        echo '<li><a href="' . $link[1] . '" target="_blank">' . $link[0] . '</a></li>';
+    }
+    echo '</ul></details></li>';
 }
 
 ?>

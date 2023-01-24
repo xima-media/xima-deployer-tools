@@ -21,12 +21,21 @@ task('feature:index', function () {
  * @throws \Deployer\Exception\Exception
  * @throws \Deployer\Exception\TimeoutException
  */
-function renderIndexTemplate() {
-
+function renderIndexTemplate(): void
+{
     $arguments = [
         'DEPLOYER_CONFIG_FEATURE_INDEX_TITLE' => get('feature_index_title'),
         'DEPLOYER_CONFIG_FEATURE_INDEX_APP_PATH' => get('feature_index_app_path'),
     ];
+
+    // Add additional links
+    if (has('feature_index_additional_links')) {
+        $preparedLink = [];
+        foreach (get('feature_index_additional_links') as $title => $link) {
+            $preparedLink[] = "$title|$link";
+        }
+        $arguments['DEPLOYER_CONFIG_FEATURE_INDEX_ADDITIONAL_LINKS'] = implode(",", $preparedLink);
+    }
 
     uploadTemplate(__DIR__ . '/../dist/index.php.dist', '/index.php', $arguments);
 

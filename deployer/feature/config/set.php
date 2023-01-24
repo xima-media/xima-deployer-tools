@@ -44,3 +44,6 @@ set('feature_url_shortener_path', '.dep/instances/');
  */
 set('feature_index_title', 'DEMO');
 set('feature_index_app_path', '');
+//set('feature_index_additional_links', [
+//    'title' => 'path'
+//]);
