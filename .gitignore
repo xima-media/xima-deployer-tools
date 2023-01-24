@@ -1,0 +1,46 @@
+#
+# IDE files
+#
+.idea/
+
+#
+# Build
+#
+.Build
+
+#
+# Cache files
+#
+.sass-cache/
+
+#
+# Packages
+#
+vendor/
+node_modules/
+
+#
+# Keep
+#
+!.gitkeep
+
+#
+# ddev
+#
+/.ddev/import.yaml
+/.ddev/db_snapshots
+/.ddev/sequelpro.spf
+/.ddev/import-db
+/.ddev/.bgsync*
+/.ddev/config.*.y*ml
+/.ddev/docker-compose.yaml
+/.ddev/.webimageExtra
+/.ddev/.dbimageExtra
+/.ddev/.dbimageBuild
+/.ddev/.sshimageBuild
+/.ddev/.webimageBuild
+/.ddev/commands/db
+/.ddev/commands/host
+/.ddev/commands/solr
+/.ddev/homeadditions
+/.ddev/*-build/Dockerfile.example

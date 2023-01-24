@@ -1,0 +1,204 @@
+<?php
+
+date_default_timezone_set('Europe/Berlin');
+$projectImage = 'logo.png';
+$projectName = '{{DEPLOYER_CONFIG_FEATURE_INDEX_TITLE}}';
+$jiraPath = 'https://jira.xima.de/browse/';
+$defaultApplicationPath = '{{DEPLOYER_CONFIG_FEATURE_INDEX_APP_PATH}}';
+
+$path = '.';
+$verz = opendir($path);
+$verzarr = array();
+
+$diskTotalSpace = round(disk_total_space('.') / (1024 * (pow(10, 6))), 2);
+$diskFreeSpace = round(disk_free_space('.') / (1024 * (pow(10, 6))), 2);
+$diskFullSpace = $diskTotalSpace - $diskFreeSpace;
+$freeSpacePercent = round($diskFreeSpace * 100 / $diskTotalSpace, 2);
+$fullSpacePercent = round(100 - $freeSpacePercent, 2);
+
+?>
+
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1, minimum-scale=1'>
+        <link rel='icon' type='image/png' href='logo.png' />
+
+        <title><?php echo $projectName ?></title>
+        <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+        <style>
+            .pill {
+                display: inline-block;
+                padding: 15px;
+                border: 1px solid #ccc;
+                border-radius: 50px;
+                color: #aaa;
+                margin: 0 5px;
+                font-size: 20px;
+                background: #fff;
+                text-align: center;
+                min-width: 52px;
+            }
+
+            .pill[data-type] {
+                background: #0277BD;
+                color: #fff;
+                border: 0;
+                margin-right: 15px;
+            }
+
+            .pill[data-type="release"] {
+                background: #BF360C;
+            }
+
+            .pill[data-type="feature"] {
+                background: #00695C;
+            }
+            progress {
+                height: .125rem;
+            }
+            h3 {
+                width: max-content;
+            }
+        </style>
+    </head>
+    <body>
+    <progress style="<?php echo getDiskSpaceColor($fullSpacePercent) ?>" value="<?php echo $fullSpacePercent ?>" max="100"></progress>
+    <header class="container" style="padding-bottom: 0">
+        <nav>
+            <ul>
+                <li>
+                    <hgroup>
+                        <h2><?php echo $projectName ?></h2>
+                        <h3 data-tooltip="ToDo">Feature Branch Deployment</h3>
+                    </hgroup>
+                </li>
+            </ul>
+            <ul>
+                <li><?php renderLogo($projectName, $projectImage) ?></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <section>
+            <table>
+                <tbody>
+                    <?php
+                    /**
+                     * List all available feature branches
+                     */
+                    $allBranches = (browseDirectory($path, $verz, $verzarr));
+                    renderListGroup(filterArray($allBranches), $defaultApplicationPath, $jiraPath);
+                    ?>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    </body>
+</html>
+
+
+<?php
+/**
+ * Functions
+ */
+
+function getDiskSpaceColor($percentage): string
+{
+    switch (true) {
+        case  ($percentage < 40):
+            return 'color:#0277BD';
+        case  ($percentage < 70):
+            return 'color:#01579B';
+        case  ($percentage < 90):
+            return 'color:#FF6F00';
+        case  ($percentage >= 90):
+            return 'color:#BF360C';
+        default:
+            return 'color:#0277BD';
+    }
+}
+
+function renderLogo($name, $image) {
+    if (file_exists($image)) {
+        echo '<img title=\'' . $name . '\' alt=\'' . $name. '\' height=\'100px\' src=\'' . $image . '\' />';
+    }
+}
+
+
+function browseDirectory($path, $verz, $array)
+{
+    while ($file = readdir($verz)) {
+        if (($file[0] != '.') && ($file != '..') && is_dir($file)) {
+            array_push($array, $file);
+        }
+    }
+    return $array;
+}
+
+function renderListGroup($branches, $defaultApplicationPath, $jiraPath)
+{
+    foreach ($branches as $branch) {
+
+        $fileChangeDate = date('d.m.Y', filectime($branch));
+        $category = getCategory($branch);
+        $meta = getMeta($branch);
+        $version = $ticket = null;
+
+        if ($meta) {
+            if ($meta[0] == 'v') {
+                $version = '<sup>' . $meta . '</sup>';
+            } else {
+                $ticket = '<a href="'.$jiraPath.$meta.'" data-tooltip="JIRA Ticket ' . $meta . '">' . $meta . '</a>';
+            }
+        }
+
+        echo '<tr>';
+        echo '<td><div class="pill" data-tooltip="' . ucfirst($category) .' branch" data-type="' . $category . '">' . strtoupper($category[0]) . '</div> <a href=\'' . $branch .$defaultApplicationPath. '\'><strong>' . $branch . '</strong></a>' . $version .'</td>';
+        echo '<td style="text-align: right">';
+        echo $ticket . '<kbd data-tooltip="Last modification date">' . $fileChangeDate . '</kbd>';
+        echo '</td>';
+        echo '</tr>';
+    }
+}
+
+function getCategory($name): string
+{
+    if (preg_match('/(release)-(\d+.\d+.\d+)/', $name)) return 'release';
+    if (preg_match('/([A-Z]+)-(\d+)/', $name)) return 'feature';
+    return $name;
+}
+
+function getMeta($name): string
+{
+    if (preg_match('/(release)-(\d+.\d+.\d+)/', $name, $version)) return 'v'.$version[2];
+    if (preg_match('/([A-Z]+)-(\d+)/', $name, $issue)) return $issue[0];
+    return '';
+}
+
+function filterArray($array)
+{
+    $order = ['master', 'stage', 'test', 'release'];
+    // alphabetic order
+    asort($array);
+    // custom order
+    usort($array, function ($a, $b) use ($order) {
+        $pos_a = searchArrayLike($a, $order);
+        $pos_b = searchArrayLike($b, $order);
+        return $pos_a - $pos_b;
+    });
+    return $array;
+}
+
+function searchArrayLike($haystack, $array) {
+    foreach ($array as $key => $needle) {
+        if (strpos($haystack, $needle) === 0) {
+            return $key;
+        }
+    }
+    return 999;
+}
+
+?>
+

@@ -1,0 +1,9 @@
+{
+	"name": "xima/xima-deployer-tools",
+	"description": "The XIMA Deployer Tools combine multiple deployer recipes for an improved deployment process and workflow.",
+	"type": "library",
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"deployer/deployer": "^7.0"
+	}
+}
