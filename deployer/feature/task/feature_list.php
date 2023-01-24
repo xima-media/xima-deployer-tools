@@ -11,7 +11,6 @@ task('feature:list', function () {
 
     // build up statistic table for output
     foreach ($directoryStats as $stat) {
-        $stat = explode(" ", $stat);
         if (strtolower($stat[0]) !== 'directory' && strtolower($stat[0]) !== 'verzeichnis') continue;
         $publicUrl = get('public_url') . $stat[2];
         if (!isUrlShortener()) {
