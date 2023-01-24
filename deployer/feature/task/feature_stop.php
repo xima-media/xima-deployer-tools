@@ -14,8 +14,6 @@ task('feature:stop', function () {
     $feature = input()->getOption('feature');
     deleteFeature($feature);
 
-    info("feature branch <fg=magenta;options=bold>$feature</> deleted");
-
 })->desc('Delete a feature branch');
 
 
@@ -39,4 +37,6 @@ function deleteFeature($feature = null): void
 
     runDatabaseCommand("DROP DATABASE IF EXISTS `$databaseName`;", false);
     run("rm -rf " . get('deploy_path'));
+
+    info("feature branch <fg=magenta;options=bold>$feature</> deleted");
 }

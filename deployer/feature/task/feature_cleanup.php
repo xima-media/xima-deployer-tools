@@ -24,7 +24,6 @@ task('feature:cleanup', function () {
                 "<fg=green>$featureName</>",
                 "<fg=green>$featureName</>"
             ];
-            unset($remoteInstances[array_search($featureName, $remoteInstances, true)]);
         } else {
             // git branch has no feature instance
             $comparison[] = [
@@ -32,6 +31,7 @@ task('feature:cleanup', function () {
                 ""
             ];
         }
+        unset($remoteInstances[array_search($featureName, $remoteInstances, true)]);
     }
     foreach ($remoteInstances as $instance) {
         // git branch is gone, feature instance should be deleted
