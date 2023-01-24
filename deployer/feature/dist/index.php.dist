@@ -5,7 +5,7 @@ $projectImage = 'logo.png';
 $projectName = '{{DEPLOYER_CONFIG_FEATURE_INDEX_TITLE}}';
 $jiraPath = 'https://jira.xima.de/browse/';
 $defaultApplicationPath = '{{DEPLOYER_CONFIG_FEATURE_INDEX_APP_PATH}}';
-$additionalLinks = '{{DEPLOYER_CONFIG_FEATURE_INDEX_ADDITIONAL_LINKS}}'';
+$additionalLinks = '{{DEPLOYER_CONFIG_FEATURE_INDEX_ADDITIONAL_LINKS}}';
 
 
 $path = '.';
