@@ -3,6 +3,7 @@
 namespace Deployer;
 
 
+use Deployer\Exception\GracefulShutdownException;
 use Deployer\Utility\Httpie;
 
 task('msteams:notify', function () {
@@ -14,12 +15,18 @@ task('msteams:notify', function () {
  * @param $message
  * @param $color
  * @return void
+ * @throws \Deployer\Exception\GracefulShutdownException
  */
 function sendMessage($message, $color): void
 {
     if (!empty(getenv('DEPLOYER_CONFIG_NOTIFICATION_MUTE'))) {
         info("skipping notification because of DEPLOYER_CONFIG_NOTIFICATION_MUTE environment variable");
         return;
+    }
+
+    $msTeamsWebhook = has('msteams_webhook') ? get('msteams_webhook') : getenv('DEPLOYER_CONFIG_NOTIFICATION_MSTEAMS_WEBHOOK');
+    if (!$msTeamsWebhook) {
+        throw new GracefulShutdownException('Missing MS Teams webhook for notification task. Use "msteams_webhook" deployer configuration or "DEPLOYER_CONFIG_NOTIFICATION_MSTEAMS_WEBHOOK" environment variable to define the necessary webhook url.');
     }
 
     Httpie::post(get('msteams_webhook'))->jsonBody([
