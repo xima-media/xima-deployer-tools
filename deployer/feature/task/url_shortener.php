@@ -25,11 +25,11 @@ function isUrlShortener(): bool
  * @throws \Deployer\Exception\RunException
  * @throws \Deployer\Exception\TimeoutException
  */
-function initUrlShortener(): void
+function initUrlShortener($feature = null): void
 {
     if (!isUrlShortener()) return;
 
-    $feature = input()->getOption('feature');
+    $feature = $feature ?: input()->getOption('feature');
 
     set('deploy_path_url_shortener', get('deploy_path'));
     set('deploy_path', get('deploy_path') . '/' . get('feature_url_shortener_path') . $feature);

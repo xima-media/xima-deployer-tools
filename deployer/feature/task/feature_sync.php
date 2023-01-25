@@ -11,6 +11,7 @@ task('feature:sync', function () {
 
     $feature = input()->getOption('feature');
     set('feature', $feature);
-    runLocally("{{db_sync_tool}} -f {{feature_sync_config}} --target-path {{feature_sync_target_path}} -y -v");
+    runLocally("{{db_sync_tool}} -f {{feature_sync_config}} --target-path {{feature_sync_target_path}} -y");
+    info("feature branch <fg=magenta;options=bold>$feature</> was sucessfully synced");
 
 })->desc('Sync a feature branch');
