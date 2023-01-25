@@ -130,7 +130,21 @@ So the resulting url will look like: `https://test.local/app`.
 
 ### Cleanup
 
-The `feature:cleanup` command compares remote git branches with remote feature instances and provides a cleanup for all untracked feature instances on the remote server.
+The `feature:cleanup` command helps to cleanup feature branch instances. It compares remote git branches with remote feature instances and provides a cleanup for all untracked feature instances on the remote server.
+
+```bash
+$  vendor/bin/dep feature:cleanup
+task feature:cleanup
++------------------- stage -------------------+
+| Remote Git Branch | Remote Feature Instance |
++-------------------+-------------------------+
+| main              | main                    |
+| stage             | stage                   |
+|                   | test                    |
++-------------------+-------------------------+
+[stage] Do you want to cleanup all remote feature instances which haven't an according git branch anymore? (marked as red) [y/N] y
+[stage] info feature branch test deleted
+```
 
 ### Further more
 
