@@ -64,16 +64,17 @@ function createDatabase(): void
  */
 function runDatabaseCommand($command, $useDoubleQuotes = true): string
 {
-    if (empty(getenv('DEPLOYER_CONFIG_DATABASE_PASSWORD'))) {
-        throw new \Exception('Missing database password within environment variable "DEPLOYER_CONFIG_DATABASE_PASSWORD"',
-            1674057609);
-    }
-    $quote = $useDoubleQuotes ? '"' : '\'';
-
     $databaseUser = get('database_user');
     $databaseHost = get('database_host');
     $databasePort = get('database_port');
-    return run(get('mysql') . " -u$databaseUser -p%secret% -h$databaseHost -P$databasePort -e {$quote}$command{$quote}", [],null,null, getenv('DEPLOYER_CONFIG_DATABASE_PASSWORD'));
+    $databasePassword = has('database_password') ? get('database_password') : getenv('DEPLOYER_CONFIG_DATABASE_PASSWORD');
+
+    if (!$databasePassword) {
+        $databasePassword = askHiddenResponse("Enter the database password for $databaseUser@$databaseHost:");
+    }
+    $quote = $useDoubleQuotes ? '"' : '\'';
+
+    return run(get('mysql') . " -u$databaseUser -p%secret% -h$databaseHost -P$databasePort -e {$quote}$command{$quote}", [],null,null, $databasePassword);
 }
 
 /**
@@ -144,6 +145,8 @@ function renderRemoteTemplates(): void
 }
 
 /**
+ * Extend a given local template with the provided arguments and uploads them to a remote host
+ *
  * @param $localTemplate
  * @param $remoteTarget
  * @param $arguments
@@ -152,7 +155,7 @@ function renderRemoteTemplates(): void
  * @throws \Deployer\Exception\RunException
  * @throws \Deployer\Exception\TimeoutException
  */
-function uploadTemplate($localTemplate, $remoteTarget, $arguments) {
+function uploadTemplate($localTemplate, $remoteTarget, $arguments): void {
     $templateContent = file_get_contents($localTemplate);
 
     // replace all {{variables}} with arguments
