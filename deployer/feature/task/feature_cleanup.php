@@ -31,7 +31,10 @@ task('feature:cleanup', function () {
                 ""
             ];
         }
-        unset($remoteInstances[array_search($featureName, $remoteInstances, true)]);
+
+        if ($index = array_search($featureName, $remoteInstances, true)) {
+            unset($remoteInstances[$index]);
+        }
     }
     foreach ($remoteInstances as $instance) {
         // git branch is gone, feature instance should be deleted
