@@ -3,6 +3,7 @@
 namespace Deployer;
 
 use Symfony\Component\Console\Helper\Table;
+
 require_once('feature_init.php');
 require_once('feature_list.php');
 require_once('feature_stop.php');
@@ -13,7 +14,9 @@ task('feature:cleanup', function () {
     $gitBranches = runLocally('git branch -r | tr "\\n" "," | tr -d \' \' | sed \'s/origin\\///g\' | sed \'s/.$//\'');
     $gitBranches = explode(',', $gitBranches);
     $remoteInstances = listFeatureInstances();
-    $remoteInstances = array_map(static function($item){ return $item[2];}, $remoteInstances);
+    $remoteInstances = array_map(static function ($item) {
+        return $item[2];
+    }, $remoteInstances);
 
     $comparison = [];
     foreach ($gitBranches as $branch) {
@@ -31,8 +34,7 @@ task('feature:cleanup', function () {
                 ""
             ];
         }
-
-        if ($index = array_search($featureName, $remoteInstances, true)) {
+        if (($index = array_search($featureName, $remoteInstances, false)) !== false) {
             unset($remoteInstances[$index]);
         }
     }
@@ -50,12 +52,16 @@ task('feature:cleanup', function () {
         ->render();
 
 
-    $delete = askConfirmation("Do you want to cleanup all remote feature instances which haven't an according git branch anymore? (marked as <fg=red>red</>)", false);
+    if (!empty($remoteInstances)) {
+        $delete = askConfirmation("Do you want to cleanup all remote feature instances which haven't an according git branch anymore? (marked as <fg=red>red</>)", false);
 
-    if ($delete) {
-        foreach ($remoteInstances as $instance) {
-            deleteFeature($instance);
+        if ($delete) {
+            foreach ($remoteInstances as $instance) {
+                deleteFeature($instance);
+            }
         }
+    } else {
+        info("Everything seems in sync <fg=green>✔</>");
     }
 
 })->desc('Compare remote git branches with remote feature instances and provides a cleanup for all untracked feature instances on the remote server');
