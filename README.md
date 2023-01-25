@@ -139,8 +139,37 @@ Additional configurations regarding the feature branch deployment are available 
 
 # TYPO3
 
-Default configurations for TYPO3 deployment
+This packages comes with a set of predefined settings and tasks for TYPO3 following the rsync strategy.
+
+Predefined settings are (these can be overwritten in your project deployer.php):
+- 'web_path'
+- 'bin/typo3cms'
+- 'shared_dirs'
+- 'shared_files'
+- 'writable_dirs'
+
+Predefined tasks are (can be overwritten as well):
+- 'typo3cms:setup' - some TYPO3 setup commands like fixfolderstructure
+- 'typo3cms:database:updateschema'
+- 'typo3cms:cache:flushandwarmup' - flushes all caches and warms up system caches
+- 'typo3cms:cache:flushfrontend' - flushes frontend caches only
+
+# rsync
+
+Following the rsync strategy there are predefined, ready to use rsync tasks using the package contrib/rsync.php.
+
+You can overwrite the source dir:
+- 'rsync_src'
+and even the whole rsync configuration:
+- 'rsync'
+
+`Excludes are red from 'deployment/rsync/exclude.txt' by default.`
+
+# deploy
+
+The predefined 'deploy' tasks runs with ready to use feature branch deployment and rsync.
+
+There is also a ready to use 'rollback' task.
 
 # ToDo
-- TYPO3 defaults
 - MS Teams Notification
