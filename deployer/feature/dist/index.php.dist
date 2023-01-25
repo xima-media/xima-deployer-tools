@@ -48,13 +48,14 @@ $fullSpacePercent = round(100 - $freeSpacePercent, 2);
                 border: 0;
                 margin-right: 15px;
             }
-
             .pill[data-type="release"] {
                 background: #BF360C;
             }
-
             .pill[data-type="feature"] {
                 background: #00695C;
+            }
+            .pill[data-type="main"], .pill[data-type="master"] {
+                background: #33691E;
             }
             progress {
                 height: .125rem;
@@ -125,7 +126,7 @@ function getDiskSpaceColor($percentage): string
 
 function renderLogo($name, $image) {
     if (file_exists($image)) {
-        echo '<img title=\'' . $name . '\' alt=\'' . $name. '\' height=\'100px\' src=\'' . $image . '\' />';
+        echo '<img title=\'' . $name . '\' alt=\'' . $name. '\' width=\'100px\' src=\'' . $image . '\' />';
     }
 }
 
@@ -182,7 +183,7 @@ function getMeta($name): string
 
 function filterArray($array)
 {
-    $order = ['master', 'stage', 'test', 'release'];
+    $order = ['main', 'master', 'stage', 'test', 'release'];
     // alphabetic order
     asort($array);
     // custom order
