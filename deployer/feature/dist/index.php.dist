@@ -35,18 +35,19 @@ $fullSpacePercent = round(100 - $freeSpacePercent, 2);
                 border: 1px solid #ccc;
                 border-radius: 50px;
                 color: #aaa;
-                margin: 0 5px;
-                font-size: 20px;
-                background: #fff;
+                margin: 0 15px 0 5px;
+                font-size: 15px;
+                background: transparent;
                 text-align: center;
                 min-width: 52px;
+                font-family: "Menlo","Consolas","Roboto Mono","Ubuntu Monospace","Noto Mono","Oxygen Mono","Liberation Mono",monospace,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             }
 
             .pill[data-type] {
                 background: #0277BD;
                 color: #fff;
                 border: 0;
-                margin-right: 15px;
+                font-size: 20px;
             }
             .pill[data-type="release"] {
                 background: #BF360C;
@@ -55,7 +56,7 @@ $fullSpacePercent = round(100 - $freeSpacePercent, 2);
                 background: #00695C;
             }
             .pill[data-type="main"], .pill[data-type="master"] {
-                background: #33691E;
+                background: #F57F17;
             }
             progress {
                 height: .125rem;
@@ -154,7 +155,7 @@ function renderListGroup($branches, $defaultApplicationPath, $jiraPath)
             if ($meta[0] == 'v') {
                 $version = '<sup>' . $meta . '</sup>';
             } else {
-                $ticket = '<a href="'.$jiraPath.$meta.'" data-tooltip="JIRA Ticket ' . $meta . '">' . $meta . '</a>';
+                $ticket = '<a class="pill" href="'.$jiraPath.$meta.'" data-tooltip="JIRA Ticket ' . $meta . '" target="_blank">' . $meta . '</a>';
             }
         }
 
