@@ -11,15 +11,7 @@ task('feature:init', function () {
     }
 
     // extend deploy path / public url
-    $feature = input()->getOption('feature');
-    set('feature', $feature);
-
-    if (isUrlShortener()) {
-        initUrlShortener();
-    } else {
-        set('deploy_path', get('deploy_path') . '/' . $feature);
-        set('public_url', get('public_url') . $feature . '/current/' . get('web_path'));
-    }
+    $feature = initFeature();
 
     if (!checkFeatureBranchExists()) {
         info("initializing feature branch <fg=magenta;options=bold>$feature</>");
@@ -30,6 +22,28 @@ task('feature:init', function () {
         set('initial_deployment', false);
     }
 })->desc('Initialize a feature branch');
+
+
+/**
+ * @param $feature
+ * @return string
+ * @throws \Deployer\Exception\Exception
+ * @throws \Deployer\Exception\RunException
+ * @throws \Deployer\Exception\TimeoutException
+ */
+function initFeature($feature = null): string {
+
+    $feature = $feature ?: input()->getOption('feature');
+    set('feature', $feature);
+
+    if (isUrlShortener()) {
+        initUrlShortener();
+    } else {
+        set('deploy_path', get('deploy_path') . '/' . $feature);
+        set('public_url', get('public_url') . $feature . '/current/' . get('web_path'));
+    }
+    return $feature;
+}
 
 /**
  * Create a new database for the feature branch
