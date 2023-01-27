@@ -29,6 +29,10 @@ $fullSpacePercent = round(100 - $freeSpacePercent, 2);
         <title><?php echo $projectName ?></title>
         <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
         <style>
+            <?php if (file_exists('background.png')) {
+                    echo "body {background-image: url('background.png');background-repeat: repeat-y;background-attachment: fixed;background-position: right;background-size: contain;}";
+                  }
+            ?>
             .pill {
                 display: inline-block;
                 padding: 15px;
