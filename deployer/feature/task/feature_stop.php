@@ -14,7 +14,7 @@ task('feature:stop', function () {
     $feature = input()->getOption('feature');
     deleteFeature($feature);
 
-})->desc('Delete a feature branch');
+})->desc('Delete a feature branch instance');
 
 
 /**

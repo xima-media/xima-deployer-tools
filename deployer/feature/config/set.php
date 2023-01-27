@@ -36,7 +36,7 @@ set('feature_msteams_text', 'Der Branch **[{{feature}}]({{public_url}})** wurde 
 /**
  * Feature Url Shortener
  */
-#set('feature_url_shortener', null);
+#set('feature_url_shortener', false);
 set('feature_url_shortener_path', '.dep/instances/');
 
 /**

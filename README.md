@@ -2,29 +2,55 @@ XIMA Deployer Tools
 ===
 > The XIMA Deployer Tools combine multiple [deployer](https://deployer.org/) recipes for an improved deployment process and workflow.
 
+<!-- TOC start -->
+- [Feature Branch Deployment](#feature-branch-deployment)
+    + [Prerequirements](#prerequirements)
+    + [Initialization](#initialization)
+    + [Deletion](#deletion)
+    + [Notification](#notification)
+    + [Synchronization](#synchronization)
+    + [Information](#information)
+    + [Pathing](#pathing)
+    + [Cleanup](#cleanup)
+    + [Further more](#further-more)
+- [TYPO3](#typo3)
+- [rsync](#rsync)
+- [deploy](#deploy)
+- [ToDo](#todo)
+<!-- TOC end -->
 
 # Feature Branch Deployment
 
-The feature branch deployments describes the deployment and initialization process of multiple application instances on the same host. 
+The feature branch deployment describes the deployment and initialization process of multiple application instances on the same host.
+
+If you want to use the feature branch deployment functionalities add the belonging autoloader to your project `deploy.php`:
+
+```php
+require_once(__DIR__ . '/vendor/xima/xima-deployer-tools/deployer/feature/autoload.php');
+```
+
+See an example configuration here: [deploy.php](deployer/feature/example/deploy.php).
 
 The following steps are necessary to successfully setup the deployment workflow:
 
 ### Prerequirements
 
-You need a database user with the following grants: _ToDo_
+You need a database user with the following grants to dynamically create and delete new databases:
+
+- `SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE`
 
 ### Initialization
 
-The `feature:init` command represent the initialization of a new feature branch. It creates the necessary folder structure and database for the application. Also it extend the given host information with the necessary dynamic feature instance information.
+The `feature:setup` command represent the initialization of a new feature branch. It creates the necessary folder structure and database for the application. Also it extend the given host information with the necessary dynamic feature instance information.
 
 ```bash
-$ vendor/bin/dep feature:init stage --feature=TEST-01
+$ vendor/bin/dep feature:setup stage --feature=TEST-01
 ```
 
 This task should be declared to run at first within your deploy task:
 
 ```php
-before('deploy:info', 'feature:init';
+before('deploy:info', 'feature:setup';
 ```
 
 If the application needs to setup additional configuration files for e.g. storing the database credentials, use the feature templates to provide this kind of dynamic setup. For example the TYPO3 setup with a `.env` file:
@@ -35,7 +61,7 @@ set('feature_templates', [
 ]);
 ```
 
-This configuration defines the local template file as well as the remote target destination. Within the template file a bunch of predefined variables are available and can be placed with `{{attribute}}`. 
+This configuration defines the local template file as well as the remote target destination. Within the template file a bunch of predefined variables are available and can be placed with `{{attribute}}`.
 
 | attribute                       | description                                                                          |
 |---------------------------------|--------------------------------------------------------------------------------------|
@@ -48,6 +74,12 @@ This configuration defines the local template file as well as the remote target 
 | `DEPLOYER_CONFIG_FEATURE_PATH`  | will be dynamically generated                                                        |
 
 You can extend these list be providing more environment variables starting with `DEPLOYER_CONFIG_*`.
+
+> Hint: If you're using other deployer commands within the feature branch deployment context, you should use the `feature:init` task to extend the host definition with the necessary feature instance configuration:
+>
+> ```php
+> before('deploy:rollback', 'feature:init');
+> ```
 
 ### Deletion
 
@@ -126,7 +158,7 @@ The folder structure on the server will look like this:
 
 ```
 
-So the resulting url will look like: `https://test.local/app`. 
+So the resulting url will look like: `https://test.local/app`.
 
 ### Cleanup
 
@@ -174,7 +206,7 @@ Following the rsync strategy there are predefined, ready to use rsync tasks usin
 
 You can overwrite the source dir:
 - 'rsync_src'
-and even the whole rsync configuration:
+  and even the whole rsync configuration:
 - 'rsync'
 
 `Excludes are red from 'deployment/rsync/exclude.txt' by default.`

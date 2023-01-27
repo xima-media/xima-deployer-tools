@@ -3,7 +3,6 @@
 namespace Deployer;
 
 task('deploy', [
-    'feature:init',
     'deploy:setup',
     'deploy:lock',
     'deploy:release',
@@ -14,15 +13,12 @@ task('deploy', [
     'deploy:writable',
     'typo3cms:setup',
     'typo3cms:database:updateschema',
-    'feature:sync',
     'typo3cms:cache:flushandwarmup',
     'deploy:symlink',
-    'feature:urlshortener',
     'typo3cms:cache:flushfrontend',
 //    'warmup_frontend',
     'deploy:unlock',
     'deploy:cleanup',
-    'feature:notify',
     'deploy:success',
 ]);
 
