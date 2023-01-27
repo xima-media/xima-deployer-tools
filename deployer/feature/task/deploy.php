@@ -6,7 +6,7 @@ namespace Deployer;
  * Default extensions for deploy tasks
  */
 
-before('deploy:rollback', 'feature:init');
+before('rollback', 'feature:init');
 before('deploy:unlock', 'feature:init');
 before('feature:sync', 'feature:init');
 before('deploy:setup', 'feature:setup');

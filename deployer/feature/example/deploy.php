@@ -6,6 +6,7 @@ namespace Deployer;
  * This is just an example configuration to enable the feature branch deployment within your deployment
  */
 
+require_once(__DIR__ . '/vendor/xima/xima-deployer-tools/autoload.php');
 require_once(__DIR__ . '/vendor/xima/xima-deployer-tools/deployer/feature/autoload.php');
 
 /*
