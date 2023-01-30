@@ -18,6 +18,8 @@ task('feature:stop', function () {
 
 
 /**
+ * Delete a feature branch including the instance folder and the the related database
+ *
  * @throws \Deployer\Exception\Exception
  * @throws \Deployer\Exception\RunException
  * @throws \Deployer\Exception\TimeoutException

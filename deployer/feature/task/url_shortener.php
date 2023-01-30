@@ -12,6 +12,8 @@ tasK('feature:urlshortener', function () {
 
 
 /**
+ * Check if the url shortener function is activated
+ *
  * @return bool
  */
 function isUrlShortener(): bool
@@ -20,10 +22,10 @@ function isUrlShortener(): bool
 }
 
 /**
+ * Initialize the url shortener function and adjust deploy_path & public_url
+ * @param null $feature
  * @return void
  * @throws \Deployer\Exception\Exception
- * @throws \Deployer\Exception\RunException
- * @throws \Deployer\Exception\TimeoutException
  */
 function initUrlShortener($feature = null): void
 {
@@ -46,6 +48,8 @@ function getUrlShortenerPath($feature): string
 }
 
 /**
+ * Remove the url shortener symlink to the feature branch instance
+ *
  * @param $feature
  * @return void
  * @throws \Deployer\Exception\Exception

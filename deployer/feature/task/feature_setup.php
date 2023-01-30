@@ -64,6 +64,7 @@ function runDatabaseCommand($command, $useDoubleQuotes = true): string
 
     if (!$databasePassword) {
         $databasePassword = askHiddenResponse("Enter the database password for $databaseUser@$databaseHost:");
+        set('database_password', $databasePassword);
     }
     $quote = $useDoubleQuotes ? '"' : '\'';
 
@@ -123,6 +124,7 @@ function renderRemoteTemplates(): void
         'DEPLOYER_CONFIG_DATABASE_HOST' => get('database_host'),
         'DEPLOYER_CONFIG_DATABASE_PORT' => get('database_port'),
         'DEPLOYER_CONFIG_DATABASE_USER' => get('database_user'),
+        'DEPLOYER_CONFIG_DATABASE_PASSWORD' => get('database_password'),
         'DEPLOYER_CONFIG_DATABASE_NAME' => $databaseName,
         'DEPLOYER_CONFIG_FEATURE_NAME' => (string)$feature,
         'DEPLOYER_CONFIG_FEATURE_URL' => get('public_url'),

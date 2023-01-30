@@ -17,6 +17,8 @@ task('feature:index', function () {
 
 
 /**
+ * Render the remote index.php file as feature instance overview
+ *
  * @throws \Deployer\Exception\RunException
  * @throws \Deployer\Exception\Exception
  * @throws \Deployer\Exception\TimeoutException

@@ -11,7 +11,9 @@ task('feature:list', function () {
 
     // build up statistic table for output
     foreach ($directoryStats as $stat) {
+        // only regard directories
         if (strtolower($stat[0]) !== 'directory' && strtolower($stat[0]) !== 'verzeichnis') continue;
+
         $publicUrl = get('public_url') . $stat[2];
         if (!isUrlShortener()) {
             $publicUrl .= '/current/' . get('web_path');
@@ -40,6 +42,8 @@ task('feature:list', function () {
 })->desc('List all available feature branch instances');
 
 /**
+ * Get a list with statistic information of all available feature branches
+ *
  * @throws \Deployer\Exception\Exception
  * @throws \Deployer\Exception\RunException
  * @throws \Deployer\Exception\TimeoutException
