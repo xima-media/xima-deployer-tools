@@ -15,12 +15,12 @@ task('feature:setup', function () {
     $feature = initFeature();
 
     if (!checkFeatureBranchExists()) {
-        info("initializing feature branch <fg=magenta;options=bold>$feature</>");
-        set('initial_deployment', true);
+        info("setup feature branch <fg=magenta;options=bold>$feature</>");
+        set('feature_setup', true);
         createDatabase();
         renderRemoteTemplates();
     } else {
-        set('initial_deployment', false);
+        set('feature_setup', false);
     }
 })->desc('Setup a feature branch');
 
