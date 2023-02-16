@@ -15,6 +15,6 @@
 	],
 	"require": {
 		"deployer/deployer": "^7.0",
-		"sourcebroker/deployer-extended-symfony5": "^1.0"
+		"sourcebroker/deployer-extended": "^18.0"
 	}
 }
