@@ -3,5 +3,7 @@ hosts:
     hostname: 127.0.0.1
     remote_user: user
     database_user: db_user
+    feature_branch_deployment: true
     deploy_path: /var/www/html/
-    public_url: https://demo.local/
+    public_urls:
+      - https://demo.local/

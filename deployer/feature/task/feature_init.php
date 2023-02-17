@@ -41,8 +41,13 @@ function initFeature($feature = null): string
     } else {
         // extend deploy path with feature directory
         set('deploy_path', get('deploy_path') . '/' . $feature);
+
         // extend public url path with feature path and specific web path
-        set('public_url', get('public_url') . $feature . '/current/' . get('web_path'));
+        $publicUrls = [];
+        foreach (get('public_urls') as $publicUrl) {
+            $publicUrls[] = $publicUrl . $feature . '/current/' . get('web_path');
+        }
+        set('public_urls', $publicUrls);
 
     }
     set('feature_initialized', true);

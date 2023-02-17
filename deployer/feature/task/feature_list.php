@@ -14,7 +14,7 @@ task('feature:list', function () {
         // only regard directories
         if (strtolower($stat[0]) !== 'directory' && strtolower($stat[0]) !== 'verzeichnis') continue;
 
-        $publicUrl = get('public_url') . $stat[2];
+        $publicUrl = get('public_urls')[0] . $stat[2];
         if (!isUrlShortener()) {
             $publicUrl .= '/current/' . get('web_path');
         }

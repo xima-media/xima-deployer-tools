@@ -22,7 +22,7 @@ function isUrlShortener(): bool
 }
 
 /**
- * Initialize the url shortener function and adjust deploy_path & public_url
+ * Initialize the url shortener function and adjust deploy_path & public_urls
  * @param null $feature
  * @return void
  * @throws \Deployer\Exception\Exception
@@ -35,7 +35,12 @@ function initUrlShortener($feature = null): void
 
     set('deploy_path_url_shortener', get('deploy_path'));
     set('deploy_path', get('deploy_path') . '/' . get('feature_url_shortener_path') . $feature);
-    set('public_url', get('public_url') . $feature);
+
+    $publicUrls = [];
+    foreach (get('public_urls') as $publicUrl) {
+        $publicUrls[] = $publicUrl . $feature;
+    }
+    set('public_urls', $publicUrls);
 }
 
 /**

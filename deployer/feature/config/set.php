@@ -47,3 +47,4 @@ set('feature_index_app_path', '');
 //set('feature_index_additional_links', [
 //    'title' => 'path'
 //]);
+//set('feature_index_app_type', 'symfony');

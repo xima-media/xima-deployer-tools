@@ -28,6 +28,7 @@ function renderIndexTemplate(): void
     $arguments = [
         'DEPLOYER_CONFIG_FEATURE_INDEX_TITLE' => get('feature_index_title'),
         'DEPLOYER_CONFIG_FEATURE_INDEX_APP_PATH' => get('feature_index_app_path'),
+        'DEPLOYER_CONFIG_FEATURE_INDEX_APP_TYPE' => get('feature_index_app_type'),
     ];
 
     // Add additional links

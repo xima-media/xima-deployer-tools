@@ -127,7 +127,7 @@ function renderRemoteTemplates(): void
         'DEPLOYER_CONFIG_DATABASE_PASSWORD' => get('database_password'),
         'DEPLOYER_CONFIG_DATABASE_NAME' => $databaseName,
         'DEPLOYER_CONFIG_FEATURE_NAME' => (string)$feature,
-        'DEPLOYER_CONFIG_FEATURE_URL' => get('public_url'),
+        'DEPLOYER_CONFIG_FEATURE_URL' => get('public_urls')[0],
         'DEPLOYER_CONFIG_FEATURE_PATH' => $feature . '/current/' . get('web_path'),
     ],
         $additionalTemplateVariables)

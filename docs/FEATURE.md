@@ -28,6 +28,12 @@ You need a database user with the following grants to dynamically create and del
 
 - `SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE`
 
+Add the following line to your deployer host entry, to enable the feature branch deployment for this stage:
+
+```yaml
+feature_branch_deployment: true
+```
+
 ### Initialization
 
 The `feature:setup` command represent the initialization of a new feature branch. It creates the necessary folder structure and database for the application. Also it extend the given host information with the necessary dynamic feature instance information.
