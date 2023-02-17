@@ -20,17 +20,14 @@ task('deploy', [
     // Standard deployer task.
     'deploy:release',
 
-    // Standard deployer task.
-    'deploy:update_code',
+    //
+    'rsync',
 
     // Standard deployer task.
     'deploy:shared',
 
     // Standard deployer task.
     'deploy:writable',
-
-    // Standard deployer task.
-    'deploy:vendors',
 
     // Standard deployer task.
     'deploy:clear_paths',
@@ -46,7 +43,7 @@ task('deploy', [
 
     // Create database backup, compress and copy to database store.
     // Read more on https://github.com/sourcebroker/deployer-extended-database#db-backup
-    'db:backup',
+//    'db:backup',
 
     // Start buffering http requests. No frontend access possible from now.
     // Read more on https://github.com/sourcebroker/deployer-extended#buffer-start
@@ -54,7 +51,7 @@ task('deploy', [
 
     // Truncate caching tables, all cf_* tables
     // Read more on https://github.com/sourcebroker/deployer-extended-database#db-truncate
-    'db:truncate',
+//    'db:truncate',
 
     // Standard deployer task.
     'deploy:symlink',
@@ -75,13 +72,10 @@ task('deploy', [
     'deploy:unlock',
 
     // Standard deployer task.
-    'cleanup',
-
-    // Read more on https://github.com/sourcebroker/deployer-extended#deploy-extend-log
-    'deploy:extend_log',
+    'deploy:cleanup',
 
     // Standard deployer task.
-    'success',
+    'deploy:success',
 
 ])->desc('Deploy your Symfony5 project');
 
