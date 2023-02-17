@@ -19,7 +19,9 @@ Read the [documentation](docs/FEATURE.md) for detailed installation instructions
 
 # Symfony
 
-ToDo
+The symfony deployment covers the deployment process for symfony applications.
+
+Read the [documentation](docs/SYMFONY.md) for detailed installation instructions and further explanations.
 
 # TYPO3
 

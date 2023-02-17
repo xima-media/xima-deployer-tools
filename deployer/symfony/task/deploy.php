@@ -8,12 +8,11 @@ task('deploy', [
     // Standard deployer task.
     'deploy:info',
 
+    // Standard deployer task.
+    'deploy:setup',
+
     // Read more on https://github.com/sourcebroker/deployer-extended#deploy-check-lock
     'deploy:check_lock',
-
-    // Standard deployer task.
-    'deploy:prepare',
-
     // Standard deployer task.
     'deploy:lock',
 
