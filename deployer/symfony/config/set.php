@@ -8,13 +8,11 @@ set('web_path', 'public/');
 set('default_timeout', 900);
 
 set('shared_dirs', [
-        'var/logs',
-        'var/sessions'
+        'var/log'
     ]
 );
 
 set('shared_files', [
-        '.env.local.php',
         '.env.local'
     ]
 );
@@ -58,3 +56,5 @@ set('media',
             '- *'
         ]
     ]);
+
+set('feature_index_app_type', 'symfony');

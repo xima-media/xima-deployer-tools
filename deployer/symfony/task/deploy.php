@@ -44,6 +44,9 @@ task('deploy', [
     // Read more on https://github.com/sourcebroker/deployer-extended-database#db-backup
 //    'db:backup',
 
+    //
+    'deploy:chmod',
+
     // Start buffering http requests. No frontend access possible from now.
     // Read more on https://github.com/sourcebroker/deployer-extended#buffer-start
     'buffer:start',
