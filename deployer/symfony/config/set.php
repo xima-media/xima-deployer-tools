@@ -30,7 +30,7 @@ set('console_options', function () {
 });
 
 set('composer_options', function () {
-    return '{{composer_options}} --no-scripts';
+    return '--verbose --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader --no-scripts';
 });
 
 set('clear_paths', [
