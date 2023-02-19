@@ -26,7 +26,11 @@ set('bin/console', function () {
 });
 
 set('console_options', function () {
-    return '--no-interaction --no-scripts';
+    return '--no-interaction';
+});
+
+set('composer_options', function () {
+    return '{{composer_options}} --no-scripts';
 });
 
 set('clear_paths', [
