@@ -43,7 +43,7 @@ function initFeature($feature = null): ?string
     if (isUrlShortener()) {
         // initialize the url shortener function
         initUrlShortener();
-        putenv('FEATURE_BRANCH_PATH_PUBLIC=' . $feature);
+        set('npm_variables','FEATURE_BRANCH_PATH_PUBLIC=/' . $feature . ' ');
     } else {
         // extend deploy path with feature directory
         set('deploy_path', get('deploy_path') . '/' . $feature);
@@ -54,7 +54,7 @@ function initFeature($feature = null): ?string
             $publicUrls[] = $publicUrl . $feature . '/current/' . get('web_path');
         }
         set('public_urls', $publicUrls);
-        putenv('FEATURE_BRANCH_PATH_PUBLIC=' . $feature . '/current/' . get('web_path'));
+        set('npm_variables', 'FEATURE_BRANCH_PATH_PUBLIC=/' . $feature . '/current/' . get('web_path') . ' ');
     }
     set('feature_initialized', true);
     return $feature;
