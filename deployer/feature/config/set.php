@@ -24,7 +24,9 @@ set('web_path', 'public/');
  */
 #set('feature_sync_config', null);
 #set('feature_sync_target_path', null);
+#set('feature_sync_target_path_files', null);
 set('db_sync_tool', 'db_sync_tool');
+set('file_sync_tool', 'file_sync_tool');
 
 /**
  * Feature Notification

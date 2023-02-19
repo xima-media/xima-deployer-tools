@@ -8,7 +8,7 @@ require_once('url_shortener.php');
 
 task('feature:stop', function () {
 
-    if (!input()->hasOption('feature')) {
+    if (!input()->getOption('feature')) {
         return;
     }
     $feature = input()->getOption('feature');

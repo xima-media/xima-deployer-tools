@@ -6,10 +6,12 @@ require_once ('feature_init.php');
 require_once('url_shortener.php');
 
 task('feature:setup', function () {
-
+    if (!verifyFeatureTasks()) return;
     if (!input()->hasOption('feature')) {
         return;
     }
+
+    checkVerbosity();
 
     // extend deploy path / public url
     $feature = initFeature();
@@ -22,7 +24,7 @@ task('feature:setup', function () {
     } else {
         set('feature_setup', false);
     }
-})->desc('Setup a feature branch');
+})->desc('Setup a feature branch')->once();
 
 /**
  * Create a new database for the feature branch
@@ -34,6 +36,7 @@ task('feature:setup', function () {
  */
 function createDatabase(): void
 {
+    debug('Creating database');
     $databaseName = getDatabaseName();
     $additionalParams = '';
 
@@ -105,6 +108,7 @@ function checkFeatureBranchExists(): bool
  */
 function renderRemoteTemplates(): void
 {
+    debug('Rendering remote template');
     $databaseName = getDatabaseName();
     $feature = input()->getOption('feature');
     $templates = get('feature_templates');
@@ -151,6 +155,8 @@ function renderRemoteTemplates(): void
  * @throws \Deployer\Exception\TimeoutException
  */
 function uploadTemplate($localTemplate, $remoteTarget, $arguments): void {
+
+    debug('Uploading template');
     $templateContent = file_get_contents($localTemplate);
 
     // replace all {{variables}} with arguments
@@ -192,4 +198,21 @@ function getFeatureName($feature = null) {
     $feature = $feature ?: input()->getOption('feature');
 
     return preg_replace('/[^A-Za-z0-9\_\-.]/', '', $feature);
+}
+
+/**
+ * @return bool
+ * @throws \Exception
+ */
+function verifyFeatureTasks(): bool {
+    if (!has('feature_branch_deployment')) {
+        task('feature:init')->disable();
+        task('feature:setup')->disable();
+        task('feature:sync')->disable();
+        task('feature:urlshortener')->disable();
+        task('feature:notify')->disable();
+        info('Skipping feature branch initialization');
+        return false;
+    }
+    return true;
 }

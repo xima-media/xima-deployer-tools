@@ -10,6 +10,7 @@ require_once('feature_stop.php');
 
 task('feature:cleanup', function () {
 
+    if (!has('feature_branch_deployment')) return;
     runLocally('git pull');
     $gitBranches = runLocally('git branch -r | tr "\\n" "," | tr -d \' \' | sed \'s/origin\\///g\' | sed \'s/.$//\'');
     $gitBranches = explode(',', $gitBranches);

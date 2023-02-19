@@ -10,9 +10,10 @@ task('feature:init', function () {
     if (!input()->hasOption('feature')) {
         return;
     }
+    checkVerbosity();
     // extend deploy path / public url
     initFeature();
-})->desc('Initialize a feature branch');
+})->desc('Initialize a feature branch')->once();
 
 
 /**
@@ -20,13 +21,17 @@ task('feature:init', function () {
  * (!: needed for all deployer tasks considering a feature branch)
  *
  * @param $feature
- * @return string
+ * @return string|null
  * @throws \Deployer\Exception\Exception
  * @throws \Deployer\Exception\RunException
  * @throws \Deployer\Exception\TimeoutException
+ * @throws \Exception
  */
-function initFeature($feature = null): string
+function initFeature($feature = null): ?string
 {
+    if (!verifyFeatureTasks()) return null;
+
+    debug('Initializing feature instance');
     // check if feature was already initialized
     if (has('feature_initialized') && get('feature_initialized')) return get('feature');;
 

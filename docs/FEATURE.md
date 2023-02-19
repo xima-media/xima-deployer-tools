@@ -11,6 +11,7 @@ The feature branch deployment describes the deployment and initialization proces
 + [Pathing](#pathing)
 + [Cleanup](#cleanup)
 + [Further more](#further-more)
++ [FAQ](#faq
 
 If you want to use the feature branch deployment functionalities add the belonging autoloader to your project `deploy.php`:
 
@@ -177,3 +178,10 @@ task feature:cleanup
 
 Additional configurations regarding the feature branch deployment are available here: [set.php](deployer/config/set.php)
 
+### FAQ
+
+1. __Debugging__
+
+   For extended debugging information use the environment variable `DEPLOYER_CONFIG_VERBOSE`.
+
+   Disable the notifications with the environment variable `DEPLOYER_CONFIG_NOTIFICATION_MUTE`.

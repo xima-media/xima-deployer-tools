@@ -47,12 +47,14 @@ function checkVerbosity(): void
  */
 function prepareDeployerConfiguration(): void {
     $environmentVariables = getenv();
+
+    debug('Extending deployer configuration with environment variables');
     foreach ($environmentVariables as $key => $value) {
         if (str_starts_with($key, 'DEPLOYER_CONFIG_')) {
             $configName = strtolower(str_replace('DEPLOYER_CONFIG_', '', $key));
 
             if (has($configName)) {
-                debug("attention: overwriting existing deployer configuration '$configName' with environment variable '$key' ");
+                debug("Attention: overwriting existing deployer configuration '$configName' with environment variable '$key' ");
             }
             set($configName, $value);
         }

@@ -5,6 +5,10 @@ namespace Deployer;
 require_once('feature_init.php');
 
 task('feature:index', function () {
+    if (!has('feature_branch_deployment')) return;
+
+    checkVerbosity();
+
     $path = get('deploy_path') . '/index.php';
     $upload = true;
     if (test("[[ -f $path ]]")) {
@@ -30,6 +34,8 @@ function renderIndexTemplate(): void
         'DEPLOYER_CONFIG_FEATURE_INDEX_APP_PATH' => get('feature_index_app_path'),
         'DEPLOYER_CONFIG_FEATURE_INDEX_APP_TYPE' => get('feature_index_app_type'),
     ];
+
+    debug('Preparing index template');
 
     // Add additional links
     if (has('feature_index_additional_links')) {

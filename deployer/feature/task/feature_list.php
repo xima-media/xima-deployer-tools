@@ -6,6 +6,11 @@ use Symfony\Component\Console\Helper\Table;
 
 task('feature:list', function () {
 
+    if (!has('feature_branch_deployment')) return;
+    checkVerbosity();
+
+    debug('Collection statistic information');
+
     $directoryStats = listFeatureInstances();
     $table = [];
 
