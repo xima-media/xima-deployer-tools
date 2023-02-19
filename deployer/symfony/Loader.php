@@ -14,6 +14,7 @@ class Loader
         new Load([
                 ['path' => 'vendor/sourcebroker/deployer-instance/deployer'],
                 ['path' => 'vendor/sourcebroker/deployer-extended/deployer'],
+                ['path' => 'vendor/xima/xima-deployer-tools/deployer/build'],
                 [
                     'path' => 'vendor/xima/xima-deployer-tools/deployer/symfony',
                     'excludePattern' => '/example/'

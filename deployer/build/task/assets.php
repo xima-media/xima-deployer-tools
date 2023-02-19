@@ -3,5 +3,6 @@
 namespace Deployer;
 
 task('build:assets', function () {
-    runLocally("cd {{app_path}} && npm run build --cache .npm-cache --prefer-offline");
+    runLocally("npm ci --prefix {{app_path}} --cache .npm-cache --prefer-offline");
+    runLocally("npm run build --prefix {{app_path}} --cache .npm-cache --prefer-offline");
 });

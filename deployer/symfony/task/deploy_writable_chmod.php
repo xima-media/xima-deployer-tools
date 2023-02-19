@@ -4,8 +4,9 @@ namespace Deployer;
 
 /**
  * This task will adjust the dir/file rights
+ * ToDo: check deploy:writable to solve this?
  */
-task('deploy:chmod', function() {
+task('deploy:writable:chmod', function() {
     run("cd {{ release_path }} && chmod 775 var var/cache ../../shared/var/log");
     run("cd {{ release_path }} && find . -path \"./var\" -prune -o -type d -exec chmod 755 {} +");
     run("cd {{ release_path }} && find . -type f -exec chmod 644 {} +");

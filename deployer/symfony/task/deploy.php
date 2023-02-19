@@ -2,7 +2,7 @@
 
 namespace Deployer;
 
-// Reuse https://github.com/sourcebroker/deployer-extended-symfony5/blob/main/deployer/deploy/task/deploy.php
+// Reuse https://github.com/sourcebroker/deployer-extended-symfony/blob/main/deployer/deploy/task/deploy.php
 task('deploy', [
 
     // Standard deployer task.
@@ -20,6 +20,12 @@ task('deploy', [
     'deploy:release',
 
     //
+    'build:assets',
+
+    //
+    'build:composer',
+
+    //
     'rsync',
 
     // Standard deployer task.
@@ -31,13 +37,16 @@ task('deploy', [
     // Standard deployer task.
     'deploy:clear_paths',
 
-    // Special for symfony5
+    // Special for symfony
     'deploy:database:update',
 
-    // Special for symfony5
+    // Special for symfony
+    'deploy:assets:install',
+
+    // Special for symfony
     'deploy:cache:clear',
 
-    // Special for symfony5
+    // Special for symfony
     'deploy:cache:warmup',
 
     // Create database backup, compress and copy to database store.
@@ -45,7 +54,7 @@ task('deploy', [
 //    'db:backup',
 
     //
-    'deploy:chmod',
+    'deploy:writable:chmod',
 
     // Start buffering http requests. No frontend access possible from now.
     // Read more on https://github.com/sourcebroker/deployer-extended#buffer-start

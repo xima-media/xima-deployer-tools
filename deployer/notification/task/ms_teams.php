@@ -20,7 +20,7 @@ task('msteams:notify', function () {
 function sendMessage($message, $color): void
 {
     if (!empty(getenv('DEPLOYER_CONFIG_NOTIFICATION_MUTE'))) {
-        info("skipping notification because of DEPLOYER_CONFIG_NOTIFICATION_MUTE environment variable");
+        debug("skipping notification because of DEPLOYER_CONFIG_NOTIFICATION_MUTE environment variable");
         return;
     }
 
