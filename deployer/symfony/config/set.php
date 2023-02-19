@@ -26,7 +26,7 @@ set('bin/console', function () {
 });
 
 set('console_options', function () {
-    return '--no-interaction';
+    return '--no-interaction --no-scripts';
 });
 
 set('clear_paths', [
