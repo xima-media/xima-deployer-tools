@@ -27,7 +27,8 @@ set('writable_dirs', [
 ]);
 
 set('bin/console', function () {
-    return parse('{{release_path}}/bin/console');
+    $activePath = get('deploy_path') . '/' . (test('[ -L {{deploy_path}}/release ]') ? 'release' : 'current');
+    return parse("$activePath/bin/console");
 });
 
 set('console_options', function () {
