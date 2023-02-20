@@ -6,10 +6,10 @@ require_once ('feature_init.php');
 require_once('url_shortener.php');
 
 task('feature:setup', function () {
-    if (!verifyFeatureTasks()) return;
     if (!input()->hasOption('feature')) {
         return;
     }
+    info('test');
 
     checkVerbosity();
 
@@ -24,7 +24,11 @@ task('feature:setup', function () {
     } else {
         set('feature_setup', false);
     }
-})->desc('Setup a feature branch')->once();
+})
+    ->select('type=feature-branch-deployment')
+    ->once()
+    ->desc('Setup a feature branch')
+;
 
 /**
  * Create a new database for the feature branch
@@ -198,21 +202,4 @@ function getFeatureName($feature = null) {
     $feature = $feature ?: input()->getOption('feature');
 
     return preg_replace('/[^A-Za-z0-9\_\-.]/', '', $feature);
-}
-
-/**
- * @return bool
- * @throws \Exception
- */
-function verifyFeatureTasks(): bool {
-    if (!has('feature_branch_deployment')) {
-        task('feature:init')->disable();
-        task('feature:setup')->disable();
-        task('feature:sync')->disable();
-        task('feature:urlshortener')->disable();
-        task('feature:notify')->disable();
-        info('Skipping feature branch initialization');
-        return false;
-    }
-    return true;
 }

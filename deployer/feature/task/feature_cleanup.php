@@ -10,7 +10,6 @@ require_once('feature_stop.php');
 
 task('feature:cleanup', function () {
 
-    if (!has('feature_branch_deployment')) return;
     runLocally('git pull');
     $gitBranches = runLocally('git branch -r | tr "\\n" "," | tr -d \' \' | sed \'s/origin\\///g\' | sed \'s/.$//\'');
     $gitBranches = explode(',', $gitBranches);
@@ -65,4 +64,7 @@ task('feature:cleanup', function () {
         info("Everything seems in sync <fg=green>✔</>");
     }
 
-})->desc('Compare remote git branches with remote feature instances and provides a cleanup for all untracked feature instances on the remote server');
+})
+    ->select('type=feature-branch-deployment')
+    ->desc('Compare remote git branches with remote feature instances and provides a cleanup for all untracked feature instances on the remote server')
+;

@@ -18,4 +18,7 @@ task('feature:sync', function () {
     runLocally("{{file_sync_tool}} -f {{feature_sync_config}} --files-target {{feature_sync_target_path}}");
     info("feature branch <fg=magenta;options=bold>$feature</> was sucessfully synced");
 
-})->desc('Sync a feature branch');
+})
+    ->select('type=feature-branch-deployment')
+    ->desc('Sync a feature branch')
+;

@@ -32,7 +32,8 @@ You need a database user with the following grants to dynamically create and del
 Add the following line to your deployer host entry, to enable the feature branch deployment for this stage:
 
 ```yaml
-feature_branch_deployment: true
+labels:
+   type: feature-branch-deployment
 ```
 
 ### Initialization

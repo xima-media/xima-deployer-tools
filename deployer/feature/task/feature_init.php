@@ -13,7 +13,11 @@ task('feature:init', function () {
     checkVerbosity();
     // extend deploy path / public url
     initFeature();
-})->desc('Initialize a feature branch')->once();
+})
+    ->select('type=feature-branch-deployment')
+    ->once()
+    ->desc('Initialize a feature branch')
+;
 
 
 /**
@@ -29,8 +33,6 @@ task('feature:init', function () {
  */
 function initFeature($feature = null): ?string
 {
-    if (!verifyFeatureTasks()) return null;
-
     debug('Initializing feature instance');
     // check if feature was already initialized
     if (has('feature_initialized') && get('feature_initialized')) return get('feature');;

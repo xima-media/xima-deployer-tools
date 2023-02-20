@@ -6,7 +6,6 @@ use Symfony\Component\Console\Helper\Table;
 
 task('feature:list', function () {
 
-    if (!has('feature_branch_deployment')) return;
     checkVerbosity();
 
     debug('Collection statistic information');
@@ -44,7 +43,10 @@ task('feature:list', function () {
         ->setRows($table)
         ->render();
 
-})->desc('List all available feature branch instances');
+})
+    ->select('type=feature-branch-deployment')
+    ->desc('List all available feature branch instances')
+;
 
 /**
  * Get a list with statistic information of all available feature branches

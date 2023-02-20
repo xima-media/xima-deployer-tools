@@ -12,4 +12,7 @@ task('feature:notify', function () {
 
     sendMessage(get('feature_msteams_text'), get('feature_msteams_color'));
 
-})->desc('Notify about successful feature branch deployment');
+})
+    ->select('type=feature-branch-deployment')
+    ->desc('Notify about successful feature branch deployment')
+;

@@ -10,7 +10,11 @@ tasK('feature:urlshortener', function () {
     $symlinkDir = get('deploy_path') . "/current/" . get('web_path');
 
     run("cd " . get('deploy_path_url_shortener') . " && ln -sf $symlinkDir " . get('feature'));
-})->desc('Add the feature branch symlink for the shortened url');
+})
+    ->select('type=feature-branch-deployment')
+    ->desc('Add the feature branch symlink for the shortened url')
+    ->once()
+;
 
 
 /**

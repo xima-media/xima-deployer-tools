@@ -5,7 +5,6 @@ namespace Deployer;
 require_once('feature_init.php');
 
 task('feature:index', function () {
-    if (!has('feature_branch_deployment')) return;
 
     checkVerbosity();
 
