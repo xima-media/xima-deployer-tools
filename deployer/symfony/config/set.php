@@ -7,6 +7,8 @@ set('web_path', 'public/');
 
 set('default_timeout', 900);
 
+set('keep_releases', 2);
+
 set('shared_dirs', [
         'var/log'
     ]
