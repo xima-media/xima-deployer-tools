@@ -127,6 +127,8 @@ function renderRemoteTemplates(): void
         }
     }
 
+    $featurePath = isUrlShortener() ? "$feature/" :$feature . '/current/' . get('web_path') ;
+
     // preparing default arguments for templates and extend by additional template variables
     $arguments = array_merge([
         'DEPLOYER_CONFIG_DATABASE_HOST' => get('database_host'),
@@ -136,7 +138,7 @@ function renderRemoteTemplates(): void
         'DEPLOYER_CONFIG_DATABASE_NAME' => $databaseName,
         'DEPLOYER_CONFIG_FEATURE_NAME' => (string)$feature,
         'DEPLOYER_CONFIG_FEATURE_URL' => get('public_urls')[0],
-        'DEPLOYER_CONFIG_FEATURE_PATH' => $feature . '/current/' . get('web_path'),
+        'DEPLOYER_CONFIG_FEATURE_PATH' => $featurePath,
     ],
         $additionalTemplateVariables)
     ;
