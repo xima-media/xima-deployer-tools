@@ -13,3 +13,4 @@ before('deploy:setup', 'feature:setup');
 before('deploy:success', 'feature:notify');
 before('deploy:symlink', 'feature:sync');
 after('deploy:symlink', 'feature:urlshortener');
+after('feature:sync', 'feature:sync:after');
