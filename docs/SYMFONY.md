@@ -4,13 +4,28 @@ The symfony deployment describes the deployment and initialization process of a 
 
 > The deployment package is inspired by [deployer-extended-symfony5](https://github.com/sourcebroker/deployer-extended-symfony5).
 
+* [Installation](#installation)
+* [Tasks](#tasks)
+  + [Clearing the cache](#clearing-the-cache)
+  + [Warming the cache](#warming-the-cache)
+  + [Updating the database](#updating-the-database)
+  + [Installing assets](#installing-assets)
+  + [Adjust the writable permissions](#adjust-the-writable-permissions)
+
+
+The deployment workflow uses the deployer package [deployer-extended](https://github.com/sourcebroker/deployer-extended) as basis. 
+
+## Installation
+
+The default configuration for symfony applications are located at [set.php](../deployer/symfony/config/set.php) and can be optionally overwritten.
+
 If you want to use the symfony deployment functionalities add the belonging autoloader to your project `deploy.php`:
 
 ```php
 require_once(__DIR__ . '/vendor/xima/xima-deployer-tools/deployer/symfony/autoload.php');
 ```
 
-See an example configuration here: [deploy.php](deployer/symfony/example/deploy.php).
+See an example configuration here: [symfony example](../deployer/symfony/example/).
 
 ## Tasks
 
@@ -41,3 +56,19 @@ dep deploy:database:update
 ```
 
 > Notice: The updating method can be configured with the `deploy_database_update_method` parameter (`migrations_migrate`|`schema_update`).
+
+### Installing assets
+
+The symfony assets can be installed with the following task:
+
+```bash
+dep deploy:assets:install
+```
+
+### Adjust the writable permissions
+
+The permissions for the symfony application can be adjusted with the following task:
+
+```bash
+dep deploy:writable:chmod
+```

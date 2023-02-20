@@ -11,7 +11,7 @@ The feature branch deployment describes the deployment and initialization proces
 + [Pathing](#pathing)
 + [Cleanup](#cleanup)
 + [Further more](#further-more)
-+ [FAQ](#faq
++ [FAQ](#faq)
 
 If you want to use the feature branch deployment functionalities add the belonging autoloader to your project `deploy.php`:
 
@@ -19,7 +19,7 @@ If you want to use the feature branch deployment functionalities add the belongi
 require_once(__DIR__ . '/vendor/xima/xima-deployer-tools/deployer/feature/autoload.php');
 ```
 
-See an example configuration here: [deploy.php](deployer/feature/example/deploy.php).
+See an example configuration here: [feature example](../deployer/feature/example/).
 
 The following steps are necessary to successfully setup the deployment workflow:
 

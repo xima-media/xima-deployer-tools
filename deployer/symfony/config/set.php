@@ -2,6 +2,9 @@
 
 namespace Deployer;
 
+/**
+ * Default configuration for symfony application
+ */
 
 set('web_path', 'public/');
 
