@@ -18,6 +18,7 @@ require_once(__DIR__ . '/deployer/typo3cms/task/typo3cms_setup.php');
  */
 require_once(__DIR__ . '/deployer/notification/config/set.php');
 require_once(__DIR__ . '/deployer/notification/task/ms_teams.php');
+require_once(__DIR__ . '/deployer/notification/task/deploy_prod_notify.php');
 
 /*
  * build

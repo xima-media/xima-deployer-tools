@@ -10,6 +10,7 @@ task('feature:notify', function () {
     if ((has('feature_setup') && !get('feature_setup')) || !input()->getOption('feature')) return;
     checkVerbosity();
 
+    set('public_url', get('public_urls')[0]);
     sendMessage(get('feature_msteams_text'), get('feature_msteams_color'));
 
 })
