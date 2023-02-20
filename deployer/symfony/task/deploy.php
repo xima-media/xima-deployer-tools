@@ -19,13 +19,13 @@ task('deploy', [
     // Standard deployer task.
     'deploy:release',
 
-    //
+    // Building assets
     'build:assets',
 
-    //
+    // Building composer dependencies
     'build:composer',
 
-    //
+    // Transfer application to remote
     'rsync',
 
     // Standard deployer task.
@@ -53,7 +53,7 @@ task('deploy', [
     // Read more on https://github.com/sourcebroker/deployer-extended-database#db-backup
 //    'db:backup',
 
-    //
+    // Adjust permissions
     'deploy:writable:chmod',
 
     // Start buffering http requests. No frontend access possible from now.

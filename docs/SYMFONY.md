@@ -31,6 +31,10 @@ See an example configuration here: [symfony example](../deployer/symfony/example
 
 The following tasks are symfony specific and extend the default deployer deployment:
 
+### Default deployment
+
+The default deployment task for symfony applications can be found here  [deploy.php](../deployer/symfony/task/deploy.php)
+
 ### Clearing the cache
 
 The symfony cache can be cleared with the following task:
