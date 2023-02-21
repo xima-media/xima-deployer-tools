@@ -49,10 +49,6 @@ task('deploy', [
     // Special for symfony
     'deploy:cache:warmup',
 
-    // Create database backup, compress and copy to database store.
-    // Read more on https://github.com/sourcebroker/deployer-extended-database#db-backup
-//    'db:backup',
-
     // Adjust permissions
     'deploy:writable:chmod',
 
