@@ -10,5 +10,6 @@ task('database:backup', function () {
     runLocally("{{db_sync_tool}} -f {{sync_database_backup_config}} -y $optionalVerbose");
 
 })
+    ->once()
     ->desc('Generating a database backup')
 ;

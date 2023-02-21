@@ -105,7 +105,33 @@ before('deploy:success', 'feature:notify';
 ### Synchronization
 The `feature:sync` command synchronizes the feature branch instance with data from a different instance using the [db-sync-tool](https://github.com/jackd248/db-sync-tool).
 
-_ToDo_
+You need to configure the paths within your `deploy.php` to the db-sync-tool configuration files:
+
+```php
+# general sync configuration file for feature branches
+set('feature_sync_config', __DIR__ . '/.deployment/db-sync-tool/sync-stage-to-feature.yaml');
+# where to find the sync target file
+set('feature_sync_target_path', '{{deploy_path}}/shared/.env.local');
+# where to find the sync file directory
+set('feature_sync_target_path_files', '{{deploy_path}}/shared/public/upload/media/');
+```
+
+Having an optionally entry `files` in your sync configuration (e.g. [sync-stage-to-feature.yaml](../deployer/feature/example/.deployment/db-sync-tool/sync-stage-to-feature.yaml#17)) enables the [file-sync-tool](https://github.com/jackd248/file-sync-tool) for a simple file synchronisation feature. 
+
+#### Periodic sync
+
+This function can be used as periodic sync between instances (e.g. nightly sync between the production system and a specific feature branch instance on the stage system).
+
+Therefore you should use the `feature:sync:standalone` task, which includes the `feature:sync` command and may also include additional (application specific) commands like clearing the cache. 
+
+For overwriting the default `feature_sync_config` setting, add an additional environment variable:
+
+```bash
+DEPLOYER_CONFIG_FEATURE_SYNC_CONFIG=./.deployment/db-sync-tool/sync-prod-to-feature.yaml
+```
+```bash
+vendor/bin/dep feature:sync:full stage --feature=test
+```
 
 ### Information
 
@@ -177,7 +203,9 @@ task feature:cleanup
 
 ### Further more
 
-Additional configurations regarding the feature branch deployment are available here: [set.php](deployer/config/set.php)
+Additional configurations regarding the feature branch deployment are available here: [set.php](../deployer/feature/config/set.php)
+
+A bunch of helpful global deployer functions can be found here: [set.php](../deployer/functions.php)
 
 ### FAQ
 

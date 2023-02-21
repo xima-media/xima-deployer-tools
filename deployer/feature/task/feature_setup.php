@@ -9,8 +9,6 @@ task('feature:setup', function () {
     if (!input()->hasOption('feature')) {
         return;
     }
-    info('test');
-
     checkVerbosity();
 
     // extend deploy path / public url

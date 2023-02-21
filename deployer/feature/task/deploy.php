@@ -11,6 +11,5 @@ before('deploy:unlock', 'feature:init');
 before('feature:sync', 'feature:init');
 before('deploy:setup', 'feature:setup');
 before('deploy:success', 'feature:notify');
-before('deploy:symlink', 'feature:sync');
+after('deploy:clear_paths', 'feature:sync');
 after('deploy:symlink', 'feature:urlshortener');
-after('feature:sync', 'feature:sync:after');

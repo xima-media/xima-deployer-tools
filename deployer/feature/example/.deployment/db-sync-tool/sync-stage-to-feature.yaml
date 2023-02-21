@@ -13,4 +13,9 @@ origin:
   ssh_key: /root/.ssh/id_rsa
 ignore_table:
   - cache_*
-
+# optionally
+files:
+  config:
+    -
+      origin: /var/www/html/.dep/instances/main/shared/public/upload/media/
+      exclude: []

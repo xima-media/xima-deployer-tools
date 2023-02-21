@@ -44,6 +44,9 @@ task('deploy', [
     'deploy:assets:install',
 
     // Special for symfony
+    'deploy:ckeditor:install',
+
+    // Special for symfony
     'deploy:cache:clear',
 
     // Special for symfony

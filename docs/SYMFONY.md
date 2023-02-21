@@ -69,6 +69,14 @@ The symfony assets can be installed with the following task:
 dep deploy:assets:install
 ```
 
+### Installing ckeditor
+
+The ckeditor assets can be installed with the following task:
+
+```bash
+dep deploy:ckeditor:install
+```
+
 ### Adjust the writable permissions
 
 The permissions for the symfony application can be adjusted with the following task:

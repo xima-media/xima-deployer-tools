@@ -3,8 +3,6 @@
 namespace Deployer;
 
 use Symfony\Component\Console\Output\OutputInterface;
-use function Deployer\input;
-use function Deployer\output;
 
 /**
  * @param $message
@@ -59,4 +57,23 @@ function prepareDeployerConfiguration(): void {
             set($configName, $value);
         }
     }
+}
+
+/**
+ * Check if a subcommand is available, e.g. "php bin/console", "ckeditor:install"
+ *
+ * @param string $command
+ * @param string $subcommand
+ * @return bool
+ * @throws \Deployer\Exception\Exception
+ * @throws \Deployer\Exception\RunException
+ * @throws \Deployer\Exception\TimeoutException
+ */
+function commandSupportSubcommand(string $command, string $subcommand): bool
+{
+    $check = run("( $command list 2>&1 || $command --list) | grep -- $subcommand || true");
+    if (empty($check)) {
+        return false;
+    }
+    return str_contains($check, $subcommand);
 }
