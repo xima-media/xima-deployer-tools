@@ -36,6 +36,12 @@ labels:
    type: feature-branch-deployment
 ```
 
+For using the [synchronization](#synchronization), you need to have the following pip packages installed:
+
+```bash
+$ pip3 install db-sync-tool-kmi file-sync-tool-kmi
+```
+
 ### Initialization
 
 The `feature:setup` command represent the initialization of a new feature branch. It creates the necessary folder structure and database for the application. Also it extend the given host information with the necessary dynamic feature instance information.
@@ -130,7 +136,7 @@ For overwriting the default `feature_sync_config` setting, add an additional env
 DEPLOYER_CONFIG_FEATURE_SYNC_CONFIG=./.deployment/db-sync-tool/sync-prod-to-feature.yaml
 ```
 ```bash
-vendor/bin/dep feature:sync:full stage --feature=test
+$ vendor/bin/dep feature:sync:full stage --feature=test
 ```
 
 ### Information
