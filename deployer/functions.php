@@ -2,6 +2,7 @@
 
 namespace Deployer;
 
+use Deployer\Exception\RunException;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -76,4 +77,14 @@ function commandSupportSubcommand(string $command, string $subcommand): bool
         return false;
     }
     return str_contains($check, $subcommand);
+}
+
+/**
+ * Check if command exists locally
+ *
+ * @throws RunException
+ */
+function commandExistLocally(string $command): bool
+{
+    return testLocally("hash $command 2>/dev/null");
 }
