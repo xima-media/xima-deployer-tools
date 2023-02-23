@@ -29,5 +29,10 @@ set('writable_dirs',  [
     '{{web_path}}typo3conf',
     '{{web_path}}typo3temp',
     '{{web_path}}uploads',
-    '{{web_path}}fileadmin'
+    '{{web_path}}fileadmin',
+    'var/session',
+    'var/log',
+    'var/lock',
+    'var/charset',
+    'var/transient',
 ]);
