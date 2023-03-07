@@ -28,6 +28,3 @@ require_once(__DIR__ . '/deployer/rsync/config/set.php');
  */
 require_once(__DIR__ . '/deployer/sync/config/set.php');
 require_once(__DIR__ . '/deployer/sync/task/database_backup.php');
-
-
-require_once($vendorRoot . '/vendor/sourcebroker/deployer-loader/autoload.php');

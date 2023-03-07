@@ -1,10 +1,10 @@
 <?php
 
-namespace Xima\XimaDeployerTools;
+namespace Xima\XimaDeployerTools\TYPO3;
 
 use SourceBroker\DeployerLoader\Load;
 
-class TYPO3Loader
+class Loader
 {
     public function __construct()
     {
@@ -15,7 +15,7 @@ class TYPO3Loader
                 ['path' => 'vendor/sourcebroker/deployer-instance/deployer'],
                 ['path' => 'vendor/sourcebroker/deployer-extended/deployer'],
                 [
-                    'path' => 'vendor/xima/xima-deployer-tools/deployer/typo3/',
+                    'path' => 'vendor/xima/xima-deployer-tools/deployer/typo3',
                     'excludePattern' => '/example/'
                 ]
             ]

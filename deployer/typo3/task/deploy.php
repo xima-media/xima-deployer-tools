@@ -5,7 +5,7 @@ namespace Deployer;
 task('deploy', [
 
     // Standard deployer task.
-    'deploy:info2',
+    'deploy:info',
 
     // Standard deployer task.
     'deploy:setup',
