@@ -20,8 +20,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Xima\\XimaDeployerTools\\Symfony\\": "deployer/symfony/",
-			"Xima\\XimaDeployerTools\\TYPO3\\": "deployer/typo3/"
+			"Xima\\XimaDeployerTools\\": "src/"
 		}
 	}
 }
