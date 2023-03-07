@@ -1,6 +1,6 @@
 <?php
 
-namespace Xima\XimaDeployerTools\Symfony;
+namespace Xima\XimaDeployerTools\TYPO3;
 
 use SourceBroker\DeployerLoader\Load;
 
@@ -15,7 +15,7 @@ class Loader
                 ['path' => 'vendor/sourcebroker/deployer-instance/deployer'],
                 ['path' => 'vendor/sourcebroker/deployer-extended/deployer'],
                 [
-                    'path' => 'vendor/xima/xima-deployer-tools/deployer/symfony',
+                    'path' => 'vendor/xima/xima-deployer-tools/deployer/typo3',
                     'excludePattern' => '/example/'
                 ]
             ]

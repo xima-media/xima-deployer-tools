@@ -9,4 +9,4 @@ $vendorRoot = is_dir(__DIR__ . '/../../../../../vendor') ? __DIR__ . '/../../../
 
 require_once($vendorRoot . '/vendor/sourcebroker/deployer-loader/autoload.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/autoload.php');
-new \Xima\XimaDeployerTools\Symfony\Loader();
+new \Xima\XimaDeployerTools\TYPO3\Loader();

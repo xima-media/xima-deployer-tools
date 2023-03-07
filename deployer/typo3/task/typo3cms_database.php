@@ -2,7 +2,7 @@
 
 namespace Deployer;
 
-task('typo3cms:database:updateschema', function () {
+task('deploy:database:update', function () {
     $activeDir = test('[ -e {{deploy_path}}/release ]') ?
         get('deploy_path') . '/release' :
         get('deploy_path') . '/current';
