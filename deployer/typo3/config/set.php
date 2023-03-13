@@ -25,6 +25,7 @@ set('shared_files', [
 
 set('writable_mode', 'chmod');
 set('writable_chmod_mode', '0775');
+set('writable_recursive', true);
 set('writable_dirs',  [
     '{{web_path}}typo3conf',
     '{{web_path}}typo3temp',
@@ -36,3 +37,18 @@ set('writable_dirs',  [
     'var/charset',
     'var/transient',
 ]);
+
+// Look on https://github.com/sourcebroker/deployer-extended#buffer-start for docs
+set('buffer_config', function () {
+    return [
+        'index.php' => [
+            'entrypoint_filename' => get('web_path') . 'index.php',
+        ],
+        'typo3/index.php' => [
+            'entrypoint_filename' => get('web_path') . 'typo3/index.php',
+        ],
+        'typo3/install.php' => [
+            'entrypoint_filename' => get('web_path') . 'typo3/install.php',
+        ]
+    ];
+});

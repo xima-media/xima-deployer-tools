@@ -4,7 +4,7 @@ namespace Deployer;
 
 # rollback
 task('after_rollback', [
-    'typo3cms:cache:flushandwarmup',
-//    'warmup_frontend',
+    // custom flush and warmup system specific caches
+    'deploy:cache:clear_and_warmup',
 ]);
 after('rollback', 'after_rollback');

@@ -2,7 +2,7 @@
 
 namespace Deployer;
 
-task('typo3cms:setup', function () {
+task('deploy:additional_setup', function () {
     $activeDir = test('[ -e {{deploy_path}}/release ]') ?
         get('deploy_path') . '/release' :
         get('deploy_path') . '/current';

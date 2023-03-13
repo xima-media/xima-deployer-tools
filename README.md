@@ -55,6 +55,11 @@ Read the [documentation](docs/SYMFONY.md) for detailed installation instructions
 
 # TYPO3
 
+The TYPO3 deployment covers the deployment process for TYPO3 CMS applications.
+
+Read the [documentation](docs/TYPO3.md) for detailed installation instructions and further explanations.
+
+
 > ToDo: restructure tasks
 
 This packages comes with a set of predefined settings and tasks for TYPO3 following the rsync strategy.
