@@ -1,0 +1,56 @@
+.pill {
+    display: inline-block;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    color: #aaa;
+    margin: 0 15px 0 5px;
+    font-size: 10px;
+    background: transparent;
+    text-align: center;
+    min-width: 52px;
+    font-family: "Menlo","Consolas","Roboto Mono","Ubuntu Monospace","Noto Mono","Oxygen Mono","Liberation Mono",monospace,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+.pill[data-type] {
+    background: #0277BD;
+    color: #fff;
+    border: 0;
+    font-size: 20px;
+}
+.pill[data-type="release"] {
+    background: #BF360C;
+}
+.pill[data-type="feature"] {
+    background: #00695C;
+}
+.pill[data-type="main"], .pill[data-type="master"] {
+    background: #F57F17;
+}
+.pill:hover {
+    text-decoration: none;
+}
+kbd {
+    font-size: 10px;
+}
+kbd.green {
+    background-color: #33691E;
+}
+kbd.yellow {
+    background-color: #F9A825;
+}
+kbd.red {
+    background-color: #D84315;
+}
+kbd.blue {
+    background-color: #01579B;
+}
+[data-tooltip].pill, kbd[data-tooltip]  {
+    border-bottom: 1px solid #ccc;
+}
+progress {
+    height: .125rem;
+}
+h3 {
+    width: max-content;
+}
