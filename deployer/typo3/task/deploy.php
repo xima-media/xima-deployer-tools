@@ -46,8 +46,8 @@ task('deploy', [
     // custom task to do additional setup for framework or cms
     'deploy:additional_setup',
 
-    // custom flush and warmup system specific caches
-    'deploy:cache:flush_and_warmup',
+    // custom clear and warmup system specific caches
+    'deploy:cache:clear_and_warmup',
 
     // Standard deployer task.
     'deploy:symlink',
@@ -64,7 +64,8 @@ task('deploy', [
     // Read more on https://github.com/sourcebroker/deployer-extended#buffer-stop
     'buffer:stop',
 
-//    'warmup_frontend',
+    // custom warmup task
+    'deploy:warmup_frontend',
 
     // Standard deployer task.
     'deploy:unlock',

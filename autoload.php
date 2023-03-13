@@ -15,8 +15,7 @@ require_once(__DIR__ . '/deployer/notification/task/deploy_prod_notify.php');
 /*
  * build
  */
-require_once(__DIR__ . '/deployer/build/task/composer.php');
-require_once(__DIR__ . '/deployer/build/task/assets.php');
+require_once(__DIR__ . '/deployer/build/autoload.php');
 
 /*
  * rsync
