@@ -124,6 +124,14 @@ set('feature_sync_target_path_files', '{{deploy_path}}/shared/public/upload/medi
 
 Having an optionally entry `files` in your sync configuration (e.g. [sync-stage-to-feature.yaml](../deployer/feature/example/.deployment/db-sync-tool/sync-stage-to-feature.yaml#17)) enables the [file-sync-tool](https://github.com/jackd248/file-sync-tool) for a simple file synchronisation feature. 
 
+It's possible to override db_sync or file_sync command (setting it to false disables the feature):
+```php
+# disables db_sync feature entirely  
+set('db_sync_tool', false);
+# disables file_sync feature entirely  
+set('file_sync_tool', false);
+```
+
 #### Periodic sync
 
 This function can be used as periodic sync between instances (e.g. nightly sync between the production system and a specific feature branch instance on the stage system).
