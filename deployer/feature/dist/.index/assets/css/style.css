@@ -1,11 +1,11 @@
 .pill {
     display: inline-block;
-    padding: 15px;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 50px;
     color: #aaa;
     margin: 0 15px 0 5px;
-    font-size: 10px;
+    font-size: 12px;
     background: transparent;
     text-align: center;
     min-width: 52px;
@@ -30,23 +30,42 @@
 .pill:hover {
     text-decoration: none;
 }
+.pill.person {
+    padding: 3px 6px;
+    min-width: 15px;
+    margin: 0;
+    background: #ccc;
+    color: white;
+    font-size: 10px;
+}
 kbd {
     font-size: 10px;
 }
-kbd.green {
+.status {
+    padding: 3px 6px;
+    min-width: 15px;
+    margin: 0 5px;
+    background-color: #ccc;
+    color: white;
+    font-size: 10px;
+}
+.status.green {
     background-color: #33691E;
 }
-kbd.yellow {
+.status.yellow {
     background-color: #F9A825;
 }
-kbd.red {
+.status.red {
     background-color: #D84315;
 }
-kbd.blue {
+.status.blue {
     background-color: #01579B;
 }
-[data-tooltip].pill, kbd[data-tooltip]  {
-    border-bottom: 1px solid #ccc;
+[data-tooltip].pill, kbd[data-tooltip], .status[data-tooltip]  {
+    border-bottom: 1px solid;
+}
+kbd[data-tooltip], .status[data-tooltip]  {
+    border-bottom: inherit;
 }
 progress {
     height: .125rem;
