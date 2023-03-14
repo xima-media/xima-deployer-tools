@@ -26,7 +26,7 @@ task('feature:sync', function () {
             debug("Skipping database sync, command \”{{db_sync_tool}}\” not available");
         }
     } else {
-        debug("Skipping database sync, db_sync_tool was set to null");
+        debug("Skipping database sync, db_sync_tool was disabled");
     }
 
     /*
@@ -42,7 +42,7 @@ task('feature:sync', function () {
             debug("Skipping file sync, command \”{{file_sync_tool}}\” not available");
         }
     } else {
-        debug("Skipping file sync, file_sync_tool was set to null");
+        debug("Skipping file sync, file_sync_tool was disabled");
     }
 
     if ($synced) info("feature branch <fg=magenta;options=bold>$feature</> was successfully synced");
