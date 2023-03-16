@@ -25,6 +25,7 @@ class JiraApi extends AbstractApi
 
         $response = $this->request($entry->getIssue());
 
+        if (is_null($response)) return;
         $issueData = [];
         $issueData['summary'] = $response['fields']['summary'];
         $issueData['type']['name'] =  $response['fields']['issuetype']['name'];
@@ -45,7 +46,7 @@ class JiraApi extends AbstractApi
      */
     private function request(string $issue)
     {
-        if ($this->getCache($issue)) return $this->getCache($issue);
+        if ($this->getCache($issue, self::CACHE_PATH, self::CACHE_LIFETIME)) return $this->getCache($issue);
 
         $curl_session = curl_init();
         curl_setopt($curl_session ,CURLOPT_URL, $this->url . $issue);
@@ -59,7 +60,7 @@ class JiraApi extends AbstractApi
         $result = curl_exec($curl_session );
         curl_close($curl_session );
 
-        $this->setCache($issue, $result);
+        $this->setCache($issue, $result, self::CACHE_PATH, self::CACHE_LIFETIME);
         return json_decode($result, true);
     }
 }

@@ -26,6 +26,7 @@ class IOService
             }
         }
 
+
         return $entryUtility->sortDirectoryEntries($directoryEntries);
     }
 
