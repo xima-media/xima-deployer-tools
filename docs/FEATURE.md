@@ -21,6 +21,8 @@ require_once(__DIR__ . '/vendor/xima/xima-deployer-tools/deployer/feature/autolo
 
 See an example configuration here: [feature example](../deployer/feature/example/).
 
+> Important: if you are using the deployer recipe for a specific application (e.g. symfony), the autoload for the feature branch deployments needs to be placed _after_ the application autoload. 
+
 The following steps are necessary to successfully setup the deployment workflow:
 
 ### Prerequirements
