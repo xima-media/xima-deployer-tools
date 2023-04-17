@@ -6,7 +6,7 @@ require_once('ms_teams.php');
 
 task('deploy:prod:notify', function () {
 
-    set('deploy_target', get('labels')['name'] ? get('labels')['name'] : get('alias'));
+    set('deploy_target', (has('labels') && get('labels')['name']) ? get('labels')['name'] : get('alias'));
     set('public_url', get('public_urls')[0]);
     set('deploy_version', getAppVersion());
 
