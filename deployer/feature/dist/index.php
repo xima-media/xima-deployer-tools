@@ -22,7 +22,7 @@ $config = $configReader->initConfig();
         <link rel="stylesheet" href=".fbd/index/assets/css/style.css">
         <style>
             <?php if (file_exists('.fbd/background.png')) {
-                    echo "body {background-image: url('.fbd/background.png');background-repeat: repeat-y;background-attachment: fixed;background-position: right;background-size: contain;}";
+                    echo "body {background-image: url('.fbd/background.png');background-repeat: repeat-y;background-attachment: fixed;background-position: right;background-size: contain;min-height: 100vh;}";
                   }
             ?>
         </style>
