@@ -13,7 +13,7 @@ set('default_timeout', 900);
 set('rsync_src', './{{app_path}}');
 set('rsync', [
     'exclude' => [],
-    'exclude-file' => 'deployment/rsync/exclude.txt',
+    'exclude-file' => '.deployment/rsync/exclude.txt',
     'include' => [],
     'include-file' => false,
     'filter' => [],
