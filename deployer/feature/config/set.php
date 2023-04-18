@@ -16,6 +16,9 @@ set('database_port', 3306);
 
 set('web_path', 'public/');
 
+// ToDo: actually not configurable because of the feature index app
+set('feature_directory_path', '.fbd/');
+
 #set('database_collation', null);
 #set('database_charset', null);
 
@@ -41,7 +44,7 @@ set('feature_msteams_text', 'Der Branch **[{{feature}}]({{public_url}})** wurde 
  * Feature Url Shortener
  */
 #set('feature_url_shortener', false);
-set('feature_url_shortener_path', '.dep/instances/');
+set('feature_url_shortener_path', '{{feature_directory_path}}instances/');
 
 /**
  * Feature Index

@@ -164,10 +164,21 @@ $ vendor/bin/dep feature:list
 +----------------+-------------------+-----------------------------------------+
 ```
 
-Also a simple feature branch overview index file can be placed on the hosts with the `feature:index` command:
+Also a simple feature branch overview index application can be placed on the hosts with the `feature:index` command:
 
 ```bash
 $ vendor/bin/dep feature:index stage
+```
+
+This uploads the index application to the host and creates a symbolic link to the web root. The folder structure on the server will look like this:
+```bash
+├── .fbd/
+│   ├── index/
+│   ├── index.php
+│   ├── index.json
+│   ├── logo.png (optionally)
+│   └── background.png (optionally)
+└── index.php -> .fbd/index.php
 ```
 
 ### Pathing
@@ -187,14 +198,13 @@ after('deploy:symlink', 'feature:urlshortener';
 The folder structure on the server will look like this:
 
 ```bash
-├── .dep
+├── .fbd
 │   └── instances
 │       ├── app
 │       │   └── current
 │       │       └── public/
 │       └── ...
-└── app -> .dep/instances/app/current/public
-
+└── app -> .fbd/instances/app/current/public
 ```
 
 So the resulting url will look like: `https://test.local/app`.

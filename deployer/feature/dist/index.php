@@ -1,7 +1,7 @@
 <?php
 setlocale( LC_ALL, 'de_DE' );
 date_default_timezone_set('Europe/Berlin');
-require_once __DIR__ . '/.index/autoload.php';
+require_once __DIR__ . '/index/autoload.php';
 
 $configReader = new \Xima\FeatureIndex\Service\ConfigReader();
 $ioService = new \Xima\FeatureIndex\Service\IOService();
@@ -15,14 +15,14 @@ $config = $configReader->initConfig();
     <head>
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1, minimum-scale=1'>
-        <link rel='icon' type='image/png' href='logo.png' />
+        <link rel='icon' type='image/png' href='.fbd/logo.png' />
 
         <title><?php echo strip_tags($config['projectName']) ?></title>
         <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
-        <link rel="stylesheet" href=".index/assets/css/style.css">
+        <link rel="stylesheet" href=".fbd/index/assets/css/style.css">
         <style>
-            <?php if (file_exists('background.png')) {
-                    echo "body {background-image: url('background.png');background-repeat: repeat-y;background-attachment: fixed;background-position: right;background-size: contain;}";
+            <?php if (file_exists('.fbd/background.png')) {
+                    echo "body {background-image: url('.fbd/background.png');background-repeat: repeat-y;background-attachment: fixed;background-position: right;background-size: contain;}";
                   }
             ?>
         </style>
@@ -42,7 +42,7 @@ $config = $configReader->initConfig();
                 <ul>
                     <?php echo $templateService->listAdditionalLinks($config['additionalLinks']) ?>
                     <li>
-                        <img title="<?php echo $config['projectName'] ?>" alt="<?php echo $config['projectName'] ?>" width="100px" src="logo.png" />
+                        <img title="<?php echo $config['projectName'] ?>" alt="<?php echo $config['projectName'] ?>" width="100px" src=".fbd/logo.png" />
                     </li>
                 </ul>
             </nav>
@@ -56,7 +56,7 @@ $config = $configReader->initConfig();
                          * List all available feature branches
                          */
 
-                        $entries = $ioService->getDirectoryEntries(__DIR__);
+                        $entries = $ioService->getDirectoryEntries(__DIR__ . '/..');
                         echo $templateService->renderEntries($entries);
                         ?>
                     </tbody>

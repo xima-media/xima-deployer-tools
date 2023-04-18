@@ -12,7 +12,7 @@ class ConfigReader
      */
     public function initConfig()
     {
-        $strJsonFileContents = file_get_contents('index.json');
+        $strJsonFileContents = file_get_contents('.fbd/index.json');
         $this->config = \json_decode($strJsonFileContents, true);
         return $this->config;
     }
