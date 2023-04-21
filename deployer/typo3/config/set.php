@@ -38,6 +38,8 @@ set('writable_dirs',  [
     'var/transient',
 ]);
 
+set('composer_options', '--verbose --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader --no-scripts');
+
 // Look on https://github.com/sourcebroker/deployer-extended#buffer-start for docs
 set('buffer_config', function () {
     return [
