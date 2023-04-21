@@ -46,7 +46,7 @@ class JiraApi extends AbstractApi
      */
     private function request(string $issue)
     {
-        if ($this->getCache($issue, self::CACHE_PATH, self::CACHE_LIFETIME)) return $this->getCache($issue);
+        if ($this->getCache($issue, self::CACHE_PATH, self::CACHE_LIFETIME)) return $this->getCache($issue, self::CACHE_PATH, self::CACHE_LIFETIME);
 
         $curl_session = curl_init();
         curl_setopt($curl_session ,CURLOPT_URL, $this->url . $issue);
