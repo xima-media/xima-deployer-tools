@@ -3,6 +3,7 @@
 namespace Deployer;
 
 require_once('url_shortener.php');
+require_once ('feature_list.php');
 require_once(__DIR__ . '/../../functions.php');
 
 task('feature:init', function () {
@@ -37,9 +38,12 @@ function initFeature($feature = null): ?string
     // check if feature was already initialized
     if (has('feature_initialized') && get('feature_initialized')) return get('feature');;
 
-    prepareDeployerConfiguration();
+    if (!input()->hasOption('feature')) {
 
-    $feature = $feature ?: input()->getOption('feature');
+    }
+    prepareDeployerConfiguration();
+    // use feature variable or feature input option or ask for feature branch
+    $feature = $feature ?: (!is_null(input()->getOption('feature')) ? input()->getOption('feature') : askChoice('Please select a feature branch to deploy', array_map(function($array) { return $array[2]; }, listFeatureInstances())));
     set('feature', $feature);
 
     if (isUrlShortener()) {
