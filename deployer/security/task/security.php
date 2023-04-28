@@ -11,7 +11,12 @@ const COMMAND_COMPOSER = 'composer audit --format=json --working-dir={{security_
 const SECURITY_CONTEXT_COMPOSER = 'composer';
 const SECURITY_CONTEXT_NPM = 'npm';
 
-task('security:composer', function () {
+task('security:check', [
+    'security:check:composer',
+    'security:check:npm',
+]);
+
+task('security:check:composer', function () {
     checkComposerConsoleTools();
     debug('Checking for security vulnerabilities');
     try {
@@ -36,7 +41,7 @@ task('security:composer', function () {
     ->once()
     ->desc('Checking for composer security vulnerabilities');
 
-task('security:npm', function () {
+task('security:check:npm', function () {
     checkNpmConsoleTools();
     debug('Checking for security vulnerabilities');
     try {
@@ -59,10 +64,14 @@ task('security:npm', function () {
     }
 })
     ->once()
-    ->desc('Checking for composer security vulnerabilities');
+    ->desc('Checking for npm security vulnerabilities');
 
 
-function checkComposerConsoleTools() {
+/**
+ * The function checks for the availability of Composer or Symfony console tools locally to check for
+ * security issues.
+ */
+function checkComposerConsoleTools(): void {
     $composerVersion = runLocally('composer --version');
     // e.g. "Composer version 2.5.5 2023-03-21 11:50:05"
     preg_match('/(\d+\.\d+\.\d+)/', $composerVersion, $matches);
@@ -80,13 +89,27 @@ function checkComposerConsoleTools() {
 }
 
 
-function checkNpmConsoleTools() {
+/**
+ * The function checks if npm is installed locally and throws an exception if it is missing.
+ */
+function checkNpmConsoleTools(): void {
     if (!commandExistLocally('npm')) {
         throw new GracefulShutdownException('npm is missing to check for security issues.');
     }
 }
 
-function formatComposerIssues(array $issues) {
+/**
+ * The function formats an array of Composer issues into a specific format.
+ *
+ * @param array issues An array of issues returned by a Composer security checker tool. The format of
+ * the array may differ depending on the specific tool being used.
+ *
+ * @return array an array of formatted issues. The format of each issue includes the CVE, package name,
+ * affected version, title, and link. The issues are obtained from the input array, which is an array
+ * of issues returned by a Composer security check. The format of the input array depends on the value
+ * of the 'security_composer_command' configuration parameter. If the value is 'symfony
+ */
+function formatComposerIssues(array $issues): array {
     $formattedIssues = [];
     if (get('security_composer_command') === COMMAND_SYMFONY) {
         foreach ($issues as $key => $issue) {
@@ -118,7 +141,16 @@ function formatComposerIssues(array $issues) {
     return $formattedIssues;
 }
 
-function formatNpmIssues(array $issues) {
+/**
+ * The function formats an array of npm issues into a more readable format.
+ *
+ * @param array issues The parameter `` is an array that contains information about
+ * vulnerabilities in npm packages. Specifically, it has a key called `vulnerabilities` which contains
+ * an array of objects, each representing a vulnerability.
+ *
+ * @return array an array of formatted npm issues.
+ */
+function formatNpmIssues(array $issues): array {
     $formattedIssues = [];
     foreach ($issues['vulnerabilities'] as $key => $issue) {
         foreach ($issue['via'] as $advisory) {
@@ -142,7 +174,14 @@ function formatNpmIssues(array $issues) {
     return $formattedIssues;
 }
 
-function printIssueTable(array $issues) {
+/**
+ * The function prints a table of security vulnerabilities using an array of issues.
+ *
+ * @param array issues The parameter `` is an array of arrays, where each inner array represents
+ * an issue and contains key-value pairs representing the details of that issue. The keys in each inner
+ * array are the column headers for the table that will be printed.
+ */
+function printIssueTable(array $issues): void {
     $keys = array_keys(reset($issues));
     (new Table(output()))
         ->setHeaderTitle("Security vulnerabilities")
@@ -151,7 +190,21 @@ function printIssueTable(array $issues) {
         ->render();
 }
 
-function coloredOutput(string $string, array $matches, string $match = null) {
+/**
+ * The function takes a string and an array of matches with corresponding colors, and returns the
+ * string with the matched substrings colored.
+ *
+ * @param string string The input string that needs to be formatted with colors.
+ * @param array matches The matches parameter is an array that contains the values to be matched and
+ * their corresponding colors.
+ * @param string match The `` parameter is a string that represents the specific match that
+ * should be highlighted with color in the output string. If it is null, then the entire input string
+ * will be used as the match.
+ *
+ * @return string a string with the matched substring(s) colored according to the corresponding color
+ * specified in the `` array.
+ */
+function coloredOutput(string $string, array $matches, string $match = null): string {
     $match = is_null($match) ? $string : $match;
     foreach ($matches as $value => $color) {
         if ($value === $match) {
@@ -161,7 +214,17 @@ function coloredOutput(string $string, array $matches, string $match = null) {
     return $string;
 }
 
-function checkIssueCache(array &$issues, string $type) {
+/**
+ * The function checks for cached security issues and removes them from the list of issues if found.
+ *
+ * @param array issues An array of issues to be checked for caching.
+ * @param string type The type parameter is a string that specifies the type of security check being
+ * performed. It is used to generate a unique cache file name for each type of security check.
+ *
+ * @return void Nothing is being returned, as the function has a return type of `void`.
+ */
+function checkIssueCache(array &$issues, string $type): void
+{
     if (!get('security_use_cache')) return;
     $issuesCopy = $issues;
     $cacheFolder = __DIR__ . '/.cache/';
@@ -181,7 +244,17 @@ function checkIssueCache(array &$issues, string $type) {
     file_put_contents($cacheFilePath, json_encode($issuesCopy));
 }
 
-function notifyIssues(array $issues, string $type = SECURITY_CONTEXT_COMPOSER) {
+/**
+ * The function notifies about security issues in a project by generating a message with details about
+ * the issues.
+ *
+ * @param array issues An array of security issues that have been detected in the project.
+ * @param string type The type parameter is a string that specifies the context of the security issue.
+ * It has a default value of "SECURITY_CONTEXT_COMPOSER" and can be overridden with a different value.
+ *
+ * @return void nothing (void) if the `` array is empty.
+ */
+function notifyIssues(array $issues, string $type = SECURITY_CONTEXT_COMPOSER): void {
     if (empty($issues)) return;
     $message = 'Im Projekt <strong>' . get('project') . '</strong> wurden die folgende(n) ' . count($issues) . ' <em>' .  $type . '</em> Sicherheitslücke(n) entdeckt:';
     foreach ($issues as $cve => $issue) {
