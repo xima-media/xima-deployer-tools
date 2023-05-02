@@ -38,9 +38,6 @@ function initUrlShortener($feature = null): void
     if (!isUrlShortener()) return;
 
     debug('Adjust host configuration because of url shortener function');
-
-    $feature = $feature ?: input()->getOption('feature');
-
     set('deploy_path_url_shortener', get('deploy_path'));
     set('deploy_path', get('deploy_path') . '/' . get('feature_url_shortener_path') . $feature);
 

@@ -42,7 +42,7 @@ function initFeature($feature = null): ?string
 
     if (isUrlShortener()) {
         // initialize the url shortener function
-        initUrlShortener();
+        initUrlShortener($feature);
         set('npm_variables', 'FEATURE_BRANCH_PATH_PUBLIC=/' . $feature . ' ');
     } else {
         // extend deploy path with feature directory
