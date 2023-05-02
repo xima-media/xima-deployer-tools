@@ -83,4 +83,4 @@ You can overwrite the source dir:
 # Standalone Tasks
 - MS Teams Notification
 - Database backup
-- Security check
+- [Security check](docs/SECURITY.md)
