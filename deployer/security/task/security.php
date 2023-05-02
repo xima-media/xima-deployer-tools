@@ -25,12 +25,12 @@ task('security:check:composer', function () {
         $output = ($exception->getOutput());
     }
     $vulnerabilities = json_decode($output, true);
+    $formattedIssues = formatComposerIssues($vulnerabilities);
 
-    if (empty($vulnerabilities)) {
+    if (empty($formattedIssues)) {
         writeln('<fg=green>[OK]</> No security vulnerabilities found.');
         return;
     }
-    $formattedIssues = formatComposerIssues($vulnerabilities);
     writeln('<fg=yellow>[WARN]</> ' . count($formattedIssues) . ' security vulnerabilities found.');
     printIssueTable($formattedIssues);
     checkIssueCache($formattedIssues, SECURITY_CONTEXT_COMPOSER);
@@ -50,12 +50,12 @@ task('security:check:npm', function () {
         $output = ($exception->getOutput());
     }
     $vulnerabilities = json_decode($output, true);
+    $formattedIssues = formatNpmIssues($vulnerabilities);
 
-    if (empty($vulnerabilities)) {
+    if (empty($formattedIssues)) {
         writeln('<fg=green>[OK]</> No security vulnerabilities found.');
         return;
     }
-    $formattedIssues = formatNpmIssues($vulnerabilities);
     writeln('<fg=yellow>[WARN]</> ' . count($formattedIssues) . ' security vulnerabilities found.');
     printIssueTable($formattedIssues);
     checkIssueCache($formattedIssues, SECURITY_CONTEXT_NPM);
