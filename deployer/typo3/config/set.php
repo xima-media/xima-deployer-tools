@@ -54,3 +54,5 @@ set('buffer_config', function () {
         ]
     ];
 });
+
+set('feature_index_app_type', 'typo3');
