@@ -27,3 +27,11 @@ require_once(__DIR__ . '/deployer/rsync/config/set.php');
  */
 require_once(__DIR__ . '/deployer/sync/config/set.php');
 require_once(__DIR__ . '/deployer/sync/task/database_backup.php');
+
+/*
+ * security
+ */
+require_once(__DIR__ . '/deployer/security/config/set.php');
+require_once(__DIR__ . '/deployer/security/config/options.php');
+require_once(__DIR__ . '/deployer/security/task/security.php');
+
