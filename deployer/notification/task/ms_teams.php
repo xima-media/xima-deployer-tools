@@ -29,8 +29,14 @@ function sendMessage($message, $color): void
         throw new GracefulShutdownException('Missing MS Teams webhook for notification task. Use "msteams_webhook" deployer configuration or "DEPLOYER_CONFIG_NOTIFICATION_MSTEAMS_WEBHOOK" environment variable to define the necessary webhook url.');
     }
 
-    Httpie::post(get('msteams_webhook'))->jsonBody([
-        "themeColor" => $color,
-        'text'       => $message
-    ])->send();
+    $curlTimeout = getenv('DEPLOYER_CONFIG_NOTIFICATION_MSTEAMS_TIMEOUT') ?: 10;
+    Httpie::post(get('msteams_webhook'))
+        ->setopt(CURLOPT_TIMEOUT, $curlTimeout)
+        ->jsonBody(
+            [
+                "themeColor" => $color,
+                'text'       => $message
+            ]
+        )
+        ->send();
 }
