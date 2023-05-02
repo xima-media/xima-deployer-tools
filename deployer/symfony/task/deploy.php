@@ -41,10 +41,10 @@ task('deploy', [
     'deploy:database:update',
 
     // Special for symfony
-    'deploy:assets:install',
+    'deploy:ckeditor:install',
 
     // Special for symfony
-    'deploy:ckeditor:install',
+    'deploy:assets:install',
 
     // Special for symfony
     'deploy:cache:clear',
