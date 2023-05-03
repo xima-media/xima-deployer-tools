@@ -103,7 +103,7 @@ function checkNpmConsoleTools(): void {
 /**
  * The function formats an array of Composer issues into a specific format.
  *
- * @param array issues An array of issues returned by a Composer security checker tool. The format of
+ * @param array|null $issues An array of issues returned by a Composer security checker tool. The format of
  * the array may differ depending on the specific tool being used.
  *
  * @return array an array of formatted issues. The format of each issue includes the CVE, package name,
@@ -111,7 +111,7 @@ function checkNpmConsoleTools(): void {
  * of issues returned by a Composer security check. The format of the input array depends on the value
  * of the 'security_composer_command' configuration parameter. If the value is 'symfony
  */
-function formatComposerIssues(array $issues): array {
+function formatComposerIssues(?array $issues): array {
     $formattedIssues = [];
     if (get('security_composer_command') === COMMAND_SYMFONY) {
         foreach ($issues as $key => $issue) {
@@ -146,13 +146,13 @@ function formatComposerIssues(array $issues): array {
 /**
  * The function formats an array of npm issues into a more readable format.
  *
- * @param array issues The parameter `` is an array that contains information about
+ * @param array|null $issues The parameter `` is an array that contains information about
  * vulnerabilities in npm packages. Specifically, it has a key called `vulnerabilities` which contains
  * an array of objects, each representing a vulnerability.
  *
  * @return array an array of formatted npm issues.
  */
-function formatNpmIssues(array $issues): array {
+function formatNpmIssues(?array $issues): array {
     $formattedIssues = [];
     foreach ($issues['vulnerabilities'] as $key => $issue) {
         foreach ($issue['via'] as $advisory) {
@@ -179,7 +179,7 @@ function formatNpmIssues(array $issues): array {
 /**
  * The function prints a table of security vulnerabilities using an array of issues.
  *
- * @param array issues The parameter `` is an array of arrays, where each inner array represents
+ * @param array $issues The parameter `` is an array of arrays, where each inner array represents
  * an issue and contains key-value pairs representing the details of that issue. The keys in each inner
  * array are the column headers for the table that will be printed.
  */
@@ -196,10 +196,10 @@ function printIssueTable(array $issues): void {
  * The function takes a string and an array of matches with corresponding colors, and returns the
  * string with the matched substrings colored.
  *
- * @param string string The input string that needs to be formatted with colors.
- * @param array matches The matches parameter is an array that contains the values to be matched and
+ * @param string $string The input string that needs to be formatted with colors.
+ * @param array $matches The matches parameter is an array that contains the values to be matched and
  * their corresponding colors.
- * @param string match The `` parameter is a string that represents the specific match that
+ * @param string $match The `` parameter is a string that represents the specific match that
  * should be highlighted with color in the output string. If it is null, then the entire input string
  * will be used as the match.
  *
@@ -219,8 +219,8 @@ function coloredOutput(string $string, array $matches, string $match = null): st
 /**
  * The function checks for cached security issues and removes them from the list of issues if found.
  *
- * @param array issues An array of issues to be checked for caching.
- * @param string type The type parameter is a string that specifies the type of security check being
+ * @param array $issues An array of issues to be checked for caching.
+ * @param string$ type The type parameter is a string that specifies the type of security check being
  * performed. It is used to generate a unique cache file name for each type of security check.
  *
  * @return void Nothing is being returned, as the function has a return type of `void`.
@@ -250,8 +250,8 @@ function checkIssueCache(array &$issues, string $type): void
  * The function notifies about security issues in a project by generating a message with details about
  * the issues.
  *
- * @param array issues An array of security issues that have been detected in the project.
- * @param string type The type parameter is a string that specifies the context of the security issue.
+ * @param array $issues An array of security issues that have been detected in the project.
+ * @param string $type The type parameter is a string that specifies the context of the security issue.
  * It has a default value of "SECURITY_CONTEXT_COMPOSER" and can be overridden with a different value.
  *
  * @return void nothing (void) if the `` array is empty.
