@@ -73,7 +73,8 @@ task('security:check:npm', function () {
  * The function checks for the availability of Composer or Symfony console tools locally to check for
  * security issues.
  */
-function checkComposerConsoleTools(): void {
+function checkComposerConsoleTools(): void
+{
     $composerVersion = runLocally('composer --version');
     // e.g. "Composer version 2.5.5 2023-03-21 11:50:05"
     preg_match('/(\d+\.\d+\.\d+)/', $composerVersion, $matches);
@@ -94,7 +95,8 @@ function checkComposerConsoleTools(): void {
 /**
  * The function checks if npm is installed locally and throws an exception if it is missing.
  */
-function checkNpmConsoleTools(): void {
+function checkNpmConsoleTools(): void
+{
     if (!commandExistLocally('npm')) {
         throw new GracefulShutdownException('npm is missing to check for security issues.');
     }
@@ -111,30 +113,39 @@ function checkNpmConsoleTools(): void {
  * of issues returned by a Composer security check. The format of the input array depends on the value
  * of the 'security_composer_command' configuration parameter. If the value is 'symfony
  */
-function formatComposerIssues(?array $issues): array {
+function formatComposerIssues(?array $issues): array
+{
     $formattedIssues = [];
     if (get('security_composer_command') === COMMAND_SYMFONY) {
         foreach ($issues as $key => $issue) {
+
+            if (!array_key_exists('advisories', $issues)) {
+                return $formattedIssues;
+            }
+
             foreach ($issue['advisories'] as $advisory) {
                 $formattedIssue = [
                     'cve' => $advisory['cve'],
                     'package' => $key,
                     'version' => $advisory['version'],
-                    'title'  => $advisory['title'],
-                    'link'  => $advisory['link'],
+                    'title' => $advisory['title'],
+                    'link' => $advisory['link'],
                 ];
                 $formattedIssues[$advisory['cve']] = $formattedIssue;
             }
         }
     } else {
+        if (!array_key_exists('advisories', $issues)) {
+            return $formattedIssues;
+        }
         foreach ($issues['advisories'] as $key => $advisories) {
             foreach ($advisories as $advisory) {
                 $formattedIssue = [
                     'cve' => $advisory['cve'],
                     'package' => $key,
                     'version' => $advisory['affectedVersions'],
-                    'title'  => $advisory['title'],
-                    'link'  => $advisory['link'],
+                    'title' => $advisory['title'],
+                    'link' => $advisory['link'],
                 ];
                 $formattedIssues[$advisory['cve']] = $formattedIssue;
             }
@@ -152,8 +163,14 @@ function formatComposerIssues(?array $issues): array {
  *
  * @return array an array of formatted npm issues.
  */
-function formatNpmIssues(?array $issues): array {
+function formatNpmIssues(?array $issues): array
+{
     $formattedIssues = [];
+
+    if (!array_key_exists('vulnerabilities', $issues)) {
+        return $formattedIssues;
+    }
+
     foreach ($issues['vulnerabilities'] as $key => $issue) {
         foreach ($issue['via'] as $advisory) {
             if (!is_array($advisory)) continue;
@@ -183,7 +200,8 @@ function formatNpmIssues(?array $issues): array {
  * an issue and contains key-value pairs representing the details of that issue. The keys in each inner
  * array are the column headers for the table that will be printed.
  */
-function printIssueTable(array $issues): void {
+function printIssueTable(array $issues): void
+{
     $keys = array_keys(reset($issues));
     (new Table(output()))
         ->setHeaderTitle("Security vulnerabilities")
@@ -206,7 +224,8 @@ function printIssueTable(array $issues): void {
  * @return string a string with the matched substring(s) colored according to the corresponding color
  * specified in the `` array.
  */
-function coloredOutput(string $string, array $matches, string $match = null): string {
+function coloredOutput(string $string, array $matches, string $match = null): string
+{
     $match = is_null($match) ? $string : $match;
     foreach ($matches as $value => $color) {
         if ($value === $match) {
@@ -256,9 +275,10 @@ function checkIssueCache(array &$issues, string $type): void
  *
  * @return void nothing (void) if the `` array is empty.
  */
-function notifyIssues(array $issues, string $type = SECURITY_CONTEXT_COMPOSER): void {
+function notifyIssues(array $issues, string $type = SECURITY_CONTEXT_COMPOSER): void
+{
     if (empty($issues)) return;
-    $message = 'Im Projekt <strong>' . get('project') . '</strong> wurden die folgende(n) ' . count($issues) . ' <em>' .  $type . '</em> Sicherheitslücke(n) entdeckt:';
+    $message = 'Im Projekt <strong>' . get('project') . '</strong> wurden die folgende(n) ' . count($issues) . ' <em>' . $type . '</em> Sicherheitslücke(n) entdeckt:';
     foreach ($issues as $cve => $issue) {
         $message .= sprintf(
             '<br/><br/><strong style="color:%s">%s</strong> %s<br/><em>%s</em> – <a href="%s">%s</a>',
