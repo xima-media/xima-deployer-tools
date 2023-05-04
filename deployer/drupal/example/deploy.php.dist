@@ -1,0 +1,12 @@
+<?php
+
+namespace Deployer;
+
+require_once(__DIR__ . '/vendor/xima/xima-deployer-tools/deployer/drupal/autoload.php');
+require_once(__DIR__ . '/vendor/xima/xima-deployer-tools/deployer/feature/autoload.php');
+
+// Config
+set('app_path', '.');
+
+// Hosts
+import('.deployment/deployer/hosts.yaml');

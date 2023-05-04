@@ -74,7 +74,7 @@ You can overwrite the source dir:
   and even the whole rsync configuration:
 - 'rsync'
 
-`Excludes are red from 'deployment/rsync/exclude.txt' by default.`
+`Excludes are red from '.deployment/rsync/exclude.txt' by default.`
 
 # Drupal
 

@@ -1,0 +1,10 @@
+/.*
+
+/build*
+/webpack*
+/node_modules
+/package.json
+/package-lock.json
+/auth.json.dist
+
+/README.md

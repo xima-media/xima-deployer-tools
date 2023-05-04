@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * Split config settings
+ */
+$config['config_split.config_split.stage']['status'] = TRUE;
+
+$settings['trusted_host_patterns'] = [
+    '^{{DEPLOYER_CONFIG_FEATURE_URL}}$'
+];
+
+$settings['skip_permissions_hardening'] = TRUE;
+$config['system.logging']['error_level'] = 'verbose';
+
+$databases['default']['default'] = array (
+  'host' => '{{DEPLOYER_CONFIG_DATABASE_HOST}}',
+  'database' => '{{DEPLOYER_CONFIG_DATABASE_NAME}}',
+  'username' => '{{DEPLOYER_CONFIG_DATABASE_USER}}',
+  'password' => '{{DEPLOYER_CONFIG_DATABASE_PASSWORD}}',
+  'prefix' => '',
+  'port' => '{{DEPLOYER_CONFIG_DATABASE_PORT}}',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql',
+);
+
+$settings['file_chmod_directory'] = 0770;
+$settings['file_chmod_file'] = 0660;
