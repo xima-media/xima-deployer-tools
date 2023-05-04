@@ -23,10 +23,10 @@ task('deploy:database:backup', function () {
     run("cd {{previous_release}} && drush sql-dump --structure-tables-list=cache,cache_*,queue,watchdog --gzip --result-file=auto");
 
     // remove all backups but the latest 10
-    if(test('[ -d "/home/{{user}}/drush-backups/{{prod_db_name}}" ]')) {
-      writeln("<info>↪ Cleaning drush backups in /home/{{user}}/drush-backups...</info>");
+    if(test('[ -d "/home/{{remote_user}}/drush-backups/{{prod_db_name}}" ]')) {
+      writeln("<info>↪ Cleaning drush backups in /home/{{remote_user}}/drush-backups...</info>");
 
-      run("cd /home/{{user}}/drush-backups/{{prod_db_name}} && ls -1tr | head -n -10 | xargs -d '\n' rm -rf --");
+      run("cd /home/{{remote_user}}/drush-backups/{{prod_db_name}} && ls -1tr | head -n -10 | xargs -d '\n' rm -rf --");
     }
   }
-})->onStage('prod');
+})->select('stage=prod');

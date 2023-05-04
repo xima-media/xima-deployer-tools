@@ -108,6 +108,3 @@ task('deploy', [
 ])->desc('Deploy Drupal project');;
 
 after('deploy:failed', 'deploy:unlock');
-
-// TODO needed?
-option('sync', 's', InputOption::VALUE_REQUIRED, 'If you wan\'t a database and files sync from remote, provide the drush sync source host (e.g. "about.master").');

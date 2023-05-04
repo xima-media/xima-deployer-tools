@@ -35,6 +35,10 @@ set('feature_templates', [
   __DIR__ . '/.deployment/deployer/templates/settings.local.php.dist' => '/shared/web/sites/default/settings.local.php',
 ]);
 
+// disable sync tools because we have drush in drupal context
+set('db_sync_tool', null);
+set('file_sync_tool', null);
+
 // Look on https://github.com/sourcebroker/deployer-extended#buffer-start for docs
 set('buffer_config', function () {
     return [
