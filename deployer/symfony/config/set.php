@@ -68,3 +68,8 @@ set('media',
     ]);
 
 set('feature_index_app_type', 'symfony');
+
+// Prod deployment, add backup
+task('database:backup')->select('prod');
+before('deploy:database:update', 'database:backup');
+set('sync_database_backup_config', __DIR__ . '/.deployment/db-sync-tool/backup-prod.yaml');
