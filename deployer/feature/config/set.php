@@ -23,8 +23,8 @@ set('feature_directory_path', '.fbd/');
  * Feature Sync
  */
 #set('feature_sync_config', null);
-set('db_sync_tool', 'db_sync_tool'); # set to null, to disable db sync
-set('file_sync_tool', 'file_sync_tool'); # set to null, to disable file sync
+set('db_sync_tool', 'db_sync_tool'); # set to false, to disable db sync
+set('file_sync_tool', 'file_sync_tool'); # set to false, to disable file sync
 
 
 set('feature_sync_target_path', null);
