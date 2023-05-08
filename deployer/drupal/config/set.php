@@ -27,11 +27,6 @@ set('writable_chmod_recursive', false);
 
 set('composer_options', '--verbose --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader --no-scripts');
 
-// disable sync tools because we have drush in drupal context
-set('feature_sync_config', null);
-set('db_sync_tool', false);
-set('file_sync_tool', false);
-
 // Look on https://github.com/sourcebroker/deployer-extended#buffer-start for docs
 set('buffer_config', function () {
     return [

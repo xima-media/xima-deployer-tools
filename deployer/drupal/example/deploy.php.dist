@@ -28,6 +28,11 @@ set('feature_templates', [
     __DIR__ . '/.deployment/deployer/templates/settings.local.php.dist' => '/shared/web/sites/default/settings.local.php',
 ]);
 
+// disable sync tools because we have drush in drupal context
+set('feature_sync_config', null);
+set('db_sync_tool', false);
+set('file_sync_tool', false);
+
 set('rsync-files-exclude', [
     'css',
     'js',
