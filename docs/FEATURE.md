@@ -46,7 +46,9 @@ $ pip3 install db-sync-tool-kmi file-sync-tool-kmi
 
 ### Initialization
 
-The `feature:setup` command represent the initialization of a new feature branch. It creates the necessary folder structure and database for the application. Also it extend the given host information with the necessary dynamic feature instance information.
+The `feature:setup` command represent the initialization of a new feature branch. It creates the necessary folder structure and database for the application. Also it extends the given host information with the necessary dynamic feature instance information.
+
+*Important:* Note, that you initially need to import the database of the reference state manually (which all other feature branches sync the database from).
 
 ```bash
 $ vendor/bin/dep feature:setup stage --feature=TEST-01
@@ -55,7 +57,7 @@ $ vendor/bin/dep feature:setup stage --feature=TEST-01
 This task should be declared to run at first within your deploy task:
 
 ```php
-before('deploy:info', 'feature:setup';
+before('deploy:info', 'feature:setup');
 ```
 
 If the application needs to setup additional configuration files for e.g. storing the database credentials, use the feature templates to provide this kind of dynamic setup. For example the TYPO3 setup with a `.env` file:
