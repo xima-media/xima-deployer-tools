@@ -52,7 +52,7 @@ task('deploy', [
     'deploy:cache:clear',
 
     // Drupal: create private/logs
-    'deploy:logs_dir:create',
+    'deploy:log_dir:create',
 
     // Drupal: update database
     'deploy:database:update',
@@ -65,9 +65,6 @@ task('deploy', [
 
     // Drupal: clear the cache
     'deploy:cache:clear',
-
-    // Drupal: copy defined files
-    'deploy:files:copy',
 
     // Standard deployer task
     'deploy:clear_paths',

@@ -1,6 +1,6 @@
 # TYPO3 Deployment
 
-The TYPO3 deployment describes the deployment and initialization process of a TYPO3 CMS application.
+The TYPO3 documentation describes the deployment and initialization process of a TYPO3 CMS application.
 
 > The deployment package is inspired by [deployer-extended-typo3](https://github.com/sourcebroker/deployer-extended-typo3).
 
@@ -17,7 +17,7 @@ The deployment workflow uses the deployer package [deployer-extended](https://gi
 
 ## Installation
 
-The default configuration for TYPO3 applications are located at [set.php](../deployer/typo3/config/set.php) and can be optionally overwritten.
+The default configuration for TYPO3 applications is located at [set.php](../deployer/typo3/config/set.php) and can be overwritten optionally.
 
 If you want to use the TYPO3 deployment functionalities add the belonging autoloader to your project `deploy.php`:
 

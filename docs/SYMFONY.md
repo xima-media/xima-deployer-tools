@@ -1,6 +1,6 @@
 # Symfony Deployment
 
-The symfony deployment describes the deployment and initialization process of a symfony application.
+The symfony documentation describes the deployment and initialization process of a symfony application.
 
 > The deployment package is inspired by [deployer-extended-symfony5](https://github.com/sourcebroker/deployer-extended-symfony5).
 
@@ -19,7 +19,7 @@ The deployment workflow uses the deployer package [deployer-extended](https://gi
 
 ## Installation
 
-The default configuration for symfony applications are located at [set.php](../deployer/symfony/config/set.php) and can be optionally overwritten.
+The default configuration for symfony applications is located at [set.php](../deployer/symfony/config/set.php) and can be overwritten optionally.
 
 If you want to use the symfony deployment functionalities add the belonging autoloader to your project `deploy.php`:
 

@@ -59,6 +59,12 @@ The TYPO3 deployment covers the deployment process for TYPO3 CMS applications.
 
 Read the [documentation](docs/TYPO3.md) for detailed installation instructions and further explanations.
 
+# Drupal
+
+The Drupal deployment covers the deployment process for Drupal CMS applications.
+
+Read the [documentation](docs/DRUPAL.md) for detailed installation instructions and further explanations.
+
 ## deploy
 
 The predefined 'deploy' tasks runs with ready to use feature branch deployment and rsync.
@@ -75,10 +81,6 @@ You can overwrite the source dir:
 - 'rsync'
 
 `Excludes are read from '.deployment/rsync/exclude.txt' by default.`
-
-# Drupal
-
-> ToDo
 
 # Standalone Tasks
 - MS Teams Notification
