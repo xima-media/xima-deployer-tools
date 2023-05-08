@@ -9,13 +9,17 @@ task('deploy:database:update', function () {
 
 desc('Sync database');
 task('deploy:database:sync', function () {
+  if (!has('feature_setup') || !get('feature_setup')) {
+    return;
+  }
+
   if (input()->hasOption('sync') && input()->getOption('sync')) {
     $source = input()->getOption('sync');
     run("cd {{drupal_site_path}} && drush sql:sync @$source @self --create-db -y");
   } else {
     writeln('<info>Skipping sync db</info>');
   }
-});
+})->select('type=feature-branch-deployment');
 
 desc('Backup database');
 task('deploy:database:backup', function () {

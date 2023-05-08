@@ -115,6 +115,10 @@ function renderRemoteTemplates(): void
     $feature = input()->getOption('feature');
     $templates = get('feature_templates');
 
+    if (!$templates) {
+        $templates = [];
+    }
+
     // ToDo: simplify!
     // get additional arguments from environment variables
     $environmentVariables = getenv();
@@ -160,7 +164,8 @@ function renderRemoteTemplates(): void
  */
 function uploadTemplate($localTemplate, $remoteTarget, $arguments): void {
 
-    debug('Uploading template');
+    debug('Uploading template: ' . $localTemplate . '...');
+
     $templateContent = file_get_contents($localTemplate);
 
     // replace all {{variables}} with arguments

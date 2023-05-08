@@ -23,7 +23,6 @@ require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/tas
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/task/deploy_logs.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/task/deploy_maintenance.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/task/deploy_permissions.php');
-require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/task/deploy_rsync.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/task/deploy_translations.php');
 
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/task/deploy.php');

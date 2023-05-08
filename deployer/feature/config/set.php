@@ -8,13 +8,10 @@ namespace Deployer;
  */
 set('mysql', 'mysql');
 
-set('feature_templates', []);
 set('project', 'kickstarter');
 
 set('database_host', '127.0.0.1');
 set('database_port', 3306);
-
-set('web_path', 'public/');
 
 // ToDo: actually not configurable because of the feature index app
 set('feature_directory_path', '.fbd/');

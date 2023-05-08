@@ -4,18 +4,21 @@ namespace Deployer;
 
 desc('Import files');
 task('deploy:files:sync', function () {
+  if (!has('feature_setup') || !get('feature_setup')) {
+    return;
+  }
+  
   if (input()->hasOption('sync') && input()->getOption('sync')) {
     $source = input()->getOption('sync');
-    $excludePath = __DIR__ . '/.deployment/rsync/' . input()->getArgument('stage') . '_exclude.txt';
+    $excludes = has('rsync-files-exclude') ? get('rsync-files-exclude') : [];
     $excludeParameter = '';
 
-    if (file_exists($excludePath)) {
-      $excludeParameter = str_replace("\n", ':', file_get_contents($excludePath));
+    if (!empty($excludes)) {
+      $excludeParameter = implode(':', $excludes);
     }
 
-    // TODO: check if working
     run("cd {{drupal_site_path}} && drush rsync --exclude-paths=:$excludeParameter @$source:%files @self:%files -v -y");
   } else {
     writeln('<info>Skipping sync files</info>');
   }
-});
+})->select('type=feature-branch-deployment');

@@ -24,7 +24,6 @@ task('deploy', [
     // enable maintenance mode
     'deploy:maintenance:enable',
 
-    // TODO remove?
     // Building composer dependencies
     'build:composer',
 
@@ -37,13 +36,11 @@ task('deploy', [
     // Standard deployer task
     'deploy:shared',
 
-    // TODO: move only to fbd?
     // Drupal: Sync the db (only on stage)
     'deploy:database:sync',
 
-    // TODO: move only to fbd?
     // Drupal: Sync the files (only on stage)
-    'deploy:files:sync', // only on stage
+    'deploy:files:sync',
 
     // Drupal: fix permisions for drupal folder
     'deploy:permissions:drupal',
