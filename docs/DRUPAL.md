@@ -6,11 +6,15 @@ The Drupal documentation describes the deployment and initialization process of 
 
 * [Installation](#installation)
 * [Tasks](#tasks)
-  + [Clearing the cache](#clearing-the-cache)
-  + [Warming the cache](#warming-the-cache)
-  + [Clearing and Warming the cache](#clearing-and-warming-the-cache)
-  + [Updating the database](#updating-the-database)
-  + [Additional Setup](#additional-setup)
+  + [Clear the cache](#clear-the-cache)
+  + [Import the drupal configuration](#import-the-drupal-configuration)
+  + [Update the database](#updat-the-database)
+  + [Sync the database from another drupal instance](#sync-the-database-from-another-drupal-instance)
+  + [Backup the database](#backup-the-database)
+  + [Sync the files from another drupal instance](#sync-the-files-from-another-drupal-instance)
+  + [Enable/disable the maintenance mode](#enabledisable-the-maintenance-mode)
+  + [Permission handling](#permission-handling)
+  + [Update the drupal translations](#update-the-drupal-translations)
 
 
 The deployment workflow uses the deployer package [deployer-extended](https://github.com/sourcebroker/deployer-extended) as basis. 
@@ -35,7 +39,7 @@ The following tasks are Drupal specific and extend the default deployer deployme
 
 The default deployment task for Drupal applications can be found here  [deploy.php](../deployer/drupal/task/deploy.php)
 
-### Clearing the cache
+### Clear the cache
 
 This task calls `drush cache-rebuild`.
 
@@ -51,7 +55,7 @@ This task calls `drush cim`.
 dep deploy:configuration:import
 ```
 
-### Updating the database
+### Update the database
 
 This task calls `drush updb`.
 
