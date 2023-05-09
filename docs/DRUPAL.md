@@ -77,7 +77,7 @@ This task needs to have the deployer argument `sync` in place. Pass in a drush s
 Typically this task is used in the feature branch deployment workflow.
 
 ```bash
-dep deploy:database:sync --sync=about.master-stage
+dep deploy:database:sync --sync=mysite.stage-main
 ```
 
 ### Backup the database
@@ -97,7 +97,7 @@ This task needs to have the deployer argument `sync` in place. Pass in a drush s
 Typically this task is used in the feature branch deployment workflow.
 
 ```bash
-dep deploy:files:sync --sync=about.master-stage
+dep deploy:files:sync --sync=mysite.stage-main
 ```
 
 ### Create a logs directory in private
