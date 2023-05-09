@@ -63,7 +63,3 @@ set('feature_index_additional_links', [
 
 // set fetch method for clear fe cache
 set('fetch_method', 'curl');
-
-// disable assets build
-task('build:assets')->disable();
-task('build:composer')->disable();

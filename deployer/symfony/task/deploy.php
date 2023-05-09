@@ -19,12 +19,6 @@ task('deploy', [
     // Standard deployer task.
     'deploy:release',
 
-    // Building assets
-    'build:assets',
-
-    // Building composer dependencies
-    'build:composer',
-
     // Transfer application to remote
     'rsync',
 

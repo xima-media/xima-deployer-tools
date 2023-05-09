@@ -33,4 +33,4 @@ task('deploy:database:backup', function () {
       run("cd /home/{{remote_user}}/drush-backups/{{prod_db_name}} && ls -1tr | head -n -10 | xargs -d '\n' rm -rf --");
     }
   }
-})->select('stage=prod');
+})->select('prod');

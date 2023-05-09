@@ -12,6 +12,7 @@ The Drupal documentation describes the deployment and initialization process of 
   + [Sync the database from another drupal instance](#sync-the-database-from-another-drupal-instance)
   + [Backup the database](#backup-the-database)
   + [Sync the files from another drupal instance](#sync-the-files-from-another-drupal-instance)
+  + [Create a logs directory in private](#create-a-logs-directory-in-private)
   + [Enable/disable the maintenance mode](#enabledisable-the-maintenance-mode)
   + [Permission handling](#permission-handling)
   + [Update the drupal translations](#update-the-drupal-translations)
@@ -37,7 +38,13 @@ The following tasks are Drupal specific and extend the default deployer deployme
 
 ### Default deployment
 
-The default deployment task for Drupal applications can be found here  [deploy.php](../deployer/drupal/task/deploy.php)
+The default deployment task for Drupal applications can be found here  [deploy.php](../deployer/drupal/task/deploy.php).
+
+**Note:** Keep in mind that you can disable any of the tasks in the default deployment and customize it to your needs:
+
+```bash
+task('some-task')->disable();
+```
 
 ### Clear the cache
 
@@ -91,7 +98,7 @@ Typically this task is used in the feature branch deployment workflow.
 dep deploy:files:sync --sync=about.master-stage
 ```
 
-### Backup the database
+### Create a logs directory in private
 
 This task creates a `logs` directory in the `private` folder. Can be used e.g. for [monolog](https://www.drupal.org/project/monolog) logging.
 

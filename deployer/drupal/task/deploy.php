@@ -24,12 +24,6 @@ task('deploy', [
     // enable maintenance mode
     'deploy:maintenance:enable',
 
-    // Building composer dependencies
-    'build:composer',
-
-    // Building assets
-    'build:assets',
-
     // Standard deployer task
     'rsync',
 
