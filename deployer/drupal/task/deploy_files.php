@@ -19,6 +19,6 @@ task('deploy:files:sync', function () {
 
     run("cd {{drupal_site_path}} && drush rsync --exclude-paths=:$excludeParameter @$source:%files @self:%files -v -y");
   } else {
-    writeln('<info>Skipping sync files</info>');
+    info('<info>Skipping sync files</info>');
   }
 })->select('type=feature-branch-deployment');

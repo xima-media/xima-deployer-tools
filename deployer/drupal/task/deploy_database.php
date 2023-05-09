@@ -17,7 +17,7 @@ task('deploy:database:sync', function () {
     $source = input()->getOption('sync');
     run("cd {{drupal_site_path}} && drush sql:sync @$source @self --create-db -y");
   } else {
-    writeln('<info>Skipping sync db</info>');
+    info('<info>Skipping sync db</info>');
   }
 })->select('type=feature-branch-deployment');
 
@@ -28,7 +28,7 @@ task('deploy:database:backup', function () {
 
     // remove all backups but the latest 10
     if(test('[ -d "/home/{{remote_user}}/drush-backups/{{prod_db_name}}" ]')) {
-      writeln("<info>↪ Cleaning drush backups in /home/{{remote_user}}/drush-backups...</info>");
+      info("<info>↪ Cleaning drush backups in /home/{{remote_user}}/drush-backups...</info>");
 
       run("cd /home/{{remote_user}}/drush-backups/{{prod_db_name}} && ls -1tr | head -n -10 | xargs -d '\n' rm -rf --");
     }

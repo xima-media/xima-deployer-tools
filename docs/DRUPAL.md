@@ -84,6 +84,8 @@ dep deploy:database:sync --sync=about.master-stage
 
 Uses drush's backup functionality. Typically this task is used in the production deployment. Also cleans up the drush backups keeping a maximum of 10 backups.
 
+The backups are created in ~/drush-backups of the deploying user.
+
 ```bash
 dep deploy:database:backup
 ```
