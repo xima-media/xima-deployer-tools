@@ -4,21 +4,19 @@ namespace Deployer;
 
 desc('Import files');
 task('deploy:files:sync', function () {
-  if (!has('feature_setup') || !get('feature_setup')) {
+  if (!has('feature_setup') || !get('feature_setup') || !input()->hasOption('sync') || !input()->getOption('sync')) {
+    info('<info>Skipping sync files</info>');
+
     return;
   }
   
-  if (input()->hasOption('sync') && input()->getOption('sync')) {
-    $source = input()->getOption('sync');
-    $excludes = has('rsync-files-exclude') ? get('rsync-files-exclude') : [];
-    $excludeParameter = '';
+  $source = input()->getOption('sync');
+  $excludes = has('rsync-files-exclude') ? get('rsync-files-exclude') : [];
+  $excludeParameter = '';
 
-    if (!empty($excludes)) {
-      $excludeParameter = implode(':', $excludes);
-    }
-
-    run("cd {{drupal_site_path}} && drush rsync --exclude-paths=:$excludeParameter @$source:%files @self:%files -v -y");
-  } else {
-    info('<info>Skipping sync files</info>');
+  if (!empty($excludes)) {
+    $excludeParameter = implode(':', $excludes);
   }
+
+  run("cd {{drupal_site_path}} && drush rsync --exclude-paths=:$excludeParameter @$source:%files @self:%files -v -y");
 })->select('type=feature-branch-deployment');
