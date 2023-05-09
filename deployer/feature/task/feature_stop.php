@@ -30,8 +30,6 @@ function deleteFeature($feature = null): void
 
     if (isUrlShortener()) {
         removeUrlShortenerPath($feature);
-    } else {
-        set('deploy_path', get('deploy_path') . '/' . $feature);
     }
 
     $databaseName = getDatabaseName($feature);
