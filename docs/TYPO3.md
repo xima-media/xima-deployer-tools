@@ -60,6 +60,22 @@ dep deploy:cache:clear_and_warmup
 dep deploy:database:update
 ```
 
+### Backup database
+
+By default a database dump is created on deployments to prod environment. The default configuration file used by the task is:
+
+```bash
+'.deployment/db-sync-tool/backup-prod.yaml'
+```
+This can be overwritten by setting 'sync_database_backup_config'. For example:
+```bash
+set('sync_database_backup_config', __DIR__ . '/.deployment/db-sync-tool/some-configation.json');
+```
+To disable the database backup you can disable the task like this:
+```bash
+task('database:backup')->disable();
+```
+
 ### Additional Setup
 
 This command runs following TYPO3 CMS specific commands from the typo3_console:

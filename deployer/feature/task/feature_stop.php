@@ -18,7 +18,7 @@ task('feature:stop', function () {
 
 
 /**
- * Delete a feature branch including the instance folder and the the related database
+ * Delete a feature branch including the instance folder and the related database
  *
  * @throws \Deployer\Exception\Exception
  * @throws \Deployer\Exception\RunException
@@ -27,8 +27,12 @@ task('feature:stop', function () {
 function deleteFeature($feature = null): void
 {
     $feature = $feature ?: input()->getOption('feature');
-    $databaseName = getDatabaseName($feature);
 
+    if (isUrlShortener()) {
+        removeUrlShortenerPath($feature);
+    }
+
+    $databaseName = getDatabaseName($feature);
     runDatabaseCommand("DROP DATABASE IF EXISTS `$databaseName`;", false);
     run("rm -rf " . get('deploy_path'));
 

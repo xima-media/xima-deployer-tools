@@ -30,10 +30,6 @@ task('deploy', [
     // Standard deployer task.
     'deploy:clear_paths',
 
-    // Start buffering http requests. No frontend access possible from now.
-    // Read more on https://github.com/sourcebroker/deployer-extended#buffer-start
-    'buffer:start',
-
     // custom database update
     'deploy:database:update',
 
@@ -42,6 +38,10 @@ task('deploy', [
 
     // custom clear and warmup system specific caches
     'deploy:cache:clear_and_warmup',
+
+    // Start buffering http requests. No frontend access possible from now.
+    // Read more on https://github.com/sourcebroker/deployer-extended#buffer-start
+    'buffer:start',
 
     // Standard deployer task.
     'deploy:symlink',
