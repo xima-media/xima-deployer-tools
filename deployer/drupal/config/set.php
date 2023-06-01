@@ -31,10 +31,10 @@ set('composer_options', '--verbose --prefer-dist --no-progress --no-interaction 
 set('buffer_config', function () {
     return [
         'index.php' => [
-            'entrypoint_filename' => 'web/index.php',
+            'entrypoint_filename' =>  get('web_path') . 'index.php',
         ],
         'core/index.php' => [
-            'entrypoint_filename' => 'web/core/install.php',
+            'entrypoint_filename' =>  get('web_path') . 'core/install.php',
         ]
     ];
 });

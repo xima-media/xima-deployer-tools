@@ -8,6 +8,9 @@ namespace Deployer;
 $vendorRoot = is_dir(__DIR__ . '/../../../../../vendor') ? __DIR__ . '/../../../../..' : __DIR__ . '/../../../..';
 
 require_once($vendorRoot . '/vendor/sourcebroker/deployer-loader/autoload.php');
+
+new \Xima\XimaDeployerTools\Drupal\Loader();
+
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/autoload.php');
 
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/config/options.php');
@@ -23,5 +26,3 @@ require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/tas
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/task/deploy_translations.php');
 
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/task/deploy.php');
-
-new \Xima\XimaDeployerTools\Drupal\Loader();
