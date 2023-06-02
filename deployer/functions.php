@@ -88,3 +88,20 @@ function commandExistLocally(string $command): bool
 {
     return testLocally("hash $command 2>/dev/null");
 }
+
+/**
+ * Runs a remote command with the possibility to overwrite the default command options
+ */
+function runExtended(string $command, ?array $options = [], ?int $timeout = null, ?int $idle_timeout = null, ?string $secret = null, ?array $env = null, ?bool $real_time_output = false, ?bool $no_throw = false): string
+{
+    return run(
+        $command,
+        $options,
+            $timeout ?? (int)get('run_timeout'),
+            $idle_timeout ?? (int)get('run_idle_timeout'),
+            $secret ?? (string)get('run_secret'),
+            $env ?? (array)get('run_env'),
+            $real_time_output ?? (bool)get('run_real_time_output'),
+            $no_throw ?? (bool)get('run_no_throw')
+    );
+}
