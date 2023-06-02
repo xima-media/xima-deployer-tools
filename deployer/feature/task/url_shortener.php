@@ -9,7 +9,7 @@ tasK('feature:urlshortener', function () {
 
     $symlinkDir = get('deploy_path') . "/current/" . get('web_path');
 
-    run("cd " . get('deploy_path_url_shortener') . " && ln -sf $symlinkDir " . get('feature'));
+    runExtended("cd " . get('deploy_path_url_shortener') . " && ln -sf $symlinkDir " . get('feature'));
 })
     ->select('type=feature-branch-deployment')
     ->desc('Add the feature branch symlink for the shortened url')
@@ -68,5 +68,5 @@ function getUrlShortenerPath($feature): string
  */
 function removeUrlShortenerPath($feature): void
 {
-    run("rm -f " . getUrlShortenerPath($feature));
+    runExtended("rm -f " . getUrlShortenerPath($feature));
 }

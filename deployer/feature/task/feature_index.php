@@ -53,9 +53,9 @@ function renderIndexTemplate(): void
     $featureDirectoryPath = get('deploy_path') . '/' . get('feature_directory_path');
     upload(__DIR__ . '/../dist/index' ,$featureDirectoryPath);
     upload(__DIR__ . '/../dist/index.php' ,$featureDirectoryPath . 'index.php');
-    run("cd " . get('deploy_path') . " && ln -sf " . $featureDirectoryPath . "index.php index.php");
+    runExtended("cd " . get('deploy_path') . " && ln -sf " . $featureDirectoryPath . "index.php index.php");
     uploadTemplate(__DIR__ . '/../dist/index.json.dist', '/' . get('feature_directory_path') . 'index.json', $arguments);
     // ToDo: fix permissions
-    run("cd {{deploy_path}} && chmod 644 {{feature_directory_path}}index.* && chmod 775 {{feature_directory_path}}index/ && chmod -R 755 {{feature_directory_path}}index/assets && chmod -R 755 {{feature_directory_path}}index/src && chmod 755 {{feature_directory_path}}index/autoload.php");
+    runExtended("cd {{deploy_path}} && chmod 644 {{feature_directory_path}}index.* && chmod 775 {{feature_directory_path}}index/ && chmod -R 755 {{feature_directory_path}}index/assets && chmod -R 755 {{feature_directory_path}}index/src && chmod 755 {{feature_directory_path}}index/autoload.php");
 
 }

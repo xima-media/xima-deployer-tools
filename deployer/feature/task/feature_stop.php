@@ -34,7 +34,7 @@ function deleteFeature($feature = null): void
 
     $databaseName = getDatabaseName($feature);
     runDatabaseCommand("DROP DATABASE IF EXISTS `$databaseName`;", false);
-    run("rm -rf " . get('deploy_path'));
+    runExtended("rm -rf " . get('deploy_path'));
 
     info("feature branch <fg=magenta;options=bold>$feature</> deleted");
 }

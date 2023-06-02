@@ -73,7 +73,7 @@ function runDatabaseCommand($command, $useDoubleQuotes = true): string
     }
     $quote = $useDoubleQuotes ? '"' : '\'';
 
-    return run(get('mysql') . " -u$databaseUser -p%secret% -h$databaseHost -P$databasePort -e {$quote}$command{$quote}", [],null,null, $databasePassword);
+    return runExtended(get('mysql') . " -u$databaseUser -p%secret% -h$databaseHost -P$databasePort -e {$quote}$command{$quote}", [],null,null, $databasePassword);
 }
 
 /**
@@ -180,7 +180,7 @@ function uploadTemplate($localTemplate, $remoteTarget, $arguments): void {
     $path = get('deploy_path') . $remoteTarget;
 
     // create path to template destination if not exists
-    run("mkdir -p " . pathinfo($path)['dirname']);
+    runExtended("mkdir -p " . pathinfo($path)['dirname']);
 
     // upload template to remote
     upload($temporaryFileName,get('deploy_path') . $remoteTarget);
