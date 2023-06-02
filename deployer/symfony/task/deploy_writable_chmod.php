@@ -7,8 +7,8 @@ namespace Deployer;
  * ToDo: check deploy:writable to solve this?
  */
 task('deploy:writable:chmod', function() {
-    run("cd {{ release_path }} && chmod 775 var var/cache ../../shared/var/log");
-    run("cd {{ release_path }} && find . -path \"./var\" -prune -o -type d -exec chmod 755 {} +");
-    run("cd {{ release_path }} && find . -type f -exec chmod 644 {} +");
-    run("cd {{ release_path }} && chmod -R 775 var/cache");
+    runExtended("cd {{ release_path }} && chmod 775 var var/cache ../../shared/var/log");
+    runExtended("cd {{ release_path }} && find . -path \"./var\" -prune -o -type d -exec chmod 755 {} +");
+    runExtended("cd {{ release_path }} && find . -type f -exec chmod 644 {} +");
+    runExtended("cd {{ release_path }} && chmod -R 775 var/cache");
 })->desc('Adjust file rights for release directory');

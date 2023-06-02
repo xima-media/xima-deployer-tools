@@ -3,5 +3,5 @@
 namespace Deployer;
 
 task('deploy:cache:clear', function () {
-    run('{{bin/php}} {{bin/console}} cache:clear {{console_options}} --no-warmup');
+    runExtended('{{bin/php}} {{bin/console}} cache:clear {{console_options}} --no-warmup');
 })->desc('Clear symfony cache');

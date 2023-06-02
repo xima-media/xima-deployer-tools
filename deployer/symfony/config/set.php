@@ -39,6 +39,8 @@ set('composer_options', function () {
     return '--verbose --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader --no-scripts';
 });
 
+set('run_real_time_output', true);
+
 set('clear_paths', [
     '.git',
     '.gitignore',

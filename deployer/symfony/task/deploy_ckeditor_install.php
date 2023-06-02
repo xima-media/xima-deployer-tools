@@ -4,7 +4,7 @@ namespace Deployer;
 
 task('deploy:ckeditor:install', function () {
     if (commandSupportSubcommand("{{bin/php}} {{bin/console}}", "ckeditor:install")) {
-        run("{{bin/php}} {{bin/console}} ckeditor:install --clear=drop {{console_options}}");
+        runExtended("{{bin/php}} {{bin/console}} ckeditor:install --clear=drop {{console_options}}");
     } else {
         debug('ckeditor not installed, skipping command');
     }
