@@ -18,5 +18,5 @@ task('deploy:files:sync', function () {
     $excludeParameter = implode(':', $excludes);
   }
 
-  run("cd {{drupal_site_path}} && drush rsync --exclude-paths=:$excludeParameter @$source:%files @self:%files -v -y", [], null, null, null, null, true);
+  runExtended("cd {{drupal_site_path}} && drush rsync --exclude-paths=:$excludeParameter @$source:%files @self:%files -v -y");
 })->select('type=feature-branch-deployment');

@@ -4,5 +4,5 @@ namespace Deployer;
 
 desc('Update translations');
 task('deploy:translations:update', function () {
-  run('cd {{drupal_site_path}} && drush locale:update -y', [], null, null, null, null, true);
+  runExtended('cd {{drupal_site_path}} && drush locale:update -y');
 });
