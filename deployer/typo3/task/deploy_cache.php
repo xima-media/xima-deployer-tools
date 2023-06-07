@@ -11,19 +11,19 @@ task('deploy:cache:clear', function () {
     $activeDir = test('[ -e {{deploy_path}}/release ]') ?
         get('deploy_path') . '/release' :
         get('deploy_path') . '/current';
-    run('cd ' . $activeDir . ' &&  {{bin/php}} {{bin/typo3cms}} cache:flush');
+    runExtended('cd ' . $activeDir . ' &&  {{bin/php}} {{bin/typo3cms}} cache:flush');
 });
 
 task('deploy:cache:warmup', function () {
     $activeDir = test('[ -e {{deploy_path}}/release ]') ?
         get('deploy_path') . '/release' :
         get('deploy_path') . '/current';
-    run('cd ' . $activeDir . ' && {{bin/php}} {{bin/typo3cms}} cache:warmup');
+    runExtended('cd ' . $activeDir . ' && {{bin/php}} {{bin/typo3cms}} cache:warmup');
 });
 
 task('deploy:warmup_frontend', function () {
     foreach (get('public_urls') as $publicUrl) {
-        run('curl --insecure ' . $publicUrl);
+        runExtended('curl --insecure ' . $publicUrl);
     }
 });
 
@@ -31,5 +31,5 @@ task('deploy:warmup_frontend', function () {
 //    $activeDir = test('[ -e {{deploy_path}}/release ]') ?
 //        get('deploy_path') . '/release' :
 //        get('deploy_path') . '/current';
-//    run('cd ' . $activeDir . ' &&  {{bin/php}} {{bin/typo3cms}} cache:flush -g pages');
+//    runExtended('cd ' . $activeDir . ' &&  {{bin/php}} {{bin/typo3cms}} cache:flush -g pages');
 //});
