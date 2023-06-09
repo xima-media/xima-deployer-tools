@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.1.2] - 2023-06-09
+
+### Added
+
+- extended run function for global configuration
+- adjust the following deployments: feature, symfony, typo3, drupal
+
 ## [0.1.1] - 2023-06-01
 
 ### Added
