@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.1.3] - 2023-06-21
+
+### Fixed
+
+- re-enable build tasks within symfony deployment
+
 ## [0.1.2] - 2023-06-09
 
 ### Added
