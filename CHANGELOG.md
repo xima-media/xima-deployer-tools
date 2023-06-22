@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.1.4] - 2023-06-22
+
+### Fixed
+
+- build asset task for symfony deployments
+
 ## [0.1.3] - 2023-06-21
 
 ### Fixed
