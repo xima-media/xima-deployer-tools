@@ -22,9 +22,6 @@ task('deploy', [
     // Building assets
     'build:assets',
 
-    // Building composer dependencies
-    'build:composer',
-
     // Transfer application to remote
     'rsync',
 
