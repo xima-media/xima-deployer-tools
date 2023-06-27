@@ -24,17 +24,25 @@ task('feature:stop', function () {
  * @throws \Deployer\Exception\RunException
  * @throws \Deployer\Exception\TimeoutException
  */
-function deleteFeature($feature = null): void
+function deleteFeature($feature = null, $needConfirmation = false): void
 {
     $feature = $feature ?: input()->getOption('feature');
+
+    $databaseName = getDatabaseName($feature);
+    $databaseRemoveCommand = "DROP DATABASE IF EXISTS `$databaseName`;";
+    $filesRemoveCommand = "rm -rf " . get('deploy_path');
+
+    if ($needConfirmation) {
+        $delete = askConfirmation("Remove feature \"$feature\"? (<fg=gray>CLI: \"$filesRemoveCommand\" // SQL: \"$databaseRemoveCommand\"</>)", false);
+        if (!$delete) return;
+    }
 
     if (isUrlShortener()) {
         removeUrlShortenerPath($feature);
     }
 
-    $databaseName = getDatabaseName($feature);
-    runDatabaseCommand("DROP DATABASE IF EXISTS `$databaseName`;", false);
-    runExtended("rm -rf " . get('deploy_path'));
+    runDatabaseCommand($databaseRemoveCommand, false);
+    runExtended($filesRemoveCommand);
 
     info("feature branch <fg=magenta;options=bold>$feature</> deleted");
 }
