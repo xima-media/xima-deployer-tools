@@ -7,13 +7,25 @@ require_once('url_shortener.php');
 
 
 task('feature:stop', function () {
+  if (!input()->hasOption('feature') || !input()->getOption('feature')) {
+    info('<info>Skipping because of missing option "stop-feature"</info>');
 
-    $feature = initFeature();
-    deleteFeature($feature);
+    return;
+  }
 
+  $feature = input()->getOption('feature');
+
+  if ($feature === 'main' || $feature === 'master') {
+    info('<info>Stopping main or master is not allowed! Please do that manually if necessary.</info>');
+
+    return;
+  }
+
+  $feature = initFeature($feature);
+  deleteFeature($feature);
 })
-    ->select('type=feature-branch-deployment')
-    ->desc('Delete a feature branch instance')
+  ->select('type=feature-branch-deployment')
+  ->desc('Delete a feature branch instance. Typically used as a downstream pipeline.')
 ;
 
 

@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+-  `feature:stop` to  support downstream pipelining
+
 ## [0.1.6] - 2023-08-17
 
 ### Fixed
