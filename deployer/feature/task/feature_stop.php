@@ -15,8 +15,10 @@ task('feature:stop', function () {
 
   $feature = input()->getOption('feature');
 
-  if ($feature === 'main' || $feature === 'master') {
-    info('<info>Stopping main or master is not allowed! Please do that manually if necessary.</info>');
+  info(implode(',', get('feature_stop_disallowed_names')));
+
+  if (in_array($feature, get('feature_stop_disallowed_names'))) {
+    info('<info>Stopping the following features is not allowed: ' . implode(', ', get('feature_stop_disallowed_names')) . '. Please do that manually if necessary.</info>');
 
     return;
   }

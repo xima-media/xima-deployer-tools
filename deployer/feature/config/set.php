@@ -56,3 +56,11 @@ set('feature_index_jira_browse', 'https://jira.xima.de/browse/');
 set('feature_index_jira_api', 'https://jira.xima.de/rest/api/2/issue/');
 set('feature_index_jira_auth', '');
 set('feature_index_git_branch', '');
+
+/**
+ * Feature Stop
+ */
+set('feature_stop_disallowed_names', [
+  'main',
+  'master'
+]);
