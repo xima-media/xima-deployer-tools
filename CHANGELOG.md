@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.1] - 2023-08-25
+
+### Added
+
+-  configuration `feature_stop_disallowed_names` for `feature:stop`
+
 ## [0.2.0] - 2023-08-25
 
 ### Changed
