@@ -8,7 +8,7 @@ require_once('url_shortener.php');
 
 task('feature:stop', function () {
   if (!input()->hasOption('feature') || !input()->getOption('feature')) {
-    info('<info>Skipping because of missing option "stop-feature"</info>');
+    info('<info>Skipping because of missing option "feature"</info>');
 
     return;
   }
