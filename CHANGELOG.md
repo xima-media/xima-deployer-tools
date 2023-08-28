@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.2] - 2023-08-28
+
+### Added
+
+-  add more security mechanism for feature deletion / feature cleanup
+
+### Fixed
+
+- Symfony autoload generation
+
 ## [0.2.1] - 2023-08-25
 
 ### Added
