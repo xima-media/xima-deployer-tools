@@ -57,7 +57,8 @@ task('feature:cleanup', function () {
 
         if ($delete) {
             foreach ($remoteInstances as $instance) {
-                deleteFeature($instance);
+                initFeature($instance);
+                deleteFeature($instance, true);
             }
         }
     } else {
