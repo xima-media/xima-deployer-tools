@@ -32,7 +32,7 @@ class JiraApi extends AbstractApi
         $issueData['type']['icon'] =  $response['fields']['issuetype']['iconUrl'];
         $issueData['priority']['name'] =  $response['fields']['priority']['name'];
         $issueData['priority']['icon'] =  $response['fields']['priority']['iconUrl'];
-        $issueData['assignee']['name'] =  $response['fields']['assignee']['displayName'];
+        $issueData['assignee']['name'] =  $response['fields']['assignee'] ? $response['fields']['assignee']['displayName'] : 'NA';
         $issueData['status']['name'] =  $response['fields']['status']['name'];
         $issueData['status']['icon'] =  $response['fields']['status']['iconUrl'];
         $issueData['status']['color'] =  $response['fields']['status']['statusCategory']['colorName'];
