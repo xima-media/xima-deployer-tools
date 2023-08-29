@@ -41,6 +41,6 @@ set('buffer_config', function () {
 
 set('feature_index_app_type', 'drupal');
 
-set('drush_binary', function () {
-  return '{{bin/php}} ' . which('drush');
+set('drush', function () {
+  return which('drush');
 });
