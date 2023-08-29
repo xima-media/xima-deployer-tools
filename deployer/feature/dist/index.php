@@ -1,7 +1,7 @@
 <?php
 setlocale( LC_ALL, 'de_DE' );
 date_default_timezone_set('Europe/Berlin');
-require_once __DIR__ . '/index/autoload.php';
+require_once realpath(dirname(__FILE__)) . '/index/autoload.php';
 
 $configReader = new \Xima\FeatureIndex\Service\ConfigReader();
 $ioService = new \Xima\FeatureIndex\Service\IOService();
@@ -56,7 +56,7 @@ $config = $configReader->initConfig();
                          * List all available feature branches
                          */
 
-                        $entries = $ioService->getDirectoryEntries(__DIR__ . '/..');
+                        $entries = $ioService->getDirectoryEntries(realpath(dirname(__FILE__)) . '/..');
                         echo $templateService->renderEntries($entries);
                         ?>
                     </tbody>
