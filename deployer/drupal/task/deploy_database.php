@@ -4,7 +4,7 @@ namespace Deployer;
 
 desc('Update database');
 task('deploy:database:update', function () {
-  runExtended('cd {{drupal_site_path}} && drush updb -y');
+  runExtended('cd {{drupal_site_path}} && {{drush}} updb -y');
 });
 
 desc('Sync database');
@@ -16,13 +16,13 @@ task('deploy:database:sync', function () {
   }
 
   $source = input()->getOption('sync');
-  runExtended("cd {{drupal_site_path}} && drush sql:sync @$source @self --create-db -y");
+  runExtended("cd {{drupal_site_path}} && {{drush}} sql:sync @$source @self --create-db -y");
 })->select('type=feature-branch-deployment');
 
 desc('Backup database');
 task('deploy:database:backup', function () {
   if (has('previous_release') && get('previous_release')) {
-    runExtended("cd {{previous_release}} && drush sql-dump --structure-tables-list=cache,cache_*,queue,watchdog --gzip --result-file=auto");
+    runExtended("cd {{previous_release}} && {{drush}} sql-dump --structure-tables-list=cache,cache_*,queue,watchdog --gzip --result-file=auto");
 
     // remove all backups but the latest 10
     if(test('[ -d "/home/{{remote_user}}/drush-backups/{{prod_db_name}}" ]')) {

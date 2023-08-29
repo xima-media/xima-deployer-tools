@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- config variable `drush` to override the drush path (defaults to `which('drush')`)
+
 ## [0.2.3] - 2023-08-29
 
 ### Added
