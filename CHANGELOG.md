@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.3] - 2023-08-29
+
+### Added
+
+-  symfony default writable configuration
+
+### Fixed
+
+- jira issue assignee of not assigned
+- php direction location mismatch of symlinks
+
 ## [0.2.2] - 2023-08-28
 
 ### Added
