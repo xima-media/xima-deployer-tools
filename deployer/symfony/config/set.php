@@ -26,6 +26,10 @@ set('writable_dirs', [
     'var'
 ]);
 
+set('writable_mode', 'chmod');
+set('writable_chmod_mode', '0770');
+set('writable_chmod_recursive', false);
+
 set('bin/console', function () {
     $activePath = get('deploy_path') . '/' . (test('[ -L {{deploy_path}}/release ]') ? 'release' : 'current');
     return parse("$activePath/bin/console");
