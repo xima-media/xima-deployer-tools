@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- config variable `drush_binary` to override the drush path (defaults to `{{bin/php}} drush`)
+- config variable `drush_binary` to override the drush path (defaults to `'{{bin/php}} ' . which('drush')`)
 
 ## [0.2.3] - 2023-08-29
 
