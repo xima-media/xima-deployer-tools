@@ -15,7 +15,7 @@ import('.deployment/deployer/hosts.yaml');
 set('app_path', '.');
 
 // cleanup db backups in prod env
-set('prod_db_name', 'about_drupal');
+set('prod_db_name', 'my_db_name');
 
 /**
  * Feature Branch Deployment
@@ -39,26 +39,6 @@ set('rsync-files-exclude', [
     'languages',
     'styles',
     'tmp',
-]);
-
-/**
- * Feature Url Shortener
- */
-set('feature_url_shortener', true);
-
-/**
- * Feature Notification
- */
-set('msteams_webhook', 'https://ximamediagmbh.webhook.office.com/webhookb2/f79b879d-4bb3-4049-9490-4956324e5b99@890938ce-3232-42b7-981d-9a7cbe37a475/IncomingWebhook/ae5cc60b08ac47ddba46c7fe80957796/1e2cd912-1f24-43e6-b5ca-f23d55dc4ae8');
-
-/**
- * Feature Index
- */
-set('feature_index_title', 'mysite');
-set('feature_index_app_path', '');
-
-set('feature_index_additional_links', [
-    'My domain' => 'https://example.org'
 ]);
 
 // set fetch method for clear fe cache
