@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.5] - 2023-10-23
+
+### Fixed
+
+- drupal deploy.php.dist file
+
 ## [0.2.4] - 2023-08-29
 
 ### Added
