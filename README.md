@@ -6,8 +6,6 @@ XIMA Deployer Tools
 - [Feature Branch Deployment](#feature-branch-deployment)
 - [Symfony](#symfony)
 - [TYPO3](#typo3)
-  * [deploy](#deploy)
-  * [rsync](#rsync)
 - [Drupal](#drupal)
 - [Standalone Tasks](#standalone-tasks)
 
@@ -19,22 +17,7 @@ The focus relies on reusable concluded tasks and the possibility to combine mult
 
 # Installation
 
-The package is available via the [XIMA Satis](https://satis.xima.de/).
-
-Add the following [repository](https://getcomposer.org/doc/05-repositories.md#composer) to your `composer.json`:
-
-```json
-{
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://satis.xima.de"
-    }
-  ]
-}
-```
-
-Afterwards install the XIMA Deployer Tools via composer:
+Install the XIMA Deployer Tools via composer:
 ```bash
 composer require xima/xima-deployer-tools
 ```
@@ -65,22 +48,6 @@ The Drupal deployment covers the deployment process for Drupal CMS applications.
 
 Read the [documentation](docs/DRUPAL.md) for detailed installation instructions and further explanations.
 
-## deploy
-
-The predefined 'deploy' tasks runs with ready to use feature branch deployment and rsync.
-
-There is also a ready to use 'rollback' task.
-
-## rsync
-
-Following the rsync strategy there are predefined, ready to use rsync tasks using the package contrib/rsync.php.
-
-You can overwrite the source dir:
-- 'rsync_src'
-  and even the whole rsync configuration:
-- 'rsync'
-
-`Excludes are read from '.deployment/rsync/exclude.txt' by default.`
 
 # Standalone Tasks
 - MS Teams Notification
