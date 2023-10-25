@@ -19,7 +19,6 @@ set('shared_dirs', [
 ]);
 
 set('shared_files', [
-    '{{web_path}}/.htaccess',
     '.env'
 ]);
 
