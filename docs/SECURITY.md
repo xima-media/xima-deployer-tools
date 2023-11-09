@@ -25,7 +25,7 @@ $ dep security:check:composer [host]
 Checking the npm dependencies with `npm audit`.
 
 ```bash
-$ dep security:check:composer [host]
+$ dep security:check:npm [host]
 ```
 
 ## Notification
