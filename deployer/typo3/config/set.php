@@ -54,4 +54,38 @@ set('buffer_config', function () {
     ];
 });
 
+/**
+ * Rsync settings
+ */
+set('rsync_default_excludes', [
+    '.Build',
+    '.git',
+    '.gitlab',
+    '.ddev',
+    '.deployer',
+    '.idea',
+    '.DS_Store',
+    '.gitlab-ci.yml',
+    '.npm',
+    'package.json',
+    'package-lock.json',
+    'node_modules/',
+    'var/',
+    'public/fileadmin/',
+    'public/typo3temp/',
+]);
+
+set('rsync', [
+    'exclude' => array_merge(get('shared_dirs'), get('shared_files'), get('rsync_default_excludes')),
+    'exclude-file' => get('rsync-exclude-file'),
+    'include' => ['vendor'],
+    'include-file' => false,
+    'filter' => ['dir-merge,-n /.gitignore'],
+    'filter-file' => false,
+    'filter-perdir' => false,
+    'flags' => 'avz',
+    'options' => ['delete', 'keep-dirlinks', 'links'],
+    'timeout' => 600
+]);
+
 set('feature_index_app_type', 'typo3');
