@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.6] - 2023-11-10
+
+### Added
+
+- move default rsync excludes to deployer setting
+
+### Fixed
+
+- typo3: remove htaccess from shared files in default config
+- define own rsync typo3 settings
+
 ## [0.2.5] - 2023-10-23
 
 ### Fixed
