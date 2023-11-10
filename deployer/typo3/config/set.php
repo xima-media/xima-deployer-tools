@@ -57,7 +57,7 @@ set('buffer_config', function () {
 /**
  * Rsync settings
  */
-$defaultExcludes = [
+set('rsync_default_excludes', [
     '.Build',
     '.git',
     '.gitlab',
@@ -73,10 +73,10 @@ $defaultExcludes = [
     'var/',
     'public/fileadmin/',
     'public/typo3temp/',
-];
+]);
 
 set('rsync', [
-    'exclude' => array_merge(get('shared_dirs'), get('shared_files'), $defaultExcludes),
+    'exclude' => array_merge(get('shared_dirs'), get('shared_files'), get('rsync_default_excludes')),
     'exclude-file' => get('rsync-exclude-file'),
     'include' => ['vendor'],
     'include-file' => false,
