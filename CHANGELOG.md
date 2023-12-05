@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.3.0] - 2023-11-10
+
+### Change
+
+- **Breaking:** drupal drush default path to a relative one (`../../../vendor/bin/drush`)
+
+### Fixed
+
+- database backup to use the correct one
+
 ## [0.2.6] - 2023-11-10
 
 ### Added
