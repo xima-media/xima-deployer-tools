@@ -41,6 +41,4 @@ set('buffer_config', function () {
 
 set('feature_index_app_type', 'drupal');
 
-set('drush', function () {
-  return which('drush');
-});
+set('drush', '../../../vendor/bin/drush');
