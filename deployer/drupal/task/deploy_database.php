@@ -22,7 +22,7 @@ task('deploy:database:sync', function () {
 desc('Backup database');
 task('deploy:database:backup', function () {
   if (has('current_path') && get('current_path')) {
-    runExtended("cd {{current_path}}/web/sites/default && {{drush}} sql-dump --structure-tables-list=cache,cache_*,queue,watchdog --gzip --result-file=auto");
+    runExtended("cd {{current_path}}/{{web_path}}sites/{{drupal_site}} && {{drush}} sql-dump --structure-tables-list=cache,cache_*,queue,watchdog --gzip --result-file=auto");
 
     // remove all backups but the latest 10
     if(test('[ -d "/home/{{remote_user}}/drush-backups/{{prod_db_name}}" ]')) {
