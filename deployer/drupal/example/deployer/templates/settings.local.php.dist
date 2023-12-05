@@ -25,3 +25,7 @@ $databases['default']['default'] = array (
 
 $settings['file_chmod_directory'] = 0770;
 $settings['file_chmod_file'] = 0660;
+
+$settings['mailer_sendmail_commands'] = [
+  '/usr/sbin/sendmail -t',
+];
