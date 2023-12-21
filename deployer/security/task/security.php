@@ -23,7 +23,6 @@ task('security:check:composer', function () {
         $output = runLocally('{{security_composer_command}}');
     } catch (RunException $exception) {
         $output = ($exception->getOutput());
-        throw new GracefulShutdownException($output);
     }
     $vulnerabilities = json_decode($output, true);
     $formattedIssues = formatComposerIssues($vulnerabilities);
