@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.3.1] - 2023-12-21
+
+### Added
+
+- add symfony mailer config to settings.local.php.dist for drupal
+
+### Fixed
+
+- change default jira path
+- security check for composer dependencies
+
 ## [0.3.0] - 2023-12-05
 
 ### Change
