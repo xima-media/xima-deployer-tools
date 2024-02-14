@@ -70,7 +70,11 @@ set('rsync_default_excludes', [
     'package.json',
     'package-lock.json',
     'node_modules/',
-    'var/',
+    'var/session',
+    'var/log',
+    'var/lock',
+    'var/charset',
+    'var/transient',
     'public/fileadmin/',
     'public/typo3temp/',
 ]);
