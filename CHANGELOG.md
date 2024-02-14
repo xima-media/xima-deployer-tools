@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.3.2] - 2024-02-14
+
+### Fixed
+
+- adjust typo3 rsync default excludes
+
 ## [0.3.1] - 2023-12-21
 
 ### Added
