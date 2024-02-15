@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.3.3] - 2024-02-15
+
+### Fixed
+
+- set picocss to 1.5.12 for feature index pages
+- set default keep releases to 2 for typo3/drupal deployment
+- remove typo3 specific rsync settings
+- fix drupal sync source
+
 ## [0.3.2] - 2024-02-14
 
 ### Fixed
