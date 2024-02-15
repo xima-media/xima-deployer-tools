@@ -79,17 +79,4 @@ set('rsync_default_excludes', [
     'public/typo3temp/',
 ]);
 
-set('rsync', [
-    'exclude' => array_merge(get('shared_dirs'), get('shared_files'), get('rsync_default_excludes')),
-    'exclude-file' => get('rsync-exclude-file'),
-    'include' => ['vendor'],
-    'include-file' => false,
-    'filter' => ['dir-merge,-n /.gitignore'],
-    'filter-file' => false,
-    'filter-perdir' => false,
-    'flags' => 'avz',
-    'options' => ['delete', 'keep-dirlinks', 'links'],
-    'timeout' => 600
-]);
-
 set('feature_index_app_type', 'typo3');
