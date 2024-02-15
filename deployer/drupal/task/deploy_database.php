@@ -9,13 +9,13 @@ task('deploy:database:update', function () {
 
 desc('Sync database');
 task('deploy:database:sync', function () {
-  if (!has('feature_setup') || !get('feature_setup') || !input()->hasOption('sync') || !input()->getOption('sync')) {
+  if (!has('feature_setup') || !get('feature_setup') || !has('db_sync_source') || !get('db_sync_source')) {
     info('<info>Skipping sync db</info>');
 
     return;
   }
 
-  $source = input()->getOption('sync');
+  $source = get('db_sync_source');
   runExtended("cd {{drupal_site_path}} && {{drush}} sql:sync @$source @self --create-db -y");
 })->select('type=feature-branch-deployment');
 
