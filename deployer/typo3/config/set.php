@@ -4,6 +4,9 @@ namespace Deployer;
 
 require 'recipe/typo3.php';
 
+set('default_timeout', 900);
+set('keep_releases', 2);
+
 // TYPO3
 set('web_path', 'public/');
 set('bin/typo3cms', './vendor/bin/typo3cms');
