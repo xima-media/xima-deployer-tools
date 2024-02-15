@@ -18,7 +18,7 @@ $config = $configReader->initConfig();
         <link rel='icon' type='image/png' href='.fbd/logo.png' />
 
         <title><?php echo strip_tags($config['projectName']) ?></title>
-        <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.5.12/css/pico.min.css">
         <link rel="stylesheet" href=".fbd/index/assets/css/style.css">
         <style>
             <?php if (file_exists('.fbd/background.png')) {
