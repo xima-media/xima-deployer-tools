@@ -9,6 +9,11 @@ task('deploy:database:update', function () {
 
 desc('Sync database');
 task('deploy:database:sync', function () {
+  info('<info>feature_setup' . (has('feature_setup')) . '</info>');
+  info('<info>feature_setup' . (get('feature_setup')) . '</info>');
+  info('<info>feature_setup' . (input()->hasOption('sync')) . '</info>');
+  info('<info>feature_setup' . (input()->getOption('sync')) . '</info>');
+
   if (!has('feature_setup') || !get('feature_setup') || !input()->hasOption('sync') || !input()->getOption('sync')) {
     info('<info>Skipping sync db</info>');
 
