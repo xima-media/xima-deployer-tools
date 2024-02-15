@@ -5,6 +5,7 @@ namespace Deployer;
 require 'recipe/drupal8.php';
 
 set('default_timeout', 900);
+set('keep_releases', 2);
 
 set('web_path', 'web/');
 set('drupal_site', 'default');
