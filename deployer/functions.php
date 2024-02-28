@@ -92,7 +92,7 @@ function commandExistLocally(string $command): bool
 /**
  * Runs a remote command with the possibility to overwrite the default command options
  */
-function runExtended(string $command, ?array $options = [], ?int $timeout = null, ?int $idle_timeout = null, ?string $secret = null, ?array $env = null, ?bool $real_time_output = false, ?bool $no_throw = false): string
+function runExtended(string $command, ?array $options = [], ?int $timeout = null, ?int $idle_timeout = null, ?string $secret = null, ?array $env = null, ?bool $real_time_output = null, ?bool $no_throw = null): string
 {
     return run(
         $command,

@@ -42,6 +42,8 @@ set('writable_dirs',  [
 
 set('composer_options', '--verbose --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader --no-scripts');
 
+set('run_real_time_output', true);
+
 // Look on https://github.com/sourcebroker/deployer-extended#buffer-start for docs
 set('buffer_config', function () {
     return [
