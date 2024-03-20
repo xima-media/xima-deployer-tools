@@ -8,7 +8,7 @@ task('database:backup', function () {
 
     if (commandExistLocally("{{db_sync_tool}}")) {
         info('Generating a database backup');
-        runLocally("{{db_sync_tool}} -f {{sync_database_backup_config}} -y $optionalVerbose");
+        runLocally("{{db_sync_tool}} -f {{sync_database_backup_config}} --use-rsync -y $optionalVerbose");
     } else {
         debug("Skipping database sync, {{db_sync_tool}} not available");
     }

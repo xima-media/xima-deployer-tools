@@ -20,7 +20,7 @@ task('feature:sync', function () {
     if (get('db_sync_tool') !== false) {
         if (commandExistLocally("{{db_sync_tool}}")) {
             info('Synching database');
-            runLocally("{{db_sync_tool}} -f {{feature_sync_config}} --target-path {{feature_sync_target_path}} -y $optionalVerbose");
+            runLocally("{{db_sync_tool}} -f {{feature_sync_config}} --target-path {{feature_sync_target_path}} --use-rsync -y $optionalVerbose");
             $synced = true;
         } else {
             debug("Skipping database sync, command \”{{db_sync_tool}}\” not available");
