@@ -11,6 +11,8 @@ require_once('feature_stop.php');
 task('feature:cleanup', function () {
 
     runLocally('git pull');
+    // refresh tracked remote branches locally
+    runLocally('git remote prune origin');
     $gitBranches = runLocally('git branch -r | tr "\\n" "," | tr -d \' \' | sed \'s/origin\\///g\' | sed \'s/.$//\'');
     $gitBranches = explode(',', $gitBranches);
     $remoteInstances = listFeatureInstances();
@@ -56,7 +58,14 @@ task('feature:cleanup', function () {
         $delete = askConfirmation("Do you want to cleanup all remote feature instances which haven't an according git branch anymore? (marked as <fg=red>red</>)", false);
 
         if ($delete) {
+            $deployPath = get('deploy_path');
+
             foreach ($remoteInstances as $instance) {
+                // set variable to false in order to force a reinitialize before deletion
+                set('feature_initialized', false);
+                // reset deploy_path
+                set('deploy_path', $deployPath);
+
                 initFeature($instance);
                 deleteFeature($instance, true);
             }

@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Fixed
+
+- deletion of multiple feature branches in `feature:cleanup`
+
+### Changed
+
+- use rsync option within db_sync_tool as default
+
 ## [0.3.4] - 2024-02-28
 
 ### Added
