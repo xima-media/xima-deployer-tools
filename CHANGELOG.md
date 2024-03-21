@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.3.4] - 2024-02-28
+
+### Added
+
+- real time log output for drupal and typo3
+
 ## [0.3.3] - 2024-02-15
 
 ### Fixed
