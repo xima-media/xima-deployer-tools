@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.3.5] - 2024-03-25
+
 ### Fixed
 
 - deletion of multiple feature branches in `feature:cleanup`
