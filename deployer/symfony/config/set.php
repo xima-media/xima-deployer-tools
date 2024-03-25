@@ -7,7 +7,8 @@ namespace Deployer;
  */
 set('app_type', 'symfony');
 set('web_path', 'public/');
-set('log_path', 'var/log');
+set('debug_log_path', 'var/log');
+set('debug_log_regex_pattern', '/^\[(.*?)\]\s(\w+)\s:\s(.+?)\s{.*?}$/');
 
 set('default_timeout', 900);
 

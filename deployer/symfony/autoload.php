@@ -12,6 +12,7 @@ new \Xima\XimaDeployerTools\Symfony\Loader();
 
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/autoload.php');
 
+require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/symfony/functions.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/symfony/task/build_assets.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/symfony/task/deploy_assets_install.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/symfony/task/deploy_cache_clear.php');
