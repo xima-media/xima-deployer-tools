@@ -2,7 +2,9 @@
 
 namespace Deployer;
 
-require_once ('feature_init.php');
+use Xima\XimaDeployerTools\Utility\VarUtility;
+
+require_once('feature_init.php');
 require_once('url_shortener.php');
 
 task('feature:setup', function () {
@@ -65,12 +67,7 @@ function runDatabaseCommand($command, $useDoubleQuotes = true): string
     $databaseUser = get('database_user');
     $databaseHost = get('database_host');
     $databasePort = get('database_port');
-    $databasePassword = has('database_password') ? get('database_password') : getenv('DEPLOYER_CONFIG_DATABASE_PASSWORD');
-
-    if (!$databasePassword) {
-        $databasePassword = askHiddenResponse("Enter the database password for $databaseUser@$databaseHost:");
-        set('database_password', $databasePassword);
-    }
+    $databasePassword = VarUtility::getDatabasePassword();
     $quote = $useDoubleQuotes ? '"' : '\'';
 
     return runExtended(get('mysql') . " -u$databaseUser -p%secret% -h$databaseHost -P$databasePort -e {$quote}$command{$quote}", [],null,null, $databasePassword);

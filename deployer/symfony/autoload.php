@@ -17,7 +17,7 @@ require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/symfony/ta
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/symfony/task/deploy_cache_clear.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/symfony/task/deploy_cache_warmup.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/symfony/task/deploy_ckeditor_install.php');
-require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/symfony/task/deploy_database_update.php');
+require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/symfony/task/deploy_database.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/symfony/task/deploy_writable_chmod.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/symfony/task/feature_sync_standalone.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/symfony/task/rollback.php');

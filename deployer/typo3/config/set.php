@@ -8,8 +8,10 @@ set('default_timeout', 900);
 set('keep_releases', 2);
 
 // TYPO3
+set('app_type', 'typo3');
 set('web_path', 'public/');
 set('bin/typo3cms', './vendor/bin/typo3cms');
+set('log_path', 'var/log');
 
 set('shared_dirs', [
     '{{web_path}}fileadmin',

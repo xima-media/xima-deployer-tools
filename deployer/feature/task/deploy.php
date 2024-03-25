@@ -13,3 +13,7 @@ before('deploy:setup', 'feature:setup');
 before('deploy:success', 'feature:notify');
 after('deploy:clear_paths', 'feature:sync');
 after('deploy:symlink', 'feature:urlshortener');
+before('feature:sync', 'feature:init');
+before('debug:db', 'feature:init');
+before('debug:ssh', 'feature:init');
+before('debug:log:app', 'feature:init');

@@ -7,6 +7,7 @@ require 'recipe/drupal8.php';
 set('default_timeout', 900);
 set('keep_releases', 2);
 
+set('app_type', 'drupal');
 set('web_path', 'web/');
 set('drupal_site', 'default');
 set('drupal_path', '{{release_path}}/web');

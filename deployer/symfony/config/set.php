@@ -5,8 +5,9 @@ namespace Deployer;
 /**
  * Default configuration for symfony application
  */
-
+set('app_type', 'symfony');
 set('web_path', 'public/');
+set('log_path', 'var/log');
 
 set('default_timeout', 900);
 

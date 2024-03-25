@@ -32,3 +32,15 @@ task('deploy:database:backup', function () {
     }
   }
 })->select('prod');
+
+function getDatabasePasswordForDrupal(): string|bool
+{
+    // @ToDo
+    return false;
+}
+
+function getDatabaseNameForDrupal(): string|bool
+{
+    // @ToDo
+    return false;
+}
