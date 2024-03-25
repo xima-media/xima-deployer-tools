@@ -20,19 +20,9 @@ class VarUtility
     public static function getDatabaseVarByType(string $var = 'password'): string|bool
     {
         $var = ucfirst($var);
-        $type = ucfirst(get('app_type'));
-        $functionName = "\Deployer\getDatabase{$var}For{$type}";
-        switch ($type) {
-            case 'Typo3':
-                require_once(__DIR__ . '/../../deployer/typo3/task/deploy_database.php');
-                break;
-            case 'Drupal':
-                require_once(__DIR__ . '/../../deployer/drupal/task/deploy_database.php');
-                break;
-            case 'Symfony':
-                require_once(__DIR__ . '/../../deployer/symfony/task/deploy_database.php');
-                break;
-        }
+        $type = get('app_type');
+        $functionName = "\Deployer\getDatabase{$var}For" . ucfirst($type);
+        require_once(__DIR__ . "/../../deployer/$type/task/deploy_database.php");
         if (function_exists($functionName)) {
             return call_user_func($functionName);
         }

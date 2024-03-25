@@ -24,16 +24,10 @@ task('debug:log:app', function () {
 
 
     $type = ucfirst(get('app_type'));
-    switch ($type) {
-        case 'typo3':
-            require_once(__DIR__ . '/../../typo3/functions.php');
-            break;
-        case 'drupal':
-            require_once(__DIR__ . '/../../drupal/functions.php');
-            break;
-        case 'symfony':
-            require_once(__DIR__ . '/../../symfony/functions.php');
-            break;
+    require_once(__DIR__ . "/../../$type/functions.php");
+
+    if (!function_exists("getDebugLogApp")) {
+        throw new Exception('Missing "getDebugLogApp" function');
     }
 
     $log = getDebugLogApp($logLines);
