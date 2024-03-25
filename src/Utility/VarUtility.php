@@ -8,7 +8,8 @@ use function Deployer\get;
 use function Deployer\has;
 use function Deployer\set;
 
-class VarUtility {
+class VarUtility
+{
 
     /**
      * Get the database variable by app type
@@ -20,7 +21,7 @@ class VarUtility {
     {
         $var = ucfirst($var);
         $type = ucfirst(get('app_type'));
-        $functionName = "getDatabase{$var}By{$type}";
+        $functionName = "\Deployer\getDatabase{$var}For{$type}";
         switch ($type) {
             case 'Typo3':
                 require_once(__DIR__ . '/../../deployer/typo3/task/deploy_database.php');
@@ -46,7 +47,8 @@ class VarUtility {
      * @throws \Deployer\Exception\Exception
      * @throws \Deployer\Exception\WillAskUser
      */
-    public static function getDatabasePassword(): string {
+    public static function getDatabasePassword(): string
+    {
         $databaseUser = get('database_user');
         $databaseHost = get('database_host');
         $databasePassword = has('database_password') ? get('database_password') : getenv('DEPLOYER_CONFIG_DATABASE_PASSWORD');
