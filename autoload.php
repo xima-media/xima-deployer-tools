@@ -35,3 +35,10 @@ require_once(__DIR__ . '/deployer/security/config/set.php');
 require_once(__DIR__ . '/deployer/security/config/options.php');
 require_once(__DIR__ . '/deployer/security/task/security.php');
 
+/*
+ * develop
+ */
+require_once(__DIR__ . '/deployer/develop/config/set.php');
+require_once(__DIR__ . '/deployer/develop/config/options.php');
+require_once(__DIR__ . '/deployer/develop/task/prepare_release.php');
+
