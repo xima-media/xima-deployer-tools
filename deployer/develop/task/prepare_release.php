@@ -86,9 +86,9 @@ task('develop:release:reset', function () {
     $version = input()->getOption('newVersion');
 
     debug("checkout branch: " . get('develop_default_branch'));
-    tabulaRasa(false);
+    tabulaRasa(true);
     debug("remove new branch: \"release-$version\"");
-    runLocally("git branch --delete \"release-$version\"");
+    runLocally("git branch -D \"release-$version\"");
 
     info("Reset back to " . get('develop_default_branch'));
 })
@@ -112,11 +112,12 @@ function tabulaRasa(bool $force = false): void {
         if ($modifiedFiles) {
             throw new Exception("Please commit modified files before starting a new release", 1711460221);
         }
+
+        debug("checkout branch: " . get('develop_default_branch'));
+        runLocally('git pull');
+        runLocally('git remote prune origin');
     }
 
-    debug("checkout branch: " . get('develop_default_branch'));
-    runLocally('git pull');
-    runLocally('git remote prune origin');
     $additional = $force ? ' --force' : '';
     runLocally('git checkout ' . get('develop_default_branch') . $additional);
 
