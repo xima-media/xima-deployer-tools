@@ -23,10 +23,10 @@ task('debug:log:app', function () {
     $logLines = explode("\n", $logRaw);
 
 
-    $type = ucfirst(get('app_type'));
+    $type = get('app_type');
     require_once(__DIR__ . "/../../$type/functions.php");
 
-    if (!function_exists("getDebugLogApp")) {
+    if (!function_exists("Deployer\getDebugLogApp")) {
         throw new Exception('Missing "getDebugLogApp" function');
     }
 
