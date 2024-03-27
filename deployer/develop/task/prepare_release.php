@@ -14,48 +14,36 @@ task('develop:release:prepare', function () {
     set('newVersion', $version);
 
     checkPreconditions();
-//    $result = askChoice('Which steps do you want to perform?', [
-//        'Tabula Rasa',
-//        'New Release',
-//        'Composer Update',
-//        'Composer Update (CI)',
-//        'npm Update'
-//    ], null, true);
+
+    info("The following steps will be executed:\n - tabula_rasa \n - start_new_release \n - " . implode("\n - ", get('develop_steps')));
+    info("Which steps shall be executed?");
+
+    $confirmedSteps = [];
+    foreach (get('develop_release_steps') as $step) {
+        $result = ask("$step", "yes");
+        if ($result === "yes" || $result === "y") {
+            $confirmedSteps[] = $step;
+        }
+    }
+    info("Start preparation ...");
+
     tabulaRasa();
     startNewRelease();
     set('develop_tasks', ['tabula rasa', 'new release']);
 
-    if (get('develop_composer_update_app')) {
-        composerUpdate();
-        add('develop_tasks', ['composer update']);
-    }
-    if (get('develop_composer_update_ci')) {
-        composerUpdate('ci');
-        add('develop_tasks', ['composer update (ci)']);
-    }
-    if (get('develop_npm_update')) {
-        npmUpdate();
-        add('develop_tasks', ['npm update']);
-    }
-    if (get('develop_npm_build')) {
-        npmBuild();
-        add('develop_tasks', ['npm build']);
-    }
-    if (get('develop_acceptance_test')) {
-        acceptanceTest();
-        add('develop_tasks', ['acceptance test']);
-    }
-    if (get('develop_php_qs')) {
-        phpQs();
-        add('develop_tasks', ['php qs']);
-    }
-    if (get('develop_npm_qs')) {
-        phpQs();
-        add('develop_tasks', ['npm qs']);
+    foreach ($confirmedSteps as $step) {
+        $functionName = camelize($step);
+        if (function_exists("Deployer\\" . $functionName)) {
+            call_user_func("Deployer\\" . $functionName);
+        }
+        add('develop_tasks', [$step]);
     }
 
     /* additional release tasks */
-    get('develop_release_callback');
+    if (has('develop_release_callback')) {
+        get('develop_release_callback');
+        add('develop_tasks', ['release_callback']);
+    }
 
     info("Successfully prepared new release $version");
     $rows = [];
@@ -106,7 +94,7 @@ function checkPreconditions() {
 
 
 function tabulaRasa(bool $force = false): void {
-    info("tabula rasa");
+    info("[step] tabula rasa");
     if (!$force) {
         $modifiedFiles = runLocally("git status -uno -s");
         if ($modifiedFiles) {
@@ -127,11 +115,10 @@ function tabulaRasa(bool $force = false): void {
 
     /* additional tabula rasa tasks */
     get('develop_tabula_rasa_callback');
-
 }
 
 function startNewRelease(): void {
-    info("start new release");
+    info("[step] start new release");
     $version = get('newVersion');
     /* new git branch */
     debug("create new branch: \"release-$version\"");
@@ -148,8 +135,18 @@ function startNewRelease(): void {
     runLocally("git commit -m \"" . get('develop_git_message_new_version') . " " . $version . "-RC\"");
 }
 
+function composerUpdateApp(): void
+{
+    composerUpdate();
+}
+
+function composerUpdateCi(): void
+{
+    composerUpdate('ci');
+}
+
 function composerUpdate(string $mode = "app"): void {
-    info("composer update ($mode)");
+    info("[step] composer update ($mode)");
 
     debug("composer update");
     runLocally("composer update --working-dir " . get("composer_path_$mode") . " >> _tmp.txt 2>&1");
@@ -168,27 +165,37 @@ function composerUpdate(string $mode = "app"): void {
     runLocally("git commit -m \"$message\"");
 }
 
-function npmUpdate() {
-    info("npm update");
+function npmUpdate(): void
+{
+    info("[step] npm update");
     // @ToDo
 }
 
-function npmBuild() {
-    info("npm build");
+function npmBuild(): void
+{
+    info("[step] npm build");
     // @ToDo
 }
 
-function acceptanceTest() {
-    info("acceptance test");
+function acceptanceTest(): void
+{
+    info("[step] acceptance test");
     // @ToDo
 }
 
-function phpQs() {
-    info("php qs");
-    // @ToDo
+function phpQs(): void
+{
+    info("[step] php qs");
+    get('develop_php_qs_callback');
 }
 
-function npmQs() {
-    info("npm qs");
-    // @ToDo
+function npmQs(): void
+{
+    info("[step] npm qs");
+    get('develop_npm_qs_callback');
+}
+
+function camelize($input, $separator = '_'): string
+{
+    return lcfirst(str_replace($separator, '', ucwords($input, $separator)));
 }
