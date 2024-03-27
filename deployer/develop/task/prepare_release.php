@@ -78,6 +78,23 @@ task('develop:release:prepare', function () {
     ->desc('Preparing a new release');
 
 
+task('develop:release:reset', function () {
+    /* get new version */
+    if (is_null(input()->getOption('newVersion'))) {
+        throw new Exception('Missing option "version" for new release', 1711458053);
+    }
+    $version = input()->getOption('newVersion');
+
+    debug("checkout branch: " . get('develop_default_branch'));
+    tabulaRasa(false);
+    debug("remove new branch: \"release-$version\"");
+    runLocally("git branch --delete \"release-$version\"");
+
+    info("Reset back to " . get('develop_default_branch'));
+})
+    ->select('alias=local')
+    ->desc('Delete a new release');
+
 function checkPreconditions() {
     $version = get('newVersion');
     if (!preg_match(get('develop_semver_regex'), $version, $matches)) {
@@ -88,17 +105,20 @@ function checkPreconditions() {
 }
 
 
-function tabulaRasa(): void {
+function tabulaRasa(bool $force = false): void {
     info("tabula rasa");
-    $modifiedFiles = runLocally("git status -uno -s");
-    if ($modifiedFiles) {
-        throw new Exception("Please commit modified files before starting a new release", 1711460221);
+    if (!$force) {
+        $modifiedFiles = runLocally("git status -uno -s");
+        if ($modifiedFiles) {
+            throw new Exception("Please commit modified files before starting a new release", 1711460221);
+        }
     }
 
     debug("checkout branch: " . get('develop_default_branch'));
     runLocally('git pull');
     runLocally('git remote prune origin');
-    runLocally('git checkout ' . get('develop_default_branch'));
+    $additional = $force ? ' --force' : '';
+    runLocally('git checkout ' . get('develop_default_branch') . $additional);
 
     /*  */
     debug("install dependencies");
