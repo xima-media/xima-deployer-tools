@@ -11,6 +11,8 @@ require_once($vendorRoot . '/vendor/sourcebroker/deployer-loader/autoload.php');
 new \Xima\XimaDeployerTools\TYPO3\Loader();
 
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/autoload.php');
+
+require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/typo3/functions.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/typo3/config/set.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/typo3/task/deploy.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/typo3/task/deploy_cache.php');

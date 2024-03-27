@@ -65,7 +65,7 @@ function listFeatureInstances(): array {
     // fetch statistic information about feature branch directories
     //  > stat -c '%F %Y %n ' *
     //  > directory 1674227229 feature-start
-    $directoryStats = runExtended("cd $path && stat -c '%F %Y %n ' *");
+    $directoryStats = runExtended("cd $path && stat -c '%F %Y %n ' *", real_time_output: false);
     $directoryStats = explode("\n", $directoryStats);
     return array_map(static function($item){ return explode(" ", $item);}, $directoryStats);
 }

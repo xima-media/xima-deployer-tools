@@ -13,6 +13,7 @@ new \Xima\XimaDeployerTools\Drupal\Loader();
 
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/autoload.php');
 
+require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/functions.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/config/options.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/config/set.php');
 

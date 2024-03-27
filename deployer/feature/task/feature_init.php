@@ -35,7 +35,7 @@ function initFeature($feature = null): ?string
 
     prepareDeployerConfiguration();
     // use feature variable or feature input option or ask for feature branch
-    $feature = $feature ?: (!is_null(input()->getOption('feature')) ? input()->getOption('feature') : askChoice('Please select a feature branch to deploy', array_map(function ($array) {
+    $feature = $feature ?: (!is_null(input()->getOption('feature')) ? input()->getOption('feature') : askChoice('Please select a feature branch', array_map(function ($array) {
         return $array[2];
     }, listFeatureInstances())));
     set('feature', $feature);
