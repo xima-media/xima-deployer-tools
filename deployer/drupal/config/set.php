@@ -12,6 +12,8 @@ set('web_path', 'web/');
 set('drupal_site', 'default');
 set('drupal_path', '{{release_path}}/web');
 set('drupal_site_path', '{{drupal_path}}/sites/{{drupal_site}}');
+set('debug_log_path', 'private/logs');
+set('debug_log_regex_pattern', '/\[(.*)\]\s(.*)\.(.*):\s(.*)\s(\[|\{)(.*)(\]|\})\s(.*)/');
 
 set('shared_dirs', [
   'web/sites/{{drupal_site}}/files',

@@ -4,6 +4,19 @@ namespace Deployer;
 
 function getDebugLogApp(array $logLines): array
 {
-    // @ToDo
-    return [];
+    $log = [
+        ['#', 'Date', 'Level', 'Message']
+    ];
+    foreach ($logLines as $key => $logLine) {
+        if (preg_match(get('debug_log_regex_pattern'), $logLine, $matches)) {
+            $log[] = [
+                $key,
+                $matches[1],
+                $matches[3],
+                $matches[4]
+            ];
+        }
+    }
+
+    return $log;
 }
