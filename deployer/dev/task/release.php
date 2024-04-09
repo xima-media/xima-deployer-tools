@@ -20,6 +20,7 @@ task('dev:release:steps', [
     'dev:release:npm_update',
     'dev:release:qa:php',
     'dev:release:qa:npm',
+    'dev:release:test:acceptance',
 ])->desc('Defines the single steps for the release preparation');
 
 task('dev:release:pre', function () {

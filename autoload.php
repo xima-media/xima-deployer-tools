@@ -47,5 +47,6 @@ require_once(__DIR__ . '/deployer/dev/task/release_finish.php');
 require_once(__DIR__ . '/deployer/dev/task/release_reset.php');
 require_once(__DIR__ . '/deployer/dev/task/start_new_release.php');
 require_once(__DIR__ . '/deployer/dev/task/tabula_rasa.php');
+require_once(__DIR__ . '/deployer/dev/task/test.php');
 require_once(__DIR__ . '/deployer/dev/task/release.php');
 
