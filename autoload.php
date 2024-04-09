@@ -41,6 +41,7 @@ require_once(__DIR__ . '/deployer/security/task/security.php');
 require_once(__DIR__ . '/deployer/dev/config/set.php');
 require_once(__DIR__ . '/deployer/dev/config/options.php');
 require_once(__DIR__ . '/deployer/dev/task/composer_update.php');
+require_once(__DIR__ . '/deployer/dev/task/npm_update.php');
 require_once(__DIR__ . '/deployer/dev/task/qa.php');
 require_once(__DIR__ . '/deployer/dev/task/release_finish.php');
 require_once(__DIR__ . '/deployer/dev/task/release_reset.php');
