@@ -52,7 +52,7 @@ task('dev:release:post', function () {
     info("🚀 Successfully prepared new release $version");
     $rows = [];
     foreach(getSubTask('dev:release') as $task) {
-        if (in_array($task, get('disabled_tasks'))) {
+        if (is_array(get('disabled_tasks')) && in_array($task, get('disabled_tasks'))) {
             $rows[] = [
                 $task,
                 '⏭️'
