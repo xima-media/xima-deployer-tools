@@ -17,6 +17,7 @@ task('dev:release', [
 task('dev:release:steps', [
     'dev:release:composer_update_app',
     'dev:release:composer_update_ci',
+    'dev:release:npm_update',
     'dev:release:qa:php',
     'dev:release:qa:npm',
 ])->desc('Defines the single steps for the release preparation');
