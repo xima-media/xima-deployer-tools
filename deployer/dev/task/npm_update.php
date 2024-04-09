@@ -32,6 +32,5 @@ task('dev:release:npm_update', function () {
     } catch (Exception) {}
 
     info("commit updates");
-    runLocally("git add .");
-    runLocally("git commit " . get('dev_git_commit_options') . " -m \"$message\"");
+    commit($message);
 })->desc('Update npm dependencies');

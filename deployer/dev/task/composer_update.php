@@ -27,6 +27,5 @@ function composerUpdate(string $mode = "app"): void {
     }
 
     info("commit updates");
-    runLocally("git add .");
-    runLocally("git commit " . get('dev_git_commit_options') . " -m \"$message\"");
+    commit($message);
 }

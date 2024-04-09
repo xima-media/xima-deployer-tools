@@ -38,6 +38,7 @@ require_once(__DIR__ . '/deployer/security/task/security.php');
 /*
  * dev
  */
+require_once(__DIR__ . '/deployer/dev/functions.php');
 require_once(__DIR__ . '/deployer/dev/config/set.php');
 require_once(__DIR__ . '/deployer/dev/config/options.php');
 require_once(__DIR__ . '/deployer/dev/task/composer_update.php');
