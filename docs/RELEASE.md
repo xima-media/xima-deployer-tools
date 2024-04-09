@@ -56,7 +56,12 @@ ToDo
 
 Extend or reduce the steps within the release preparation by adjust the `dev:release:steps`[task](../deployer/dev/task/release.php#L17).
 
-
-### Notice
+### Advices
 
 > Check the automated created git commits before pushing them. 
+
+Hint: Use the following command to link your git user into the ddev container.
+
+```bash
+ln -s ~/.gitconfig ~/.ddev/homeadditions/.gitconfig
+```
