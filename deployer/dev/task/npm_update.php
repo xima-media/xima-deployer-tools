@@ -14,7 +14,7 @@ task('dev:release:npm_update', function () {
 
     preg_match_all(get('dev_npm_regex'), $result, $matches);
     foreach ($matches[1] as $index => $package) {
-        $message .= " - $package (" . $matches[3][$index] . ")\n";
+        $message .= " - $package (" . $matches[2][$index] . " => " . $matches[3][$index] . ")\n";
     }
 
     debug("git commit");
