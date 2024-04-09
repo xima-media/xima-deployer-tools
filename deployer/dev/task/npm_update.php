@@ -3,6 +3,8 @@
 namespace Deployer;
 
 
+use Deployer\Exception\Exception;
+
 task('dev:release:npm_update', function () {
     if (in_array('dev:release:npm_update', get('disabled_tasks'))) { return; }
     info("npm update");
@@ -16,6 +18,17 @@ task('dev:release:npm_update', function () {
     foreach ($matches[1] as $index => $package) {
         $message .= " - $package (" . $matches[2][$index] . " => " . $matches[3][$index] . ")\n";
     }
+
+    info("npm audit");
+    try {
+        $result = runLocally("npm audit --prefix " . get('npm_path_app') . " | grep vulnerabilities");
+        preg_match(get('dev_npm_audit_regex'), $result, $matches);
+        if (isset($matches[1]) && intval($matches[1]) > 0) {
+            $warning = "⚠️ Found " . $matches[1] . " npm package vulnerabilities, fix them manually using \"npm audit fix\"";
+            $warning($warning);
+            add('dev_additional_warnings', [$warning]);
+        }
+    } catch (Exception) {}
 
     info("commit updates");
     runLocally("git add .");

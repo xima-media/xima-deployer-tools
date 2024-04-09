@@ -71,6 +71,9 @@ task('dev:release:post', function () {
         ->render();
 
     warning("⚠️ Please check your git log and verify all automated git commits before pushing them!");
+    foreach(get('dev_additional_warnings') as $warning) {
+        warning($warning);
+    }
     info("ℹ️ Don't forget to \"git push\"");
     info("💡Use the command \"dep dev:release:finish\" to finish the release process after merging features and bug fixes.");
 })->desc('Finish the release preparation');
