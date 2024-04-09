@@ -57,7 +57,7 @@ function getSubTask(string $task): array
 
 function checkStepIsEnabled(string $step): bool
 {
-    if (is_array(get('disabled_tasks')) && in_array($step, get('disabled_tasks'))) {
+    if (is_array(get('dev_disabled_tasks')) && in_array($step, get('dev_disabled_tasks'))) {
         warning("Skip step \"$step\"");
         return false;
     }

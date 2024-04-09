@@ -17,6 +17,11 @@ task('dev:release:npm_update', function () {
     $message = get("dev_git_message_npm_update") . "\n\n";
 
     preg_match_all(get('dev_npm_regex'), $result, $matches);
+    if (empty($matches[1])) {
+        info("no npm updates found");
+        add('dev_empty_tasks', ["dev:release:npm_update"]);
+        return;
+    }
     foreach ($matches[1] as $index => $package) {
         $message .= " - $package (" . $matches[2][$index] . " => " . $matches[3][$index] . ")\n";
     }

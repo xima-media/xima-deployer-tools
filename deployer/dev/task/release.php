@@ -40,7 +40,7 @@ task('dev:release:pre', function () {
             if ($result !== "yes" && $result !== "y") {
                 // disabling a task on runtime does not work
                 // task($step)->disable();
-                add('disabled_tasks', [$step]);
+                add('dev_disabled_tasks', [$step]);
                 warning("Task \"$step\" disabled");
             }
         }
@@ -52,13 +52,21 @@ task('dev:release:post', function () {
     info("🚀 Successfully prepared new release $version");
     $rows = [];
     foreach(getSubTask('dev:release') as $task) {
-        if (is_array(get('disabled_tasks')) && in_array($task, get('disabled_tasks'))) {
+        if (is_array(get('dev_disabled_tasks')) && in_array($task, get('dev_disabled_tasks'))) {
             $rows[] = [
                 $task,
                 '⏭️'
             ];
             continue;
         }
+        if (is_array(get('dev_empty_tasks')) && in_array($task, get('dev_empty_tasks'))) {
+            $rows[] = [
+                $task,
+                '0️⃣'
+            ];
+            continue;
+        }
+
         $rows[] = [
             $task,
             '✅️'

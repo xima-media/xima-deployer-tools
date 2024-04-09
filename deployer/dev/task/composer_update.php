@@ -24,6 +24,7 @@ function composerUpdate(string $mode = "app"): void {
     preg_match_all(get('dev_composer_regex'), $result, $matches);
     if (empty($matches[1])) {
         info("no composer updates found");
+        add('dev_empty_tasks', ["dev:release:composer_update_$mode"]);
         return;
     }
     foreach ($matches[1] as $index => $package) {
