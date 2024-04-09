@@ -22,6 +22,10 @@ function composerUpdate(string $mode = "app"): void {
     $message = get("dev_git_message_composer_update_$mode") . "\n\n";
 
     preg_match_all(get('dev_composer_regex'), $result, $matches);
+    if (empty($matches[1])) {
+        info("no composer updates found");
+        return;
+    }
     foreach ($matches[1] as $index => $package) {
         $message .= " - $package (" . $matches[2][$index] . ")\n";
     }
