@@ -24,6 +24,7 @@ function tabulaRasa(bool $force = false): void {
 
     $additional = $force ? ' --force' : '';
     runLocally('git checkout ' . get('dev_default_branch') . $additional);
+    runLocally('git reset');
 
     /*  */
     debug("install dependencies");

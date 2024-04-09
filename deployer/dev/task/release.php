@@ -36,7 +36,9 @@ task('dev:release:pre', function () {
         foreach (getSubTask('dev:release:steps') as $step) {
             $result = ask("$step", "yes");
             if ($result !== "yes" && $result !== "y") {
-                task($step)->disable();
+                // disabling a task on runtime does not work
+                // task($step)->disable();
+                add('disabled_tasks', [$step]);
                 warning("Task \"$step\" disabled");
             }
         }
@@ -48,6 +50,13 @@ task('dev:release:post', function () {
     info("Successfully prepared new release $version");
     $rows = [];
     foreach(getSubTask('dev:release') as $task) {
+        if (in_array($task, get('disabled_tasks'))) {
+            $rows[] = [
+                $task,
+                '⏭️'
+            ];
+            continue;
+        }
         $rows[] = [
             $task,
             '✅️'
@@ -60,7 +69,8 @@ task('dev:release:post', function () {
         ->render();
 
     warning("⚠️ Please check your git log and verify all automated git commits before pushing them!");
-    info("💡Don't forget to \"git push\"");
+    info("ℹ️ Don't forget to \"git push\"");
+    info("💡Use the command \"dep dev:release:finish\" to finish the release process after merging features and bug fixes.");
 })->desc('Finish the release preparation');
 
 function getNewVersion(): string {
