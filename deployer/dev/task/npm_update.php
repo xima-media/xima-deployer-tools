@@ -31,6 +31,7 @@ task('dev:release:npm_update', function () {
         }
     } catch (Exception) {}
 
+    info($message);
     info("commit updates");
     commit($message);
 })->desc('Update npm dependencies');

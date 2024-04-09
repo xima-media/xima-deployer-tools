@@ -26,6 +26,7 @@ function composerUpdate(string $mode = "app"): void {
         $message .= " - $package (" . $matches[2][$index] . ")\n";
     }
 
+    info($message);
     info("commit updates");
     commit($message);
 }
