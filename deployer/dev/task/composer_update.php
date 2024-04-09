@@ -28,5 +28,5 @@ function composerUpdate(string $mode = "app"): void {
 
     info("commit updates");
     runLocally("git add .");
-    runLocally("git commit --no-verify -m \"$message\"");
+    runLocally("git commit " . get('dev_git_commit_options') . " -m \"$message\"");
 }

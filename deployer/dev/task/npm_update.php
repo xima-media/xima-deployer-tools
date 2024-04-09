@@ -33,5 +33,5 @@ task('dev:release:npm_update', function () {
 
     info("commit updates");
     runLocally("git add .");
-    runLocally("git commit --no-verify -m \"$message\"");
+    runLocally("git commit " . get('dev_git_commit_options') . " -m \"$message\"");
 })->desc('Update npm dependencies');

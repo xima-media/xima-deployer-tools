@@ -29,5 +29,5 @@ function setVersion(string $version): void {
 function commitVersion(string $version, string $type = VERSION_TYPE_BUILD): void {
     info("commit new version: \"{$version}\"");
     runLocally("git add " . get('composer_path_app') . "/composer.json " . get('composer_path_app') . "/composer.lock");
-    runLocally("git commit --no-verify -m \"" . get('dev_git_message_new_version_' . $type) . " " . $version . "\"");
+    runLocally("git commit " . get('dev_git_commit_options') . " -m \"" . get('dev_git_message_new_version_' . $type) . " " . $version . "\"");
 }
