@@ -4,16 +4,24 @@ The following task should partly automate the release preparation steps.
 
 ## General
 
-
+Start the new release task.
 
 ```bash
-$ dep develop:release:prepare local --newVersion=1.2.3
+$ dep dev:release local
 ```
+
+Define the new release number within the prompt or use `--newVersion=1.2.3`.
 
 Use the following command to reset the new release branch (in case of an occurring error):
 
 ```bash
-$ dep develop:release:reset local --newVersion=1.2.3
+$ dep dev:release:reset local
+```
+
+Use the following command to finish the new release branch:
+
+```bash
+$ dep dev:release:finish local
 ```
 
 ## Concept
@@ -28,10 +36,10 @@ Check if the local state is clean to execute all the following steps.
 
 Check out the default branch (e.g. `main`) and run commands to restore the standard status (e.g. `composer install`).
 
-You can extend this step with a callback of the `develop_tabula_rasa_callback` variable, e.g.
+You can extend this step with a callback of the `dev_tabula_rasa_callback` variable, e.g.
 
 ```php
-set('develop_tabula_rasa_callback', function() {
+set('dev_tabula_rasa_callback', function() {
     runLocally('npm install')
 })
 ```
@@ -44,10 +52,11 @@ Start a new release branch by setting a new release version (e.g. `1.2.3-RC`) an
 
 ToDo
 
-### Further steps
+### Adjust steps
 
-See [set.php](../deployer/develop/config/set.php) for activate/deactivate the possible steps within the release preparation or use the `develop_release_callback` function callback for own customization. 
+Extend or reduce the steps within the release preparation by adjust the `dev:release:steps`[task](../deployer/dev/task/release.php#L17).
 
-### Finish
+
+### Notice
 
 > Check the automated created git commits before pushing them. 

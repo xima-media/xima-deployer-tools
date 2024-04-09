@@ -36,9 +36,14 @@ require_once(__DIR__ . '/deployer/security/config/options.php');
 require_once(__DIR__ . '/deployer/security/task/security.php');
 
 /*
- * develop
+ * dev
  */
-require_once(__DIR__ . '/deployer/develop/config/set.php');
-require_once(__DIR__ . '/deployer/develop/config/options.php');
-require_once(__DIR__ . '/deployer/develop/task/prepare_release.php');
+require_once(__DIR__ . '/deployer/dev/config/set.php');
+require_once(__DIR__ . '/deployer/dev/config/options.php');
+require_once(__DIR__ . '/deployer/dev/task/composer_update.php');
+require_once(__DIR__ . '/deployer/dev/task/qa.php');
+require_once(__DIR__ . '/deployer/dev/task/release_reset.php');
+require_once(__DIR__ . '/deployer/dev/task/start_new_release.php');
+require_once(__DIR__ . '/deployer/dev/task/tabula_rasa.php');
+require_once(__DIR__ . '/deployer/dev/task/release.php');
 
