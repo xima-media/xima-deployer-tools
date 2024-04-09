@@ -67,7 +67,7 @@ function checkStepIsEnabled(string $step): bool
 function commit(string $message, array $files = []): void
 {
     $index = '.';
-    if (!empty($index)) {
+    if (!empty($files)) {
         $index = implode(' ', $files);
     }
     runLocally("git add $index");
