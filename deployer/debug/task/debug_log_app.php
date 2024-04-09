@@ -39,7 +39,7 @@ task('debug:log:app', function () {
             $logLine[0],
             (new \DateTime($logLine[1]))->format(get('debug_log_date_format')),
             colorizeLevel($logLine[2]),
-            wordwrap(substr($logLine[3], 0, get('debug_log_preview_length')) . '...', 150, "\n", true)
+            wordwrap(substr($logLine[3], 0, get('debug_log_preview_length')) . '...', 145, "\n", true)
         ];
     }
 
@@ -74,7 +74,7 @@ function displayEntry(array $labels, array $entry): void
     }
     $table[1] = [$labels[1], (new \DateTime($entry[1]))->format(get('debug_log_date_format')),];
     $table[2] = [$labels[2], colorizeLevel($entry[2])];
-    $table[3] = [$labels[3], wordwrap($entry[3], 150, "\n", true)];
+    $table[3] = [$labels[3], wordwrap($entry[3], 145, "\n", true)];
 
     (new Table(output()))
         ->setHeaderTitle(currentHost()->getAlias())
