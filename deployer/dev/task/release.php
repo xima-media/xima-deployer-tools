@@ -28,6 +28,7 @@ task('dev:release:pre', function () {
     getNewVersion();
 
     /* check if everything is clear */
+    info("🔍 Checking composer.json");
     runLocally("composer validate --working-dir " . get('composer_path_app'));
 
     /* select steps to execute */
@@ -48,7 +49,7 @@ task('dev:release:pre', function () {
 
 task('dev:release:post', function () {
     $version = get('newVersion');
-    info("Successfully prepared new release $version");
+    info("🚀 Successfully prepared new release $version");
     $rows = [];
     foreach(getSubTask('dev:release') as $task) {
         if (in_array($task, get('disabled_tasks'))) {
