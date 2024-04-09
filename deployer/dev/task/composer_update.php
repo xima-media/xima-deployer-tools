@@ -4,12 +4,12 @@ namespace Deployer;
 
 
 task('dev:release:composer_update_app', function () {
-    if (in_array('dev:release:composer_update_app', get('disabled_tasks'))) { return; }
+    if (!checkStepIsEnabled('dev:release:composer_update_app')) { return; }
     composerUpdate();
 })->desc('Update composer dependencies for app');
 
 task('dev:release:composer_update_ci', function () {
-    if (in_array('dev:release:composer_update_ci', get('disabled_tasks'))) { return; }
+    if (!checkStepIsEnabled('dev:composer_update_ci:composer_update_ci')) { return; }
     composerUpdate('ci');
 })->desc('Update composer dependencies for ci');
 
