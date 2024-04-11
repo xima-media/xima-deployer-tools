@@ -18,6 +18,20 @@ set('dev_semver_regex', '/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-([0-9A-Za
 set('dev_composer_regex', '/- Upgrading ([\w\/-]+) \((v?\d+\.\d+\.\d+ => v?\d+\.\d+\.\d+)\)/');
 set('dev_npm_regex', '/^ (\S+)\s+(\^\d+\.\d+\.\d+)\s+→\s+(\^\d+\.\d+\.\d+)$/m');
 set('dev_npm_audit_regex', '/\b(?:found\s+)?(\d+)\s+vulnerabilities\b/');
+set('dev_db_sync_tool_config_path', './.deployment/db-sync-tool');
+set('dev_db_sync_tool_default_sync', 'sync-stage-to-local.yaml');
+set('dev_db_sync_tool_prod_sync', 'sync-prod-to-local.yaml');
+set('dev_db_sync_tool_credential_path', '/shared/.env');
+set('dev_db_sync_tool_origin_path', function () {
+    $stage = host('stage');
+    $path = $stage->get('deploy_path');
+
+    if (has('feature_url_shortener') && get('feature_url_shortener')) {
+        $path .= '/' . get('feature_url_shortener_path');
+    }
+    $path .= '<feature>' . get('dev_db_sync_tool_credential_path');
+    return $path;
+});
 
 /* set('dev_tabula_rasa_callback', function () {
     // do something
