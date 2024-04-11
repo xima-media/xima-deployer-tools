@@ -9,6 +9,7 @@ task('dev:release:finish', function () {
 
     setVersion($version);
     commitVersion($version, VERSION_TYPE_RELEASE);
+    runLocally("git tag -a \"v{$version}\" -m \"{$version}\"");
 
     warning("⚠️ Please check your git log and verify all automated git commits before pushing them!");
     info("ℹ️ Don't forget to \"git push\"");
