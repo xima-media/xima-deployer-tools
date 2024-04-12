@@ -33,8 +33,4 @@ set('dev_db_sync_tool_origin_path', function () {
     return $path;
 });
 
-/* set('dev_tabula_rasa_callback', function () {
-    // do something
-}); */
-
 localhost('local');

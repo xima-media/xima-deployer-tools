@@ -36,32 +36,46 @@ Check if the local state is clean to execute all the following steps.
 
 Check out the default branch (e.g. `main`) and run commands to restore the standard status (e.g. `composer install`).
 
-You can extend this step with a callback of the `dev_tabula_rasa_callback` variable, e.g.
+You can extend this step by extending the `dev:tabula_rasa` task, e.g.
 
 ```php
-set('dev_tabula_rasa_callback', function() {
+task('dev:tabula_rasa')->addAfter(function() {
     runLocally('npm install')
-})
+});
 ```
 
 ### Start new release
 
 Start a new release branch by setting a new release version (e.g. `1.2.3-RC`) and create a new release branch (e.g. `release-1.2.3`).
 
-### Composer install
+### Steps
 
-ToDo
+You'll find the default steps within this task: `dev:release:steps`[task](../deployer/dev/task/release.php#L17).
 
-### Adjust steps
+Disable them for your needs, e.g. 
 
-Extend or reduce the steps within the release preparation by adjust the `dev:release:steps`[task](../deployer/dev/task/release.php#L17).
+```php
+task('dev:release:qa:npm')->disable();
+```
 
-### Advices
+### General advices
 
-> Check the automated created git commits before pushing them. 
+> *Always* check the automated created git commits before pushing them. 
 
 Hint: Use the following command to link your git user into the ddev container.
 
 ```bash
 ln -s ~/.gitconfig ~/.ddev/homeadditions/.gitconfig
+```
+
+## Standalone
+
+You can execute some of the tasks of the release process as standalone tasks.
+
+```bash
+$ dep dev:tabula_rasa local
+```
+
+```bash
+$ dep dev:sync local
 ```
