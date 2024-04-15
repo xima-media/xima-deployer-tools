@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Fixed
+- add "/public/upload" to writable_dirs for symfony
+
 ## [0.3.5] - 2024-03-25
 
 ### Fixed

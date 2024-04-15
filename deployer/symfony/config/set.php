@@ -23,11 +23,12 @@ set('shared_files', [
 );
 
 set('writable_dirs', [
-    'var'
+    'var',
+    '/public/upload'
 ]);
 
 set('writable_mode', 'chmod');
-set('writable_chmod_mode', '0770');
+set('writable_chmod_mode', '0770'); // todo maybe change to '2770'
 set('writable_chmod_recursive', false);
 
 set('bin/console', function () {
