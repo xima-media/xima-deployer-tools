@@ -12,7 +12,7 @@ task('dev:sync', function () {
             on(host('stage'), function () {
                 $currentBranch = runLocally('git branch --show-current');
                 $target = !is_null(input()->getOption('feature')) ? input()->getOption('feature') : askChoice('Please select a sync origin', array_merge(
-                    ["_current ($currentBranch)", "_prod"],
+                    ["[current] ($currentBranch)", "[prod]"],
                     array_map(function ($array) {
                         return $array[2];
                     }, listFeatureInstances())
@@ -21,11 +21,11 @@ task('dev:sync', function () {
                 Deployer::get()->config->set('dev_db_sync_tool_current_target', $target);
             });
             $target = get('dev_db_sync_tool_current_target');
-            if (str_starts_with($target, '_current')) {
+            if (str_starts_with($target, '[current]')) {
                 $target = $currentBranch;
             }
 
-            if (str_starts_with($target, '_prod')) {
+            if (str_starts_with($target, '[prod]')) {
                 $target = 'prod';
             }
         } else {

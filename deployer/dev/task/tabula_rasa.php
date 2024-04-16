@@ -4,7 +4,7 @@ namespace Deployer;
 
 use Deployer\Exception\Exception;
 
-task('dev:tabula_rasa', [
+task('dev:tr', [
     'dev:tabula_rasa:composer_install_app',
     'dev:tabula_rasa:composer_install_ci',
     'dev:tabula_rasa:npm_build',
