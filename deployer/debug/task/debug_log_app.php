@@ -31,7 +31,8 @@ task('debug:log:app', function () {
     }
 
     $log = getDebugLogApp($logLines);
-    $logHeader = array_shift($log);
+    $logHeaderFull = array_shift($log);
+    $logHeaderPreview = array_slice($logHeaderFull, 0, 4);
     $previewLog = [];
 
     foreach ($log as $logLine) {
@@ -48,7 +49,7 @@ task('debug:log:app', function () {
      */
     (new Table(output()))
         ->setHeaderTitle(currentHost()->getAlias())
-        ->setHeaders($logHeader)
+        ->setHeaders($logHeaderPreview)
         ->setRows($previewLog)
         ->render();
 
@@ -60,7 +61,7 @@ task('debug:log:app', function () {
         return "(" . $ar[0] . ") " . $ar[1] . " [" . $ar[2] . "]";
     }, $log), count($log) - 1);
     if (preg_match('/\((.*?)\)/', $logEntry, $matches)) {
-        displayEntry($logHeader, $log[$matches[1]]);
+        displayEntry($logHeaderFull, $log[$matches[1]]);
     }
 })
     ->desc('Inspect the last app log entries');

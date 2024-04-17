@@ -5,7 +5,7 @@ namespace Deployer;
 function getDebugLogApp(array $logLines): array
 {
     $log = [
-        ['#', 'Date', 'Level', 'Message']
+        get('debug_log_default_header')
     ];
     foreach ($logLines as $key => $logLine) {
         if (preg_match(get('debug_log_regex_pattern'), $logLine, $matches)) {
