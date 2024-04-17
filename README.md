@@ -53,3 +53,4 @@ Read the [documentation](docs/DRUPAL.md) for detailed installation instructions 
 - MS Teams Notification
 - Database backup
 - [Security check](docs/SECURITY.md)
+- [Development](docs/DEV.md)
