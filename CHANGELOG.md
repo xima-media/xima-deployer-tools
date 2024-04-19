@@ -4,7 +4,21 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.0] - 2024-04-19
+
+### Changed
+
+- add dev tasks for release preparation
+  - `dev:release:prepare` to prepare a release
+  - `devtr` for tabula rasa
+  - `dev:sync` for syncing the database
+- add debug tasks
+  - `debug:ssh` for easy start a ssh session
+  - `debug:db` for debugging the database
+  - `debug:log:app` for debugging the app log
+
 ### Fixed
+
 - add "/public/upload" to writable_dirs for symfony
 
 ## [0.3.5] - 2024-03-25
