@@ -18,7 +18,7 @@ task('debug:log:app', function () {
     }, listFiles("$activePath/$logPath")), 0);
 
     $logFilePath = "$activePath/$logPath/$logFile";
-    $logRaw = runExtended("tail $logFilePath", real_time_output: false);
+    $logRaw = runExtended('tail ' . get('debug_log_tail_options') . ' ' . $logFilePath, real_time_output: false);
 
     $logLines = explode("\n", $logRaw);
 
