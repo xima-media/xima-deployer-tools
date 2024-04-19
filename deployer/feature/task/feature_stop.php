@@ -7,13 +7,7 @@ require_once('url_shortener.php');
 
 
 task('feature:stop', function () {
-  if (!input()->hasOption('feature') || !input()->getOption('feature')) {
-    info('<info>Skipping because of missing option "feature"</info>');
-
-    return;
-  }
-
-  $feature = input()->getOption('feature');
+  $feature = initFeature();
 
   if (in_array($feature, get('feature_stop_disallowed_names'))) {
     info('<info>Stopping the following features is not allowed: ' . implode(', ', get('feature_stop_disallowed_names')) . '. Please do that manually if necessary.</info>');
@@ -21,7 +15,6 @@ task('feature:stop', function () {
     return;
   }
 
-  $feature = initFeature($feature);
   deleteFeature($feature);
 })
   ->select('type=feature-branch-deployment')

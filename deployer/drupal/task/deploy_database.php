@@ -2,6 +2,8 @@
 
 namespace Deployer;
 
+use Xima\XimaDeployerTools\Utility\EnvUtility;
+
 desc('Update database');
 task('deploy:database:update', function () {
   runExtended('cd {{drupal_site_path}} && {{drush}} updb -y');
@@ -32,3 +34,23 @@ task('deploy:database:backup', function () {
     }
   }
 })->select('prod');
+
+function getDatabasePasswordForDrupal(): string|bool
+{
+    $vars = EnvUtility::getRemoteEnvVars();
+    if (array_key_exists('DB_PASSWORD', $vars)) {
+        return $vars['DB_PASSWORD'];
+    }
+
+    return false;
+}
+
+function getDatabaseNameForDrupal(): string|bool
+{
+    $vars = EnvUtility::getRemoteEnvVars();
+    if (array_key_exists('DB_DATABASE', $vars)) {
+        return $vars['DB_DATABASE'];
+    }
+
+    return false;
+}

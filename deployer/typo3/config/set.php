@@ -8,8 +8,11 @@ set('default_timeout', 900);
 set('keep_releases', 2);
 
 // TYPO3
+set('app_type', 'typo3');
 set('web_path', 'public/');
 set('bin/typo3cms', './vendor/bin/typo3cms');
+set('debug_log_path', 'var/log');
+set('debug_log_regex_pattern', '/^(\w+,\s\d+\s\w+\s\d+\s\d+:\d+:\d+\s\+\d+)\s\[(\w+)\]\s(.+?):\s(.+)/');
 
 set('shared_dirs', [
     '{{web_path}}fileadmin',

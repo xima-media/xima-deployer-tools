@@ -52,3 +52,10 @@ require_once(__DIR__ . '/deployer/dev/task/tabula_rasa.php');
 require_once(__DIR__ . '/deployer/dev/task/test.php');
 require_once(__DIR__ . '/deployer/dev/task/release.php');
 
+/*
+ * debug
+ */
+require_once(__DIR__ . '/deployer/debug/config/set.php');
+require_once(__DIR__ . '/deployer/debug/task/debug_db.php');
+require_once(__DIR__ . '/deployer/debug/task/debug_ssh.php');
+require_once(__DIR__ .

@@ -54,3 +54,4 @@ Read the [documentation](docs/DRUPAL.md) for detailed installation instructions 
 - Database backup
 - [Security check](docs/SECURITY.md)
 - [Development](docs/DEV.md)
+- [Debug helper](docs/DEBUG.md)
