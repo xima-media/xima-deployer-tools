@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.1] - 2024-04-22
+
+### Fixed
+
+- fix autoload merge issue
+
 ## [1.0.0] - 2024-04-19
 
 ### Changed
