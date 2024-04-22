@@ -23,7 +23,7 @@ task('dev:release:tabula_rasa', function () {
     runLocally('git checkout ' . get('dev_default_branch'));
     runLocally('git reset');
 
-    invoke('dev:tabula_rasa');
+    invoke('dev:tr');
 })
     ->desc('Tabula rasa for release process');
 
