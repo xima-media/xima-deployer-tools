@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.2] - 2024-04-22
+
+### Fixed
+
+- fix task naming
+
 ## [1.0.1] - 2024-04-22
 
 ### Fixed
