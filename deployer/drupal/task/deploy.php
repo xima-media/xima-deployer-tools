@@ -85,8 +85,8 @@ task('deploy', [
     // disable maintenance mode
     'deploy:maintenance:disable',
 
-  // Drupal: clear the cache
-  'deploy:cache:clear',
+    // Drupal: clear the cache
+    'deploy:cache:clear',
 
     // Standard deployer task
     'deploy:unlock',
@@ -99,3 +99,10 @@ task('deploy', [
 ])->desc('Deploy Drupal project');;
 
 after('deploy:failed', 'deploy:unlock');
+
+task('dev:sync', function () {
+  $source = get('db_sync_source_local');
+
+  runExtended("drush sql:sync @$source @self --create-db -y");
+})
+  ->desc('Sync database with drush');
