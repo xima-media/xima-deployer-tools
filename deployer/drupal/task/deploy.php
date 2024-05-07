@@ -100,9 +100,27 @@ task('deploy', [
 
 after('deploy:failed', 'deploy:unlock');
 
+// override dev:sync
 task('dev:sync', function () {
   $source = get('db_sync_source_local');
 
   runExtended("drush sql:sync @$source @self --create-db -y");
 })
   ->desc('Sync database with drush');
+
+// prepare post_db_sync
+task('dev:tabula_rasa:post_db_sync', function() {
+  runExtended('drush cache-rebuild');
+  runExtended('drush updb -y');
+  runExtended('drush cim -y');
+  runExtended('drush cache-rebuild');
+});
+
+// override dev:tabula_rasa
+task('dev:tabula_rasa', [
+  'dev:tabula_rasa:composer_install_app',
+  'dev:tabula_rasa:composer_install_ci',
+  'dev:tabula_rasa:npm_build',
+  'dev:tabula_rasa:db_sync',
+  'dev:tabula_rasa:post_db_sync',
+]);
