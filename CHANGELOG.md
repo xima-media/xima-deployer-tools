@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.3] - 2024-05-08
+
+### Added
+
+- adjustments of dev and debug commands for drupal
+
 ## [1.0.2] - 2024-04-22
 
 ### Fixed
