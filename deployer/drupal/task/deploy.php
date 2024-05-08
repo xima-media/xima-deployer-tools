@@ -85,8 +85,8 @@ task('deploy', [
     // disable maintenance mode
     'deploy:maintenance:disable',
 
-  // Drupal: clear the cache
-  'deploy:cache:clear',
+    // Drupal: clear the cache
+    'deploy:cache:clear',
 
     // Standard deployer task
     'deploy:unlock',
