@@ -46,6 +46,8 @@ task('dev:tabula_rasa:npm_build', function () {
     ->desc('Install npm dependencies and run build process');
 
 task('dev:tabula_rasa:db_sync', function () {
+    if (input()->getOption('no-db-sync')) return;
+
     set('dev_db_sync_tool_use_current_branch', true);
     invoke('dev:sync');
 })

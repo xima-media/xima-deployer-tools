@@ -19,7 +19,7 @@ $ dep dev:sync local
 
 Reset local branch for further development.
 ```bash
-$ dep dev:tr local
+$ dep dev:tr local [--no-db-sync]
 ```
 
 <a name="release"></a>
