@@ -6,17 +6,17 @@ use Deployer\Exception\Exception;
 use Deployer\Task\GroupTask;
 
 function getNewVersion(): string {
-    if (is_null(input()->getOption('newVersion'))) {
+    if (is_null(input()->getOption('new-version'))) {
         $version = ask("New release version?", guessNextMinorVersion());
     } else {
-        $version = input()->getOption('newVersion');
+        $version = input()->getOption('new-version');
     }
 
     if (!preg_match(get('dev_semver_regex'), $version)) {
         throw new Exception("Given version '$version' not matching semantic version constraints", 1711458465);
     }
 
-    set('newVersion', $version);
+    set('new_version', $version);
     return $version;
 }
 

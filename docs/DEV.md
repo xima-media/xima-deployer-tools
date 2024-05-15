@@ -19,7 +19,7 @@ $ dep dev:sync local
 
 Reset local branch for further development.
 ```bash
-$ dep dev:tr local
+$ dep dev:tr local [--no-db-sync]
 ```
 
 <a name="release"></a>
@@ -33,7 +33,7 @@ This task combines multiple steps to automate the release preparation.
 $ dep dev:release local
 ```
 
-Define the new release number within the prompt or use `--newVersion=1.2.3`.
+Define the new release number within the prompt or use `--new-version=1.2.3`.
 
 This includes the following steps:
 

@@ -48,7 +48,7 @@ task('dev:release:pre', function () {
 })->desc('Prepares the release process');
 
 task('dev:release:post', function () {
-    $version = get('newVersion');
+    $version = get('new_version');
     info("🚀 Successfully prepared new release $version");
     $rows = [];
     foreach(getSubTask('dev:release') as $task) {

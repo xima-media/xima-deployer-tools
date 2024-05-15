@@ -6,7 +6,7 @@ const VERSION_TYPE_BUILD = 'build';
 const VERSION_TYPE_RELEASE = 'release';
 
 task('dev:release:start_new_release', function () {
-    $version = get('newVersion');
+    $version = get('new_version');
 
     /* new release version */
     setVersion($version . '-RC');
