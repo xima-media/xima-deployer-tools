@@ -21,6 +21,11 @@ class EnvUtility {
     public static function getRemoteEnvVars(string $envFilePath = '/.env'): array
     {
         $activePath = get('deploy_path') . '/' . (test('[ -L {{deploy_path}}/release ]') ? 'release' : 'current');
+
+        if (!test("[ -e {$activePath}{$envFilePath} ]")) {
+            // no env file found, maybe not initialized?
+            return [];
+        }
         $remoteEnv = run('cat ' . $activePath . $envFilePath);
         $lines = array_filter(explode(PHP_EOL, $remoteEnv));
         $vars = [];
