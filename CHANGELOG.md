@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.4] - 2024-05-17
+
+### Fixed
+
+- prevent error if feature is not initialized
+
+### Added
+
+- option no-db-sync for tabula rasa
+
+### Changed
+
+- **BREAKING:** renamed newVersion option to new-version
+
 ## [1.0.3] - 2024-05-08
 
 ### Added
