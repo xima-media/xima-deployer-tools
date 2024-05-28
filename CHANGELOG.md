@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.5] - 2024-05-28
+
+### Changed
+
+- add post_db_sync to release task
+
 ## [1.0.4] - 2024-05-17
 
 ### Fixed
