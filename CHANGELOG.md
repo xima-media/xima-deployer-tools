@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.6] - 2024-06-12
+
+### Fixed
+
+- jira urls in default feature config
+
 ## [1.0.5] - 2024-05-28
 
 ### Changed
