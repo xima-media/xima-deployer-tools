@@ -52,8 +52,8 @@ set('feature_index_app_path', '');
 //    'title' => 'path'
 //]);
 //set('feature_index_app_type', 'symfony');
-set('feature_index_jira_browse', 'https://xima.atlassian.net/browse/');
-set('feature_index_jira_api', 'https://jira.xima.de/rest/api/2/issue/');
+set('feature_index_jira_browse', 'https://acme.atlassian.net/browse/');
+set('feature_index_jira_api', 'https://acme.atlassian.net/rest/api/1/issue/');
 set('feature_index_jira_auth', '');
 set('feature_index_git_branch', '');
 
