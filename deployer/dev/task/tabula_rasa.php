@@ -49,7 +49,22 @@ task('dev:tabula_rasa:db_sync', function () {
     if (input()->getOption('no-db-sync')) return;
 
     set('dev_db_sync_tool_use_current_branch', true);
+
+    $dbDumpDir = run('pwd') . '/.deployment/tr-db-dumps/';
+
+    $dbDumpPath = $dbDumpDir . date('Y-m-d') . '.sql';
+
+    // check if there is already a dump of the current day
+    if (test('[ -f ' . $dbDumpPath . ' ]')) {
+        warning('Database dump already existing for today. Importing it...');
+        invoke('dev:import');
+        return;
+    }
+
     invoke('dev:sync');
+
+    info('Caching database to ' . $dbDumpPath . '...');
+    invoke('dev:dump');
 })
     ->desc('Sync database with db-sync-tool');
 

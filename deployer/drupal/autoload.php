@@ -25,6 +25,8 @@ require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/tas
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/task/deploy_maintenance.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/task/deploy_permissions.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/task/deploy_translations.php');
+require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/task/dump.php');
+require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/task/import.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/task/post_db_sync.php');
 require_once($vendorRoot . '/vendor/xima/xima-deployer-tools/deployer/drupal/task/sync.php');
 
