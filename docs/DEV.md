@@ -19,8 +19,10 @@ $ dep dev:sync local
 
 Reset local branch for further development.
 ```bash
-$ dep dev:tr local [--no-db-sync]
+$ dep dev:tr local [--no-db-sync] [--cache-db]
 ```
+
+Use `cache-db` to cache the database for 1 day after syncing it. Useful for large databases and to reduce load in the source system.
 
 <a name="release"></a>
 ## dev:release
@@ -70,7 +72,7 @@ $ dep dev:release:finish local
 
 ### General advices
 
-> *Always* check the automated created git commits before pushing them. 
+> *Always* check the automated created git commits before pushing them.
 
 See the default config [set.php](../deployer/dev/config/set.php) to adjust the release process to your needs.
 

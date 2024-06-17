@@ -51,6 +51,11 @@ task('dev:tabula_rasa:db_sync', function () {
     set('dev_db_sync_tool_use_current_branch', true);
 
     // check if there is already a dump of the current day
+    if (!input()->getOption('cache-db')) {
+        invoke('dev:sync');
+        return;
+    }
+
     if (recentDatabaseCacheDumpExists()) {
         warning('Database dump already existing for today. Importing it...');
         invoke('dev:import');
