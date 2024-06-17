@@ -4,15 +4,13 @@ namespace Deployer;
 
 // override dev command
 task('dev:dump', function () {
-  $dbDumpDir = run('pwd') . '/.deployment/tr-db-dumps/';
+  $dbDumpDir = getRecentDatabaseCacheDumpDirectory();
 
   run("mkdir -p $dbDumpDir");
 
-  // cleanup beforehands: delete all dump files with the above naming scheme older than 7 days
-  run("find $dbDumpDir -name '*.sql' -mtime +7 -delete");
+  // cleanup beforehand: delete all dump files with the above naming scheme older than 7 days
+  cleanUpDatabaseCacheDumps();
 
-  $dbDumpPath = $dbDumpDir . date('Y-m-d') . '.sql';
-
-  runExtended('drush sql:dump --result-file=' . $dbDumpPath);
+  runExtended('drush sql:dump --result-file=' . getRecentDatabaseCacheDumpPath());
 })
   ->desc('Sync database with drush');

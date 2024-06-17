@@ -48,6 +48,6 @@ task('dev:sync', function () {
 
     $dbSyncToolConfigPath = get('dev_db_sync_tool_config_path');
     runLocally("db_sync_tool -f $dbSyncToolConfigPath/$dbSyncToolSync -y $additionalOptions", ['real_time_output' => true]);
-    info("💽 Database from $target synced");
+    info("💽 Database from $target synced successfully");
 })
     ->desc('Sync database with db-sync-tool');

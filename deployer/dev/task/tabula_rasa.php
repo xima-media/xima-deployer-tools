@@ -50,12 +50,8 @@ task('dev:tabula_rasa:db_sync', function () {
 
     set('dev_db_sync_tool_use_current_branch', true);
 
-    $dbDumpDir = run('pwd') . '/.deployment/tr-db-dumps/';
-
-    $dbDumpPath = $dbDumpDir . date('Y-m-d') . '.sql';
-
     // check if there is already a dump of the current day
-    if (test('[ -f ' . $dbDumpPath . ' ]')) {
+    if (recentDatabaseCacheDumpExists()) {
         warning('Database dump already existing for today. Importing it...');
         invoke('dev:import');
         return;
@@ -63,7 +59,7 @@ task('dev:tabula_rasa:db_sync', function () {
 
     invoke('dev:sync');
 
-    info('Caching database to ' . $dbDumpPath . '...');
+    info('Caching database to ' . getRecentDatabaseCacheDumpPath() . '...');
     invoke('dev:dump');
 })
     ->desc('Sync database with db-sync-tool');
