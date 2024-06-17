@@ -18,8 +18,6 @@ task('dev:dump', function () {
     $dbSyncToolOriginPath = str_replace('<feature>', $target, get('dev_db_sync_tool_origin_path'));
     $additionalOptions = "--origin-path $dbSyncToolOriginPath";
 
-    info("sync database from remote: $target");
-
     $dbSyncToolConfigPath = get('dev_db_sync_tool_config_path');
     runLocally("db_sync_tool -f $dbSyncToolConfigPath/$dbSyncToolSync -y -kd $dbDumpDir -dn $dbDumpFilename $additionalOptions", ['real_time_output' => true]);
 })
