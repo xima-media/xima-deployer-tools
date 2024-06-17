@@ -48,3 +48,7 @@ set('buffer_config', function () {
 set('feature_index_app_type', 'drupal');
 
 set('drush', '../../../vendor/bin/drush');
+
+set('dev_tr_db_dump_dir', function () {
+    return run('pwd') . '/.deployment/tr-db-dumps';
+});

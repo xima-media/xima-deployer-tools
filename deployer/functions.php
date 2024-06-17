@@ -106,24 +106,26 @@ function runExtended(string $command, ?array $options = [], ?int $timeout = null
     );
 }
 
-function getRecentDatabaseCacheDumpDirectory(): string
-{
-  return run('pwd') . '/.deployment/tr-db-dumps';
-}
-
 function getRecentDatabaseCacheDumpPath(): string
 {
-  return getRecentDatabaseCacheDumpDirectory() . '/' . date('Y-m-d') . '.sql';
+    return get('dev_tr_db_dump_dir') . '/' . getRecentDatabaseCacheDumpFilename() . '.sql';
 }
 
-function recentDatabaseCacheDumpExists(): bool {
-  return test('[ -f ' . getRecentDatabaseCacheDumpPath() . ' ]');
+function getRecentDatabaseCacheDumpFilename(): string
+{
+    return date('Y-m-d');
 }
 
-function cleanUpDatabaseCacheDumps(int $days = 7): void {
-  $dbDumpDir = getRecentDatabaseCacheDumpDirectory();
-  run("mkdir -p $dbDumpDir");
+function recentDatabaseCacheDumpExists(): bool
+{
+    return test('[ -f ' . getRecentDatabaseCacheDumpPath() . ' ]');
+}
 
-  // cleanup beforehand: delete all dump files with the above naming scheme older than 7 days
-  run("find $dbDumpDir -name '*.sql' -mtime +$days -delete");
+function cleanUpDatabaseCacheDumps(int $days = 7): void
+{
+    $dbDumpDir = get('dev_tr_db_dump_dir');
+    run("mkdir -p $dbDumpDir");
+
+    // cleanup beforehand: delete all dump files with the above naming scheme older than 7 days
+    run("find $dbDumpDir -name '*.sql' -mtime +$days -delete");
 }

@@ -2,29 +2,25 @@
 
 namespace Deployer;
 
-// override dev command
 task('dev:dump', function () {
-  $dbDumpDir = getRecentDatabaseCacheDumpDirectory();
+    $target = runLocally('git branch --show-current');
 
-  run("mkdir -p $dbDumpDir");
+    $dbDumpDir = get('dev_tr_db_dump_dir');
+    $dbDumpFilename = getRecentDatabaseCacheDumpFilename();
 
-  // cleanup beforehand: delete all dump files with the above naming scheme older than 7 days
-  cleanUpDatabaseCacheDumps();
+    run("mkdir -p $dbDumpDir");
 
-  $target = runLocally('git branch --show-current');
+    // cleanup beforehand: delete all dump files with the above naming scheme older than 7 days
+    cleanUpDatabaseCacheDumps();
 
-  $dbSyncToolSync = get('dev_db_sync_tool_default_sync');
+    $dbSyncToolSync = get('dev_db_sync_tool_default_sync');
 
-  $dbSyncToolOriginPath = str_replace('<feature>', $target, get('dev_db_sync_tool_origin_path'));
-  $additionalOptions = "--origin-path $dbSyncToolOriginPath";
+    $dbSyncToolOriginPath = str_replace('<feature>', $target, get('dev_db_sync_tool_origin_path'));
+    $additionalOptions = "--origin-path $dbSyncToolOriginPath";
 
-  info("sync database from remote: $target");
+    info("sync database from remote: $target");
 
-  $dbSyncToolConfigPath = get('dev_db_sync_tool_config_path');
-//  runLocally("db_sync_tool -f $dbSyncToolConfigPath/$dbSyncToolSync -y $additionalOptions", ['real_time_output' => true]);
-  runLocally("db_sync_tool -y $additionalOptions", ['real_time_output' => true]);
-  info("💽 Database from $target synced successfully");
-
-  runExtended('drush sql:dump --result-file=' . getRecentDatabaseCacheDumpPath());
+    $dbSyncToolConfigPath = get('dev_db_sync_tool_config_path');
+    runLocally("db_sync_tool -f $dbSyncToolConfigPath/$dbSyncToolSync -y -kd $dbDumpDir -dn $dbDumpFilename $additionalOptions", ['real_time_output' => true]);
 })
-  ->desc('Sync database with drush');
+    ->desc('Sync database with drush');
