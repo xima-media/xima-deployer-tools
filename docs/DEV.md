@@ -4,6 +4,8 @@ The following tasks are part of the development tools, to simplify the local dev
 
 - [dev:sync](#sync)
 - [dev:tr](#tabula-rasa)
+- [dev:dump](#dump)
+- [dev:import](#import)
 - [dev:release](#release)
 
 <a name="sync"></a>
@@ -23,6 +25,22 @@ $ dep dev:tr local [--no-db-sync] [--cache-db]
 ```
 
 Use `cache-db` to cache the database for 1 day after syncing it. Useful for large databases and to reduce load in the source system.
+
+<a name="dump"></a>
+## dev:dump
+
+Dump the local database to an sql file. This task is used by `dev:tr` with `--cache-db` option set to create a once-per-day sql dump.
+```bash
+$ dep dev:dump local
+```
+
+<a name="import"></a>
+## dev:import
+
+Import the local database by an sql dump. This task is used by `dev:tr` with `--cache-db` option import the once-per-day sql dump.
+```bash
+$ dep dev:import local
+```
 
 <a name="release"></a>
 ## dev:release
