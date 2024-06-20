@@ -49,7 +49,23 @@ task('dev:tabula_rasa:db_sync', function () {
     if (input()->getOption('no-db-sync')) return;
 
     set('dev_db_sync_tool_use_current_branch', true);
+
+    // check if there is already a dump of the current day
+    if (!input()->getOption('cache-db')) {
+        invoke('dev:sync');
+        return;
+    }
+
+    if (recentDatabaseCacheDumpExists()) {
+        warning('Database dump already existing for today. Importing it...');
+        invoke('dev:import');
+        return;
+    }
+
     invoke('dev:sync');
+
+    info('Caching database to ' . getRecentDatabaseCacheDumpPath() . '...');
+    invoke('dev:dump');
 })
     ->desc('Sync database with db-sync-tool');
 

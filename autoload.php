@@ -42,6 +42,8 @@ require_once(__DIR__ . '/deployer/dev/functions.php');
 require_once(__DIR__ . '/deployer/dev/config/set.php');
 require_once(__DIR__ . '/deployer/dev/config/options.php');
 require_once(__DIR__ . '/deployer/dev/task/composer_update.php');
+require_once(__DIR__ . '/deployer/dev/task/dump.php');
+require_once(__DIR__ . '/deployer/dev/task/import.php');
 require_once(__DIR__ . '/deployer/dev/task/npm_update.php');
 require_once(__DIR__ . '/deployer/dev/task/qa.php');
 require_once(__DIR__ . '/deployer/dev/task/release_finish.php');

@@ -32,5 +32,8 @@ set('dev_db_sync_tool_origin_path', function () {
     $path .= '<feature>' . get('dev_db_sync_tool_credential_path');
     return $path;
 });
+set('dev_tr_db_dump_dir', function () {
+    return run('pwd') . '/.deployment/tr-db-dumps/' . runLocally('git branch --show-current');
+});
 
 localhost('local');

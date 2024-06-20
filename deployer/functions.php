@@ -105,3 +105,27 @@ function runExtended(string $command, ?array $options = [], ?int $timeout = null
             $no_throw ?? (bool)get('run_no_throw')
     );
 }
+
+function getRecentDatabaseCacheDumpPath(): string
+{
+    return get('dev_tr_db_dump_dir') . '/' . getRecentDatabaseCacheDumpFilename() . '.sql';
+}
+
+function getRecentDatabaseCacheDumpFilename(): string
+{
+    return date('Y-m-d');
+}
+
+function recentDatabaseCacheDumpExists(): bool
+{
+    return test('[ -f ' . getRecentDatabaseCacheDumpPath() . ' ]');
+}
+
+function cleanUpDatabaseCacheDumps(int $days = 7): void
+{
+    $dbDumpDir = get('dev_tr_db_dump_dir');
+    run("mkdir -p $dbDumpDir");
+
+    // cleanup beforehand: delete all dump files with the above naming scheme older than 7 days
+    run("find $dbDumpDir -name '*.sql' -mtime +$days -delete");
+}

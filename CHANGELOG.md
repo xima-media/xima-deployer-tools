@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- database caching for 1 day after syncing it using `--cache-db` in `dev:tr`
+
 ## [1.0.6] - 2024-06-12
 
 ### Fixed
