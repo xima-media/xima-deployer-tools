@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.2] - 2024-06-27
+
+### Fixed
+
+- fbd index page styles
+
 ## [1.1.1] - 2024-06-27
 
 ### Fixed
