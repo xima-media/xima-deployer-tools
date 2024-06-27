@@ -20,12 +20,15 @@ class TemplateService
 
         foreach ($entries as $entry) {
             $html .= "<tr>" .
-                "<td>" .
-                "<a href='" . $config['git']['branch'] . $entry->getName() . "' target='_blank'><div class='pill' data-tooltip='" . ucfirst($entry->getCategory()) . " branch' data-type='" . $entry->getCategory() . "'>" . strtoupper($entry->getCategory()[0]) . "</div></a>" .
-                "<a href='" . $ioService->getEntryAppPath($entry) . "'><strong>" . $entry->getName() . "</strong></a> <sup>" . $entry->getTag() . "</sup>" .
+                "<td class='branch'>" .
+                "<a class='pill-wrapper' href='" . $config['git']['branch'] . $entry->getName() . "' target='_blank'><div class='pill' data-tooltip='" . ucfirst($entry->getCategory()) . " branch' data-type='" . $entry->getCategory() . "'>" . strtoupper($entry->getCategory()[0]) . "</div></a>" .
+                "<a class='entry' href='" . $ioService->getEntryAppPath($entry) . "'><strong>" . $entry->getName() . "</strong></a> <sup>" . $entry->getTag() . "</sup>" .
                 "</td>" .
-                "<td style='text-align: right;display:flex;align-items: center;'>" .
-                $this->renderIssueData($entry) . $this->renderLastUpdated($entry) .
+                "<td style='text-align: right;'>" .
+                $this->renderIssueData($entry) .
+                "</td>" .
+                "<td style='text-align: right;'>" .
+                $this->renderLastUpdated($entry) .
                 "</td>" .
                 "</tr>";
         }
