@@ -27,6 +27,9 @@ function composerUpdate(string $mode = "app"): void {
         add('dev_empty_tasks', ["dev:release:composer_update_$mode"]);
         return;
     }
+
+    $matches[1] = array_unique($matches[1]);
+
     foreach ($matches[1] as $index => $package) {
         $message .= " - $package (" . $matches[2][$index] . ")\n";
     }
