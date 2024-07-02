@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.3] - 2024-07-02
+
+### Fixed
+
+- potential duplicate lines in composer_update
+
 ## [1.1.2] - 2024-06-27
 
 ### Fixed
