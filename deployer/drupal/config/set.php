@@ -17,6 +17,7 @@ set('debug_log_regex_pattern', '/\[(.*)\]\s(.*)\.([^:]*):\s(.*)/');
 
 set('shared_dirs', [
   'web/sites/{{drupal_site}}/files',
+  'private',
 ]);
 
 set('shared_files', [

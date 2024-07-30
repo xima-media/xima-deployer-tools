@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.4] - 2024-07-30
+
+### Added
+
+- private folder to `shared_dirs` in drupal deployments
+
 ## [1.1.3] - 2024-07-02
 
 ### Fixed
