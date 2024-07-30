@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- private folder to `shared_dirs` in drupal deployments
+- private folder to `shared_dirs` in drupal deployments 
 
 ## [1.1.3] - 2024-07-02
 
