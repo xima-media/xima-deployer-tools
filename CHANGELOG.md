@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.5] - 2024-09-23
+
+### Fixed
+
+- surround feature branch db password with quotes
+
 ## [1.1.4] - 2024-07-30
 
 ### Added
