@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.6] - 2025-01-06
+
+### Fixed
+
+- path in writable_dirs for symfony deployments
+
 ## [1.1.5] - 2024-09-23
 
 ### Fixed
