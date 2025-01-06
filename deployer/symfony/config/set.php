@@ -26,7 +26,7 @@ set('shared_files', [
 
 set('writable_dirs', [
     'var',
-    '/public/upload'
+    'public/upload'
 ]);
 
 set('writable_mode', 'chmod');
