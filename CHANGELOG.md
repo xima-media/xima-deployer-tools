@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.2.0] - 2025-02-10
+
 ### Added
 
 - run drush deploy hooks during drupal deployments
