@@ -57,6 +57,9 @@ task('deploy', [
     // Drupal: import config
     'deploy:configuration:import',
 
+    // Drupal: run deploy hooks
+    'deploy:hook:deploy',
+
     // Drupal: clear the cache
     'deploy:cache:clear',
 
