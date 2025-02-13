@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.2.1] - 2025-02-13
+
 ### Fixed
 
 - include recently added deploy hooks in autoload file
