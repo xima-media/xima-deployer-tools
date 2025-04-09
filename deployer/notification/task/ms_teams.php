@@ -33,7 +33,7 @@ function sendMessage(string $message = '', string $color = ''): void
       if (has('msteams_request_body')) {
         $body = get('msteams_request_body');
       } else {
-        $body = [
+        $body = json_encode([
           "type" => "message",
           "attachments" => [
             [
@@ -53,18 +53,18 @@ function sendMessage(string $message = '', string $color = ''): void
               ],
             ],
           ],
-        ];
+        ], \JSON_UNESCAPED_SLASHES);
       }
     } else {
-      $body = [
+      $body = json_encode([
         "themeColor" => $color,
         'text'       => $message
-      ];
+      ]);
     }
 
     $curlTimeout = getenv('DEPLOYER_CONFIG_NOTIFICATION_MSTEAMS_TIMEOUT') ?: 10;
     Httpie::post(get('msteams_webhook'))
         ->setopt(CURLOPT_TIMEOUT, $curlTimeout)
-        ->jsonBody($body)
+        ->body($body)
         ->send();
 }
