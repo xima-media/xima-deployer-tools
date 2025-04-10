@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- support for ms teams workflow webhooks.
+
 ## [1.2.1] - 2025-02-13
 
 ### Fixed
