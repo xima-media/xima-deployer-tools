@@ -41,13 +41,17 @@ function sendMessage(string $message = '', string $color = ''): void
               "content" => [
                 "\$schema" => "http://adaptivecards.io/schemas/adaptive-card.json",
                 "type" => "AdaptiveCard",
-                "version" => "1.0",
+                "version" => "1.4",
+                "msTeams" => [
+                  'width' => "full",
+                ],
                 "body" => [
                   [
                     "type" => "TextBlock",
                     "text" => $message,
                     "weight" => "bolder",
                     "size" => "medium",
+                    "wrap" => true,
                   ],
                 ],
               ],
