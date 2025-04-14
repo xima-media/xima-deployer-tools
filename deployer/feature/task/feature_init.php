@@ -20,14 +20,14 @@ task('feature:init', function () {
  * Initialize a feature branch
  * (!: needed for all deployer tasks considering a feature branch)
  *
- * @param $feature
- * @return string|null
+ * @param ?string $feature
+ * @return ?string
  * @throws \Deployer\Exception\Exception
  * @throws \Deployer\Exception\RunException
  * @throws \Deployer\Exception\TimeoutException
  * @throws \Exception
  */
-function initFeature($feature = null): ?string
+function initFeature(?string $feature = null): ?string
 {
     debug('Initializing feature instance');
     // check if feature was already initialized

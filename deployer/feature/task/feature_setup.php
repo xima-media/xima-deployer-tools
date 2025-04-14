@@ -186,10 +186,10 @@ function uploadTemplate($localTemplate, $remoteTarget, $arguments): void {
 
 /**
  * Generate a database name
- * @param null $feature
+ * @param ?string $feature
  * @return string
  */
-function getDatabaseName($feature = null): string
+function getDatabaseName(?string $feature = null): string
 {
     $feature = $feature ?: input()->getOption('feature');
     $project = get('project');
@@ -197,10 +197,10 @@ function getDatabaseName($feature = null): string
 }
 
 /**
- * @param $feature
+ * @param ?string $feature
  * @return array|string|string[]|null
  */
-function getFeatureName($feature = null) {
+function getFeatureName(?string $feature = null) {
     $feature = $feature ?: input()->getOption('feature');
 
     return preg_replace('/[^A-Za-z0-9\_\-.]/', '', $feature);
