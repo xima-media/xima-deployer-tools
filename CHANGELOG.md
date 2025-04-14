@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Fixed
+
+- prevent PHP 8.4 implicitly nullable parameter deprecation notices
+
 ## [1.3.0]
 
 ### Added
