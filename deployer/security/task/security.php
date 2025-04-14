@@ -104,7 +104,7 @@ function checkNpmConsoleTools(): void
 /**
  * The function formats an array of Composer issues into a specific format.
  *
- * @param array|null $issues An array of issues returned by a Composer security checker tool. The format of
+ * @param ?array $issues An array of issues returned by a Composer security checker tool. The format of
  * the array may differ depending on the specific tool being used.
  *
  * @return array an array of formatted issues. The format of each issue includes the CVE, package name,
@@ -216,14 +216,14 @@ function printIssueTable(array $issues): void
  * @param string $string The input string that needs to be formatted with colors.
  * @param array $matches The matches parameter is an array that contains the values to be matched and
  * their corresponding colors.
- * @param string $match The `` parameter is a string that represents the specific match that
+ * @param ?string $match The `` parameter is a string that represents the specific match that
  * should be highlighted with color in the output string. If it is null, then the entire input string
  * will be used as the match.
  *
  * @return string a string with the matched substring(s) colored according to the corresponding color
  * specified in the `` array.
  */
-function coloredOutput(string $string, array $matches, string $match = null): string
+function coloredOutput(string $string, array $matches, ?string $match = null): string
 {
     $match = is_null($match) ? $string : $match;
     foreach ($matches as $value => $color) {
