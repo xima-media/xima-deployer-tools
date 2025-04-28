@@ -29,7 +29,7 @@ task('feature:stop', function () {
  * @throws \Deployer\Exception\RunException
  * @throws \Deployer\Exception\TimeoutException
  */
-function deleteFeature($feature = null, $needConfirmation = false): void
+function deleteFeature(?string $feature = null, $needConfirmation = false): void
 {
     $feature = $feature ?: input()->getOption('feature');
 

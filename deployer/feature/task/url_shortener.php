@@ -29,11 +29,11 @@ function isUrlShortener(): bool
 
 /**
  * Initialize the url shortener function and adjust deploy_path & public_urls
- * @param null $feature
+ * @param ?string $feature
  * @return void
  * @throws \Deployer\Exception\Exception
  */
-function initUrlShortener($feature = null): void
+function initUrlShortener(?string $feature = null): void
 {
     if (!isUrlShortener()) return;
 
