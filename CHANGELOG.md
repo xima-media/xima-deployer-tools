@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+
+- locale check before locale update in drupal deployment
+
 ## [1.3.1]
 
 ### Fixed
