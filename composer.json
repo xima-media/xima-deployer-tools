@@ -16,8 +16,9 @@
 	"require": {
 		"deployer/deployer": "^7.0",
 		"sourcebroker/deployer-extended": "^18.0",
-		"sourcebroker/deployer-loader": "^2.0.1"
-	},
+		"sourcebroker/deployer-loader": "^2.0.1",
+      	"ext-json": "*"
+    },
 	"autoload": {
 		"psr-4": {
 			"Xima\\XimaDeployerTools\\Utility\\": "src/Utility/",
