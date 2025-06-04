@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0]
+
+### Added
+
+- database update and clear cache after database sync
+
+### Fixed
+
+- break and output propper error message if exception occurs in security check
+- add dependency to 'ext-json' in composer.json
+
 ## [1.4.0]
 
 ### Added
