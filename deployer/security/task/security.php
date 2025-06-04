@@ -22,7 +22,8 @@ task('security:check:composer', function () {
     try {
         $output = runLocally('{{security_composer_command}}');
     } catch (RunException $exception) {
-        $output = ($exception->getOutput());
+        $output = ($exception->getErrorOutput());
+        throw new GracefulShutdownException($output);
     }
     $vulnerabilities = json_decode($output, true);
     $formattedIssues = formatComposerIssues($vulnerabilities);
@@ -47,7 +48,7 @@ task('security:check:npm', function () {
     try {
         $output = runLocally('npm audit --json --only=prod --prefix {{security_npm_path}}');
     } catch (RunException $exception) {
-        $output = ($exception->getOutput());
+        $output = ($exception->getErrorOutput());
         throw new GracefulShutdownException($output);
     }
     $vulnerabilities = json_decode($output, true);
