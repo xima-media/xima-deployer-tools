@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.1]
+
+### Fixed
+
+- set default paths for security checks to "." instead of inheriting from app path
+
 ## [1.5.0]
 
 ### Added
