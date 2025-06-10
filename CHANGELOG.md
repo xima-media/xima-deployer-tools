@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.2]
+
+### Added
+
+- improve output on failure in security check
+
+
 ## [1.5.1]
 
 ### Fixed
