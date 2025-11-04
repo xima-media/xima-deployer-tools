@@ -22,6 +22,7 @@ set('feature_templates', [
  */
 set('feature_sync_config', __DIR__ . '/.deployment/db-sync-tool/sync-stage-to-feature.yaml');
 set('feature_sync_target_path', '{{deploy_path}}/shared/.env');
+set('feature_sync_after_dump_path', '{{deploy_path}}/current/migrations/run_after_sync/after_dump.sql');
 
 /**
  * Feature Notification

@@ -20,7 +20,11 @@ task('feature:sync', function () {
     if (get('db_sync_tool') !== false) {
         if (commandExistLocally("{{db_sync_tool}}")) {
             info('Synching database');
-            runLocally("{{db_sync_tool}} -f {{feature_sync_config}} --target-path {{feature_sync_target_path}} --use-rsync -y $optionalVerbose");
+            if (get('feature_sync_after_dump_path')){
+                runLocally("{{db_sync_tool}} -f {{feature_sync_config}} --target-path {{feature_sync_target_path}} --target-after-dump {{feature_sync_after_dump_path}} --use-rsync -y $optionalVerbose");
+            } else {
+                runLocally("{{db_sync_tool}} -f {{feature_sync_config}} --target-path {{feature_sync_target_path}} --use-rsync -y $optionalVerbose");
+            }
             $synced = true;
         } else {
             debug("Skipping database sync, command \”{{db_sync_tool}}\” not available");
