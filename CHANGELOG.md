@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.4]
+
+### Added
+
+- option for after dump command for db sync tool
+
 ## [1.5.3]
 
 ### Added
