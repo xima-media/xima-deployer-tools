@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [1.6.0]
+
+### Changed
+
+- **BREAKING:** remove shared/writable dir "<webroot>/uploads/" from TYPO3 config set- This 
+  - this breaks backwards compatibility for projects relying on this path
+  - reason: TYPO3 no longer uses this folder since V10
 
 ## [1.5.4]
 
