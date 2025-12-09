@@ -16,7 +16,6 @@ set('debug_log_regex_pattern', '/^(\w+,\s\d+\s\w+\s\d+\s\d+:\d+:\d+\s\+\d+)\s\[(
 
 set('shared_dirs', [
     '{{web_path}}fileadmin',
-    '{{web_path}}uploads',
     'var/session',
     'var/log',
     'var/lock',
@@ -34,7 +33,6 @@ set('writable_recursive', false);
 set('writable_dirs',  [
     '{{web_path}}typo3conf',
     '{{web_path}}typo3temp',
-    '{{web_path}}uploads',
     '{{web_path}}fileadmin',
     'var/session',
     'var/log',
