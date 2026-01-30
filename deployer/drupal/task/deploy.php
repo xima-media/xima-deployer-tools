@@ -22,7 +22,7 @@ task('deploy', [
     'deploy:database:backup',
 
     // enable maintenance mode
-    'deploy:maintenance:enable',
+    'deploy:drush:maintenance:enable',
 
     // Standard deployer task
     'rsync',
@@ -42,26 +42,17 @@ task('deploy', [
     // Drupal: fix permisions for drupal files folder
     'deploy:permissions:drupal_files',
 
-    // Drupal: clear the cache
-    'deploy:cache:clear',
-
     // Drupal: create private/logs
     'deploy:log_dir:create',
 
-    // Drupal: update database
-    'deploy:database:update',
+    // Drupal: update database, import configurations and run deploy hooks
+    'deploy:drush:deploy',
 
     // Drupal: update translations
-    'deploy:translations:update',
+    'deploy:drush:translations:update',
 
-    // Drupal: import config
-    'deploy:configuration:import',
-
-    // Drupal: run deploy hooks
-    'deploy:hook:deploy',
-
-    // Drupal: clear the cache
-    'deploy:cache:clear',
+    // Drupal: run cache rebuild
+    'deploy:drush:cache:rebuild',
 
     // Standard deployer task
     'deploy:clear_paths',
@@ -86,10 +77,10 @@ task('deploy', [
     'buffer:stop',
 
     // disable maintenance mode
-    'deploy:maintenance:disable',
+    'deploy:drush:maintenance:disable',
 
     // Drupal: clear the cache
-    'deploy:cache:clear',
+    'deploy:drush:cache:rebuild',
 
     // Standard deployer task
     'deploy:unlock',

@@ -4,11 +4,6 @@ namespace Deployer;
 
 use Xima\XimaDeployerTools\Utility\EnvUtility;
 
-desc('Update database');
-task('deploy:database:update', function () {
-  runExtended('cd {{drupal_site_path}} && {{drush}} updb -y');
-});
-
 desc('Sync database');
 task('deploy:database:sync', function () {
   if (!has('feature_setup') || !get('feature_setup') || !has('db_sync_source') || !get('db_sync_source')) {
