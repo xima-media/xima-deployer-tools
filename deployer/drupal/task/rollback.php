@@ -4,6 +4,6 @@ namespace Deployer;
 
 # rollback
 task('after_rollback', [
-    'deploy:cache:clear',
+    'deploy:drush:cache:rebuild',
 ]);
 after('rollback', 'after_rollback');
