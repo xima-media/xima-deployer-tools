@@ -1,6 +1,14 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+
+## [1.7.0]
+
+### Changed
+
+- Consolidate drush related tasks into one place
+- Use drush deploy instead of calling drush commands one by one
+
 ## [1.6.0]
 
 ### Changed
